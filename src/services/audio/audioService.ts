@@ -1,22 +1,29 @@
-// Serviço de Áudio e Síntese de Voz - Inglês Fácil
-// Isolado para facilitar futura conexão com serviços externos (ElevenLabs, Azure Speech, etc.)
+// Serviço de Áudio - Inglês Fácil
+// As frases em inglês tocam a partir de MP3s com voz neural, gerados por scripts/generate-audio.mjs
+// (public/audio/manifest.json). A voz sintética do navegador não é usada.
 
 export interface AudioSupportStatus {
-  hasSpeechSynthesis: boolean;
   hasSpeechRecognition: boolean;
   hasMediaRecorder: boolean;
-  englishVoicesCount: number;
 }
 
+interface AudioManifest {
+  voice: string;
+  phrases: Record<string, { normal: string; slow: string }>;
+}
+
+// Abaixo desta velocidade usa o arquivo gravado devagar (soa mais natural que acelerar/desacelerar)
+const SLOW_FILE_THRESHOLD = 0.85;
+
 export class AudioService {
-  private static synth: SpeechSynthesis | null = typeof window !== 'undefined' ? window.speechSynthesis : null;
   private static audioContext: AudioContext | null = null;
+  private static manifestPromise: Promise<AudioManifest | null> | null = null;
+  private static current: HTMLAudioElement | null = null;
 
   /**
    * Verifica suporte do navegador para os recursos de áudio
    */
   public static checkSupport(): AudioSupportStatus {
-    const hasSpeechSynthesis = typeof window !== 'undefined' && 'speechSynthesis' in window;
     const hasSpeechRecognition =
       typeof window !== 'undefined' &&
       ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window);
@@ -25,29 +32,30 @@ export class AudioService {
       'mediaDevices' in navigator &&
       'MediaRecorder' in window;
 
-    return {
-      hasSpeechSynthesis,
-      hasSpeechRecognition,
-      hasMediaRecorder,
-      englishVoicesCount: this.getEnglishVoices().length,
-    };
+    return { hasSpeechRecognition, hasMediaRecorder };
+  }
+
+  private static loadManifest(): Promise<AudioManifest | null> {
+    if (!this.manifestPromise) {
+      this.manifestPromise = fetch(`${import.meta.env.BASE_URL}audio/manifest.json`)
+        .then((res) => (res.ok ? (res.json() as Promise<AudioManifest>) : null))
+        .catch(() => null);
+    }
+    return this.manifestPromise;
   }
 
   /**
-   * Obtém vozes em inglês disponíveis no navegador
+   * Indica se a frase tem áudio gravado disponível
    */
-  public static getEnglishVoices(): SpeechSynthesisVoice[] {
-    if (!this.synth) return [];
-    const voices = this.synth.getVoices();
-    return voices.filter(
-      (v) => v.lang.startsWith('en-') || v.lang === 'en_US' || v.lang === 'en_GB'
-    );
+  public static async hasAudio(text: string): Promise<boolean> {
+    const manifest = await this.loadManifest();
+    return Boolean(manifest?.phrases[text.trim()]);
   }
 
   /**
    * Reproduz uma frase em inglês com taxa de velocidade controlada
    * @param text Frase a ser falada
-   * @param rate Velocidade de fala (1.0 = normal, 0.75 = pausado para iniciantes)
+   * @param rate Velocidade (1.0 = normal, 0.75 = pausado para iniciantes)
    * @param onEnd Callback de conclusão
    * @param onError Callback de erro/ausência
    */
@@ -57,56 +65,44 @@ export class AudioService {
     onEnd?: () => void,
     onError?: (errorText: string) => void
   ): boolean {
-    if (!this.synth) {
-      if (onError) onError('Síntese de voz não suportada neste navegador.');
-      return false;
-    }
+    this.stop();
 
-    try {
-      // Cancela fala anterior se estiver em andamento
-      this.synth.cancel();
-
-      const utterance = new SpeechSynthesisUtterance(text);
-      utterance.rate = Math.max(0.5, Math.min(rate, 1.2));
-      utterance.lang = 'en-US';
-
-      const voices = this.getEnglishVoices();
-      if (voices.length > 0) {
-        // Prioriza vozes naturais como Samantha, Alex, Google US English ou a primeira em inglês
-        const preferred = voices.find(
-          (v) =>
-            v.name.includes('Natural') ||
-            v.name.includes('Google') ||
-            v.name.includes('Samantha') ||
-            v.name.includes('United States')
-        );
-        utterance.voice = preferred || voices[0];
+    this.loadManifest().then((manifest) => {
+      const entry = manifest?.phrases[text.trim()];
+      if (!entry) {
+        onError?.('Áudio ainda não disponível para esta frase.');
+        return;
       }
 
-      utterance.onend = () => {
-        if (onEnd) onEnd();
+      const useSlowFile = rate < SLOW_FILE_THRESHOLD;
+      const audio = new Audio(`${import.meta.env.BASE_URL}${useSlowFile ? entry.slow : entry.normal}`);
+      audio.playbackRate = useSlowFile ? 1.0 : Math.max(0.85, Math.min(rate, 1.5));
+      audio.preservesPitch = true;
+      audio.onended = () => {
+        if (this.current === audio) this.current = null;
+        onEnd?.();
       };
-
-      utterance.onerror = (event) => {
-        console.warn('Erro na síntese de voz:', event);
-        if (onError) onError('Falha ao reproduzir áudio. Verifique as permissões de som.');
+      audio.onerror = () => {
+        if (this.current === audio) this.current = null;
+        onError?.('Falha ao carregar o áudio. Verifique sua conexão.');
       };
+      this.current = audio;
+      audio.play().catch(() => {
+        if (this.current === audio) this.current = null;
+        onError?.('Não foi possível tocar o áudio. Verifique se o som do aparelho está ligado.');
+      });
+    });
 
-      this.synth.speak(utterance);
-      return true;
-    } catch (err) {
-      console.error('Exceção ao sintetizar fala:', err);
-      if (onError) onError('Ocorreu um erro no sintetizador de voz.');
-      return false;
-    }
+    return true;
   }
 
   /**
    * Interrompe qualquer reprodução de áudio em andamento
    */
   public static stop(): void {
-    if (this.synth) {
-      this.synth.cancel();
+    if (this.current) {
+      this.current.pause();
+      this.current = null;
     }
   }
 
@@ -258,4 +254,9 @@ export class VoiceRecorder {
     }
     this.audioChunks = [];
   }
+}
+
+// Carrega o índice de áudios cedo para o primeiro toque responder imediatamente (importante no iOS)
+if (typeof window !== 'undefined') {
+  void AudioService.hasAudio('');
 }

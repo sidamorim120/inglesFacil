@@ -266,7 +266,7 @@ export const SettingsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Preferências de Áudio e Síntese de Voz */}
+        {/* Preferências de Áudio */}
         <div className="card">
           <h2 style={{ fontSize: '1.25rem', marginBottom: '16px', display: 'flex', alignItems: 'center', gap: 8 }}>
             <Volume2 size={20} color="var(--secondary)" />
@@ -313,7 +313,7 @@ export const SettingsPage: React.FC = () => {
               className="btn btn-outline btn-sm"
             >
               <Play size={16} />
-              <span>{testSpeechPlaying ? 'Reproduzindo teste...' : 'Testar Voz do Sintetizador do Navegador'}</span>
+              <span>{testSpeechPlaying ? 'Reproduzindo teste...' : 'Testar Voz'}</span>
             </button>
           </div>
         </div>

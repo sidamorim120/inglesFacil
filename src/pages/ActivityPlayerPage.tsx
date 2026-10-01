@@ -86,7 +86,7 @@ export const ActivityPlayerPage: React.FC<ActivityPlayerPageProps> = ({
     }
   }, [currentIndex, currentQuestion]);
 
-  // Reproduz áudio com síntese de voz nativa
+  // Reproduz o áudio gravado da frase (public/audio)
   const handlePlayAudio = (speedOverride?: number) => {
     if (!currentQuestion.audioPhraseEn) return;
     const speed = speedOverride !== undefined ? speedOverride : audioSpeed;

@@ -1,0 +1,109 @@
+{
+  "voice": "en-US-AvaNeural",
+  "phrases": {
+    "Hello! Welcome to your daily English practice session.": {
+      "normal": "audio/7027d11fde47e048.mp3",
+      "slow": "audio/7027d11fde47e048-slow.mp3"
+    },
+    "Can I have your boarding pass?": {
+      "normal": "audio/ac368d6f193eace1.mp3",
+      "slow": "audio/ac368d6f193eace1-slow.mp3"
+    },
+    "Please have your passport and boarding pass ready.": {
+      "normal": "audio/5beaac3b1524ec4d.mp3",
+      "slow": "audio/5beaac3b1524ec4d-slow.mp3"
+    },
+    "Where is terminal two?": {
+      "normal": "audio/3eccfd675a0e6e98.mp3",
+      "slow": "audio/3eccfd675a0e6e98-slow.mp3"
+    },
+    "passport": {
+      "normal": "audio/d6b9ec5ff48406ce.mp3",
+      "slow": "audio/d6b9ec5ff48406ce-slow.mp3"
+    },
+    "Here is your boarding pass": {
+      "normal": "audio/d41a0a05ef7595eb.mp3",
+      "slow": "audio/d41a0a05ef7595eb-slow.mp3"
+    },
+    "Flight 304 is boarding at gate 15.": {
+      "normal": "audio/a845ea5e7ee046c3.mp3",
+      "slow": "audio/a845ea5e7ee046c3-slow.mp3"
+    },
+    "Is this the flight to London?": {
+      "normal": "audio/6849a59d05e2de47.mp3",
+      "slow": "audio/6849a59d05e2de47-slow.mp3"
+    },
+    "I am here on vacation.": {
+      "normal": "audio/bf295d14ca78630a.mp3",
+      "slow": "audio/bf295d14ca78630a-slow.mp3"
+    },
+    "I have one bag, please.": {
+      "normal": "audio/db5e7f7c206f4da1.mp3",
+      "slow": "audio/db5e7f7c206f4da1-slow.mp3"
+    },
+    "Welcome! Do you have a reservation?": {
+      "normal": "audio/7714b3deab4199b8.mp3",
+      "slow": "audio/7714b3deab4199b8-slow.mp3"
+    },
+    "Your room is on the third floor.": {
+      "normal": "audio/ee7fb167e4a388d4.mp3",
+      "slow": "audio/ee7fb167e4a388d4-slow.mp3"
+    },
+    "What is the Wi-Fi password?": {
+      "normal": "audio/8bf846cca59b8d3f.mp3",
+      "slow": "audio/8bf846cca59b8d3f-slow.mp3"
+    },
+    "towels": {
+      "normal": "audio/19487be9292840a8.mp3",
+      "slow": "audio/19487be9292840a8-slow.mp3"
+    },
+    "Breakfast is served from seven to ten a.m.": {
+      "normal": "audio/a63faeae9dc85c25.mp3",
+      "slow": "audio/a63faeae9dc85c25-slow.mp3"
+    },
+    "Is breakfast included in the room price?": {
+      "normal": "audio/94f2641b439db61c.mp3",
+      "slow": "audio/94f2641b439db61c-slow.mp3"
+    },
+    "What time is check-out": {
+      "normal": "audio/1a02b01b6f29d07a.mp3",
+      "slow": "audio/1a02b01b6f29d07a-slow.mp3"
+    },
+    "By credit card, please.": {
+      "normal": "audio/d78ac3c23ab8ec29.mp3",
+      "slow": "audio/d78ac3c23ab8ec29-slow.mp3"
+    },
+    "Table for two? Right this way, please.": {
+      "normal": "audio/46e84d33cc218a54.mp3",
+      "slow": "audio/46e84d33cc218a54-slow.mp3"
+    },
+    "Can we have a menu, please?": {
+      "normal": "audio/c270fd603652b6e9.mp3",
+      "slow": "audio/c270fd603652b6e9-slow.mp3"
+    },
+    "A coffee with milk, please.": {
+      "normal": "audio/e00bea9e6fdbb313.mp3",
+      "slow": "audio/e00bea9e6fdbb313-slow.mp3"
+    },
+    "water": {
+      "normal": "audio/6a56ca95dafa02dc.mp3",
+      "slow": "audio/6a56ca95dafa02dc-slow.mp3"
+    },
+    "I would like to see the vegetarian options.": {
+      "normal": "audio/78cd02fe79857627.mp3",
+      "slow": "audio/78cd02fe79857627-slow.mp3"
+    },
+    "The food is delicious, thank you.": {
+      "normal": "audio/c8773737873b4110.mp3",
+      "slow": "audio/c8773737873b4110-slow.mp3"
+    },
+    "Excuse me, could we have the check, please?": {
+      "normal": "audio/55c8d8ba7d184b1c.mp3",
+      "slow": "audio/55c8d8ba7d184b1c-slow.mp3"
+    },
+    "Sure, here is your receipt.": {
+      "normal": "audio/2381a655d1e0b09a.mp3",
+      "slow": "audio/2381a655d1e0b09a-slow.mp3"
+    }
+  }
+}
