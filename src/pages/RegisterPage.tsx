@@ -42,7 +42,7 @@ export const RegisterPage: React.FC<RegisterPageProps> = ({ onNavigateToLogin })
     }
 
     setIsLoading(true);
-    const res = await register(name, email);
+    const res = await register(name, email, password);
     setIsLoading(false);
 
     if (!res.success) {

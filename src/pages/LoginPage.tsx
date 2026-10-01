@@ -26,7 +26,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateToRegister, onNa
     }
 
     setIsLoading(true);
-    const res = await login(email);
+    const res = await login(email, password);
     setIsLoading(false);
 
     if (!res.success) {

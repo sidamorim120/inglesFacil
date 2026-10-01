@@ -2,6 +2,8 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { User, UserRole, UserSettings } from '../types';
 import { DemoStore } from '../services/storage/demoStore';
+import { isSupabaseConfigured, supabase } from '../services/supabase/client';
+import { SupabaseAuthService } from '../services/supabase/authService';
 
 interface AuthContextType {
   user: User | null;
@@ -9,8 +11,9 @@ interface AuthContextType {
   isAdmin: boolean;
   settings: UserSettings | null;
   isLoading: boolean;
-  login: (email: string) => Promise<{ success: boolean; error?: string }>;
-  register: (name: string, email: string) => Promise<{ success: boolean; error?: string }>;
+  isSupabaseMode: boolean;
+  login: (email: string, password?: string) => Promise<{ success: boolean; error?: string }>;
+  register: (name: string, email: string, password?: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => void;
   switchUser: (userId: string) => void;
   updateSettings: (newSettings: Partial<UserSettings>) => void;
@@ -23,19 +26,62 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   const [user, setUser] = useState<User | null>(null);
   const [settings, setSettings] = useState<UserSettings | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const isSupabaseMode = isSupabaseConfigured();
 
-  // Inicializa dados no primeiro carregamento
+  // Inicializa dados e escuta sessão
   useEffect(() => {
     DemoStore.init();
-    const currentUser = DemoStore.getCurrentUser();
-    setUser(currentUser);
-    if (currentUser) {
-      setSettings(DemoStore.getUserSettings(currentUser.id));
-    }
-    setIsLoading(false);
-  }, []);
 
-  const login = async (email: string) => {
+    if (isSupabaseMode && supabase) {
+      // Verifica sessão ativa no Supabase
+      supabase.auth.getSession().then(({ data }) => {
+        if (data.session?.user) {
+          SupabaseAuthService.getProfile(data.session.user.id).then((profile) => {
+            if (profile) setUser(profile);
+            setIsLoading(false);
+          });
+        } else {
+          setIsLoading(false);
+        }
+      });
+
+      // Escuta mudanças de estado de autenticação
+      const { data: authListener } = supabase.auth.onAuthStateChange(async (_event, session) => {
+        if (session?.user) {
+          const profile = await SupabaseAuthService.getProfile(session.user.id);
+          if (profile) setUser(profile);
+        } else {
+          setUser(null);
+        }
+      });
+
+      return () => {
+        authListener.subscription.unsubscribe();
+      };
+    } else {
+      // Modo Demonstração Local
+      const currentUser = DemoStore.getCurrentUser();
+      setUser(currentUser);
+      if (currentUser) {
+        setSettings(DemoStore.getUserSettings(currentUser.id));
+      }
+      setIsLoading(false);
+    }
+  }, [isSupabaseMode]);
+
+  const login = async (email: string, password?: string) => {
+    if (isSupabaseMode && password) {
+      const res = await SupabaseAuthService.signIn(email, password);
+      if (res.error) {
+        return { success: false, error: res.error };
+      }
+      if (res.user) {
+        setUser(res.user);
+        return { success: true };
+      }
+    }
+
+    // Modo demonstração
     const res = DemoStore.login(email);
     if (res.success && res.user) {
       setUser(res.user);
@@ -45,7 +91,19 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     return { success: false, error: res.error || 'Erro ao entrar.' };
   };
 
-  const register = async (name: string, email: string) => {
+  const register = async (name: string, email: string, password?: string) => {
+    if (isSupabaseMode && password) {
+      const res = await SupabaseAuthService.signUp(name, email, password);
+      if (res.error) {
+        return { success: false, error: res.error };
+      }
+      if (res.user) {
+        setUser(res.user);
+        return { success: true };
+      }
+    }
+
+    // Modo demonstração
     const res = DemoStore.register(name, email);
     if (res.success && res.user) {
       setUser(res.user);
@@ -56,6 +114,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const logout = () => {
+    if (isSupabaseMode) {
+      SupabaseAuthService.signOut();
+    }
     DemoStore.logout();
     setUser(null);
     setSettings(null);
@@ -95,6 +156,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         isAdmin,
         settings,
         isLoading,
+        isSupabaseMode,
         login,
         register,
         logout,
