@@ -1,0 +1,67 @@
+ROTEIRO PARA O CLAUDE NO VS CODE — APLICATIVO DE INGLÊS
+
+Atue como desenvolvedor full stack e designer de interfaces. Desenvolva um aplicativo web responsivo para um adulto brasileiro iniciante em inglês e seus amigos. O objetivo é praticar diariamente, com atividades curtas de áudio e escrita. A interface deve estar em português; o conteúdo de estudo, em inglês, com apoio em português.
+
+Antes de editar, examine o projeto aberto e suas instruções. Preserve a tecnologia e os padrões existentes. Se a pasta estiver vazia, proponha e implemente uma estrutura com React, TypeScript e uma solução de autenticação e banco de dados apropriada. Explique decisões de infraestrutura e confirme dependências externas necessárias. Não suponha acesso a contas, chaves ou serviços pagos. Use versões compatíveis e documentação oficial atual.
+
+Execute a implementação em etapas verificáveis, sem parar apenas em um plano. Primeiro entregue uma interface navegável com dados de demonstração, depois conecte autenticação, banco de dados e funcionalidades. Identifique claramente o modo demonstração. Não apresente login simulado como autenticação real.
+
+1. TELAS E NAVEGAÇÃO
+
+Login: e-mail, senha, mostrar/ocultar senha, recuperação de acesso e link para cadastro.
+Cadastro: nome, e-mail, senha, confirmação de senha e validações claras. Cadastros públicos sempre recebem o perfil aluno. Não permita escolher administrador no cadastro.
+Painel do aluno: saudação pelo nome, atividade do dia, meta diária de 5 a 10 minutos, progresso, revisões pendentes e lembrete configurado. Botão principal: “Começar prática”.
+Atividades: filtros por áudio e escrita, indicação de dificuldade e estado de conclusão. Começar com conteúdo iniciante e situações de viagem: aeroporto, hotel e restaurante.
+Revisão: retomar palavras e frases em que o aluno teve dificuldade. Permitir praticar novamente sem apagar o histórico.
+Meu progresso: atividades concluídas, resultados por tipo de exercício e histórico pessoal. Usar métricas calculadas a partir dos dados reais.
+Configurações: nome, meta diária, horário dos lembretes, fuso horário e preferências de áudio.
+Administração: lista de usuários, busca, status de acesso e gerenciamento de atividades. Acesso exclusivo para administradores.
+
+No computador, usar menu lateral. No celular, navegação compacta. Trabalhar com visual limpo, azul e verde, fonte legível, botões grandes, foco visível, rótulos acessíveis e bom contraste. Evitar excesso de animações e informações na tela inicial. Exibir estados de carregamento, vazio, erro e sucesso.
+
+2. USUÁRIOS E PERMISSÕES
+
+Perfis iniciais: administrador e aluno.
+Aluno: acessar atividades publicadas e apenas suas próprias respostas, resultados, progresso e configurações.
+Administrador: criar e editar atividades, publicar ou despublicar conteúdo, ativar ou desativar contas e gerenciar permissões.
+Aplicar autorização no servidor e no banco de dados, além de ocultar opções na interface. Nunca confiar em um papel enviado pelo navegador.
+Impedir que um aluno altere seu papel ou consulte resultados de outros alunos. Impedir a remoção do último administrador ativo. Criar o primeiro administrador por procedimento seguro documentado, sem senha fixa no código.
+Usar autenticação mantida por um provedor ou biblioteca apropriada. Não guardar senhas em texto puro ou no localStorage. Guardar segredos apenas no ambiente do servidor. Incluir recuperação de senha e encerramento de sessão.
+
+3. ATIVIDADES COM ÁUDIO
+
+Compreensão auditiva: ouvir uma frase em inglês e escolher seu significado entre alternativas. Permitir repetir e reduzir a velocidade quando o mecanismo de áudio permitir.
+Ditado: ouvir uma frase e digitá-la. Depois de enviar, mostrar a resposta esperada e explicar os erros.
+Prática oral: ouvir uma frase e gravar sua repetição. Solicitar o microfone somente após o usuário iniciar essa função. Permitir ouvir e apagar a gravação. Se não houver reconhecimento de voz disponível, oferecer prática com reprodução da gravação, sem nota automática de pronúncia.
+Não confundir transcrição correta com avaliação confiável de pronúncia. Qualquer avaliação automatizada de pronúncia deve depender de serviço adequado e ter sua limitação explicada.
+Para o protótipo, usar recursos de síntese de voz do navegador quando disponíveis e mostrar alternativa textual quando não houver voz em inglês. Isolar o mecanismo de áudio para futura integração com um serviço externo. Nunca expor chaves de API no cliente.
+Não salvar gravações permanentemente por padrão. Documentar qualquer persistência de áudio e permitir exclusão. Tratar falta de permissão, dispositivo indisponível e navegadores incompatíveis.
+
+4. ATIVIDADES COM ESCRITA
+
+Completar frases com lacunas; organizar palavras para formar uma frase; traduzir frases curtas do português para o inglês; responder a situações simples, como pedir um café.
+Aceitar variações corretas cadastradas. Para exercícios objetivos, normalizar espaços e maiúsculas/minúsculas sem ignorar diferenças que mudem o sentido. Não avaliar respostas abertas apenas por igualdade exata.
+No primeiro estágio, usar respostas esperadas e variações definidas pelo administrador. Se não houver serviço de avaliação de respostas abertas, identificar claramente o exercício como comparação com resposta modelo ou revisão manual.
+Ao final da atividade, mostrar resposta do aluno, resposta esperada, explicação curta em português e opção de revisar. Em diálogos ou sequências, apresentar correções ao final, sem interromper cada resposta.
+
+5. LEMBRETES E ROTINA
+
+Permitir escolher horário e dias da semana, ativar ou desativar lembretes e usar America/Sao_Paulo como fuso inicial editável.
+Começar com lembrete dentro do aplicativo, respeitando o dia local do aluno e evitando duplicatas.
+Notificações com o aplicativo fechado exigem infraestrutura adicional. Não prometer esse comportamento apenas com temporizadores da página. Documentar e implementar notificações externas somente quando a infraestrutura estiver configurada e o usuário tiver autorizado o canal. Não solicitar permissão de notificações na primeira abertura.
+Revisitar inicialmente os erros em intervalos de 1, 3 e 7 dias, ajustando a próxima revisão conforme a resposta. Tratar esses intervalos como regra inicial simples, não como garantia de memorização.
+
+6. MODELO DE DADOS
+
+Organizar entidades para perfis de usuários, atividades, questões, alternativas e respostas aceitas, tentativas, respostas dos alunos, fila de revisão e preferências de lembretes.
+Relacionar todo resultado ao usuário autenticado. Registrar datas de eventos em UTC e apresentar conforme o fuso configurado. Preservar o conteúdo ou a versão da atividade usada em cada tentativa para que edições posteriores não alterem resultados antigos.
+Fornecer migrações e regras de acesso do banco. Separar dados de demonstração dos dados reais. Incluir pelo menos 12 atividades curtas de exemplo, distribuídas entre áudio e escrita, com conteúdo e respostas consistentes.
+
+7. ORGANIZAÇÃO E ENTREGA
+
+Separar componentes de interface, páginas, autenticação, serviços de áudio, regras de exercícios, acesso ao banco e tipos de dados. Evitar um único arquivo gigante. Preparar pontos de integração para futuros serviços de IA, sem torná-los obrigatórios para os exercícios objetivos.
+Entregar código executável, arquivo de exemplo das variáveis de ambiente sem segredos e README com instalação, execução, configuração do banco, autenticação, criação do administrador e limitações atuais.
+Verificar navegação em celular e computador, cadastro/login/logout, acesso negado a rotas administrativas, isolamento de dados entre dois alunos, correção das atividades e persistência do progresso. Testar cenários de microfone negado e áudio indisponível. Executar build, verificação de tipos e testes relevantes às regras de autorização e correção.
+Ao concluir cada etapa, informar o que funciona, o que foi verificado e quais integrações ainda dependem de configuração. Não declarar recursos simulados como concluídos em produção. Não publicar ou contratar serviços sem autorização.
+
+Comece examinando a pasta atual. Depois implemente a primeira etapa: interface completa e navegável, incluindo login, cadastro, painel, exercícios, revisão, configurações e administração em modo demonstração claramente identificado.
