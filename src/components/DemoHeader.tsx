@@ -7,6 +7,9 @@ import { Sparkles, ShieldCheck, UserCheck, RefreshCw, Database } from 'lucide-re
 export const DemoHeader: React.FC = () => {
   const { user, switchUser, resetDemoData, isSupabaseMode } = useAuth();
 
+  // Em produção o aluno não vê informações técnicas nem alternador de perfis
+  if (isSupabaseMode) return null;
+
   return (
     <div className="demo-banner-strip">
       <div className="demo-banner-content">

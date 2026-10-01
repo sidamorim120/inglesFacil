@@ -16,6 +16,7 @@ import {
   INITIAL_ACTIVITIES,
   INITIAL_REVIEW_ITEMS,
 } from './initialData';
+import { computeStudentMetrics, nextReviewState, reviewFromMistake } from '../progress/progressRules';
 
 const STORAGE_KEYS = {
   USERS: 'ingles_facil_users_v1',
@@ -295,28 +296,12 @@ export class DemoStore {
   ): { success: boolean; nextReviewDate: string; intervalDays: number } {
     const raw = localStorage.getItem(STORAGE_KEYS.REVIEWS);
     const reviews: ReviewItem[] = raw ? JSON.parse(raw) : [...INITIAL_REVIEW_ITEMS];
-    const item = reviews.find((r) => r.id === reviewId);
+    const index = reviews.findIndex((r) => r.id === reviewId);
 
-    if (!item) return { success: false, nextReviewDate: '', intervalDays: 1 };
+    if (index < 0) return { success: false, nextReviewDate: '', intervalDays: 1 };
 
-    const now = new Date();
-
-    if (isCorrect) {
-      // Avança no ciclo: 1 dia -> 3 dias -> 7 dias
-      item.consecutiveCorrect += 1;
-      if (item.consecutiveCorrect === 1) item.intervalDays = 3;
-      else if (item.consecutiveCorrect >= 2) item.intervalDays = 7;
-    } else {
-      // Errou: reseta intervalo para 1 dia e incrementa erros
-      item.consecutiveCorrect = 0;
-      item.intervalDays = 1;
-      item.totalMistakes += 1;
-    }
-
-    // Nova data de revisão respeitando o intervalo
-    const nextDate = new Date(now.getTime() + item.intervalDays * 24 * 60 * 60 * 1000);
-    item.nextReviewDate = nextDate.toISOString();
-    item.lastAttemptDate = now.toISOString();
+    const item = nextReviewState(reviews[index], isCorrect);
+    reviews[index] = item;
 
     localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(reviews));
     return {
@@ -335,40 +320,21 @@ export class DemoStore {
 
     if (!activity) return;
 
-    attempt.submissions.forEach((sub) => {
-      // Se o aluno errou a questão, inclui ou atualiza na fila de revisão
-      if (!sub.isCorrect) {
-        const question = activity.questions.find((q) => q.id === sub.questionId);
-        if (!question) return;
-
-        const existingReview = reviews.find(
-          (r) => r.userId === attempt.userId && r.questionId === sub.questionId
+    attempt.submissions
+      .filter((sub) => !sub.isCorrect)
+      .forEach((sub) => {
+        const index = reviews.findIndex((r) => r.userId === attempt.userId && r.questionId === sub.questionId);
+        const updated = reviewFromMistake(
+          sub,
+          activity,
+          attempt.userId,
+          index >= 0 ? reviews[index] : undefined,
+          `rev-${Date.now()}-${Math.random().toString(36).slice(2, 6)}`
         );
-
-        if (existingReview) {
-          existingReview.consecutiveCorrect = 0;
-          existingReview.intervalDays = 1;
-          existingReview.totalMistakes += 1;
-          existingReview.lastAttemptDate = new Date().toISOString();
-          existingReview.nextReviewDate = new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString();
-        } else {
-          reviews.push({
-            id: `rev-${Date.now()}-${Math.random().toString(36).substr(2, 4)}`,
-            userId: attempt.userId,
-            questionId: question.id,
-            activityId: activity.id,
-            phraseEn: question.audioPhraseEn || question.expectedAnswer,
-            translationPt: question.promptPt,
-            category: activity.category,
-            consecutiveCorrect: 0,
-            intervalDays: 1,
-            nextReviewDate: new Date(Date.now() + 24 * 60 * 60 * 1000).toISOString(),
-            lastAttemptDate: new Date().toISOString(),
-            totalMistakes: 1,
-          });
-        }
-      }
-    });
+        if (!updated) return;
+        if (index >= 0) reviews[index] = updated;
+        else reviews.push(updated);
+      });
 
     localStorage.setItem(STORAGE_KEYS.REVIEWS, JSON.stringify(reviews));
   }
@@ -391,54 +357,11 @@ export class DemoStore {
       };
     }
 
-    const attempts = this.getStudentAttempts(userId, currentUser);
-    const reviews = this.getReviewItems(userId);
-    const settings = this.getUserSettings(userId);
-
-    const completedActivitiesCount = attempts.length;
-
-    // Tempo estimado em minutos (cada atividade concluída ~ 5 min reais)
-    const totalMinutesPracticed = completedActivitiesCount * 5;
-
-    // Pontuações
-    const avgScore =
-      completedActivitiesCount > 0
-        ? Math.round(attempts.reduce((acc, curr) => acc + curr.score, 0) / completedActivitiesCount)
-        : 0;
-
-    const audioAttempts = attempts.filter((a) => a.modality === 'audio' || a.modality === 'mixed');
-    const audioScoreAverage =
-      audioAttempts.length > 0
-        ? Math.round(audioAttempts.reduce((acc, curr) => acc + curr.score, 0) / audioAttempts.length)
-        : 85;
-
-    const writingAttempts = attempts.filter((a) => a.modality === 'writing' || a.modality === 'mixed');
-    const writingScoreAverage =
-      writingAttempts.length > 0
-        ? Math.round(writingAttempts.reduce((acc, curr) => acc + curr.score, 0) / writingAttempts.length)
-        : 80;
-
-    // Revisões pendentes (data menor ou igual a hoje)
-    const nowIso = new Date().toISOString();
-    const pendingReviews = reviews.filter((r) => r.nextReviewDate <= nowIso);
-
-    // Meta diária: verificar se praticou hoje
-    const todayStr = new Date().toISOString().slice(0, 10);
-    const todayAttempts = attempts.filter((a) => a.completedAt.slice(0, 10) === todayStr);
-    const todayMinutes = todayAttempts.length * 5;
-    const dailyGoalCompleted = todayMinutes >= (settings.dailyGoalMinutes || 10);
-
-    return {
-      totalMinutesPracticed,
-      completedActivitiesCount,
-      averageScorePercentage: avgScore,
-      audioScoreAverage,
-      writingScoreAverage,
-      currentStreakDays: completedActivitiesCount > 0 ? 3 : 0,
-      pendingReviewsCount: pendingReviews.length,
-      dailyGoalCompleted,
-      todayMinutesPracticed: todayMinutes,
-    };
+    return computeStudentMetrics(
+      this.getStudentAttempts(userId, currentUser),
+      this.getReviewItems(userId),
+      this.getUserSettings(userId)
+    );
   }
 
   // --- CONFIGURAÇÕES DO USUÁRIO ---

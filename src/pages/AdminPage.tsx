@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { User, Activity, ActivityCategory, ActivityModality, Question } from '../types';
-import { DemoStore } from '../services/storage/demoStore';
+import { DataService, newId } from '../services/dataService';
 import {
   Shield,
   Users,
@@ -20,12 +20,24 @@ import {
   Save,
 } from 'lucide-react';
 
+const CATEGORY_LABELS: Record<ActivityCategory, string> = {
+  airport: 'Aeroporto',
+  hotel: 'Hotel',
+  restaurant: 'Restaurante',
+};
+
+const MODALITY_LABELS: Record<ActivityModality, string> = {
+  audio: 'Áudio',
+  writing: 'Escrita',
+  mixed: 'Misto',
+};
+
 interface AdminPageProps {
   onRefreshActivities: () => void;
 }
 
 export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => {
-  const { user, isAdmin } = useAuth();
+  const { user, isAdmin, isSupabaseMode } = useAuth();
 
   const [activeTab, setActiveTab] = useState<'users' | 'activities'>('users');
   const [usersList, setUsersList] = useState<User[]>([]);
@@ -47,11 +59,12 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
   const [isPublished, setIsPublished] = useState(true);
 
   // Carrega dados se for admin
-  const loadData = () => {
+  const loadData = async () => {
     if (!isAdmin) return;
     try {
-      setUsersList(DemoStore.getAdminUsers('admin'));
-      setActivitiesList(DemoStore.getActivities('admin'));
+      const [users, activities] = await Promise.all([DataService.getAdminUsers(), DataService.getActivities('admin')]);
+      setUsersList(users);
+      setActivitiesList(activities);
     } catch (err: unknown) {
       const error = err as Error;
       setActionError(error.message);
@@ -74,20 +87,27 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
           <p style={{ color: 'var(--text-muted)', marginBottom: '20px' }}>
             Esta área é restrita a administradores. A sua conta atual ({user?.name}) possui perfil de <strong>Aluno</strong>.
           </p>
+          {!isSupabaseMode && (
           <div className="alert alert-warning" style={{ fontSize: '0.85rem', textAlign: 'left' }}>
             <strong>Controle de Segurança:</strong> As permissões são validadas nas camadas de lógica e banco de dados. Para testar as funções administrativas, utilize o alternador de perfis no topo da página e selecione <strong>Prof.ª Helena (Admin)</strong>.
           </div>
+          )}
         </div>
       </div>
     );
   }
 
   // Ações de Usuário
-  const handleToggleUserStatus = (targetUser: User) => {
+  const handleToggleUserStatus = async (targetUser: User) => {
     setActionError(null);
     setActionSuccess(null);
 
-    const result = DemoStore.toggleUserStatus(targetUser.id, 'admin');
+    if (targetUser.id === user?.id && targetUser.status === 'active') {
+      setActionError('Você não pode desativar a sua própria conta.');
+      return;
+    }
+
+    const result = await DataService.toggleUserStatus(targetUser);
     if (!result.success) {
       setActionError(result.error || 'Erro ao alterar status.');
     } else {
@@ -97,11 +117,11 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
   };
 
   // Ações de Atividades
-  const handleTogglePublish = (activityId: string) => {
+  const handleTogglePublish = async (activity: Activity) => {
     setActionError(null);
     setActionSuccess(null);
 
-    const result = DemoStore.togglePublishActivity(activityId, 'admin');
+    const result = await DataService.togglePublishActivity(activity);
     if (!result.success) {
       setActionError(result.error || 'Erro ao alterar visibilidade.');
     } else {
@@ -132,16 +152,16 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
     setIsActivityModalOpen(true);
   };
 
-  const handleSaveActivity = (e: React.FormEvent) => {
+  const handleSaveActivity = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!title.trim()) return;
 
-    const targetActivityId = editingActivity ? editingActivity.id : `act-${Date.now()}`;
+    const targetActivityId = editingActivity ? editingActivity.id : newId();
     const baseQuestions: Question[] = editingActivity
       ? editingActivity.questions
       : [
           {
-            id: `q-${Date.now()}-1`,
+            id: newId(),
             activityId: targetActivityId,
             type: 'dictation',
             promptPt: 'Ouça o áudio e escreva a frase em inglês:',
@@ -167,7 +187,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
       createdAt: editingActivity ? editingActivity.createdAt : new Date().toISOString(),
     };
 
-    const res = DemoStore.saveActivity(newActivity, 'admin');
+    const res = await DataService.saveActivity(newActivity, !editingActivity);
     if (res.success) {
       setIsActivityModalOpen(false);
       loadData();
@@ -235,7 +255,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 12, marginBottom: '16px' }}>
             <h2 style={{ fontSize: '1.25rem' }}>Alunos e Professores Cadastrados</h2>
 
-            <div style={{ position: 'relative', width: '280px' }}>
+            <div style={{ position: 'relative', width: '280px', maxWidth: '100%' }}>
               <Search size={16} style={{ position: 'absolute', left: 10, top: '50%', transform: 'translateY(-50%)', color: 'var(--text-light)' }} />
               <input
                 type="text"
@@ -249,7 +269,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
           </div>
 
           <div style={{ overflowX: 'auto' }}>
-            <table className="admin-table">
+            <table className="admin-table admin-table-responsive">
               <thead>
                 <tr>
                   <th>Nome</th>
@@ -266,21 +286,21 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
 
                   return (
                     <tr key={u.id}>
-                      <td>
+                      <td data-label="Nome">
                         <strong>{u.name}</strong> {isCurrent && <span style={{ fontSize: '0.75rem', color: 'var(--primary)' }}>(Você)</span>}
                       </td>
-                      <td>{u.email}</td>
-                      <td>
+                      <td data-label="E-mail">{u.email}</td>
+                      <td data-label="Papel">
                         <span className={`badge ${u.role === 'admin' ? 'badge-primary' : 'badge-secondary'}`}>
                           {u.role === 'admin' ? 'Administrador' : 'Aluno'}
                         </span>
                       </td>
-                      <td>
+                      <td data-label="Status">
                         <span className={`badge ${isActive ? 'badge-success' : 'badge-warning'}`}>
                           {isActive ? 'Ativo' : 'Inativo'}
                         </span>
                       </td>
-                      <td>
+                      <td data-label="Ações">
                         <button
                           onClick={() => handleToggleUserStatus(u)}
                           className={`btn ${isActive ? 'btn-danger' : 'btn-secondary'} btn-sm`}
@@ -314,7 +334,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
           </div>
 
           <div style={{ overflowX: 'auto' }}>
-            <table className="admin-table">
+            <table className="admin-table admin-table-responsive">
               <thead>
                 <tr>
                   <th>Título</th>
@@ -328,28 +348,28 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
               <tbody>
                 {activitiesList.map((act) => (
                   <tr key={act.id}>
-                    <td>
+                    <td data-label="Título">
                       <strong>{act.title}</strong>
                       <div style={{ fontSize: '0.75rem', color: 'var(--text-light)' }}>
                         {act.questions.length} questões cadastradas
                       </div>
                     </td>
-                    <td>
-                      <span className="badge badge-primary">{act.category}</span>
+                    <td data-label="Tema">
+                      <span className="badge badge-primary">{CATEGORY_LABELS[act.category]}</span>
                     </td>
-                    <td>
-                      <span className="badge badge-secondary">{act.modality}</span>
+                    <td data-label="Modalidade">
+                      <span className="badge badge-secondary">{MODALITY_LABELS[act.modality]}</span>
                     </td>
-                    <td>v{act.version}</td>
-                    <td>
+                    <td data-label="Versão">v{act.version}</td>
+                    <td data-label="Visibilidade">
                       <span className={`badge ${act.isPublished ? 'badge-success' : 'badge-warning'}`}>
                         {act.isPublished ? 'Publicada' : 'Rascunho / Oculta'}
                       </span>
                     </td>
-                    <td>
-                      <div style={{ display: 'flex', gap: '6px' }}>
+                    <td data-label="Ações">
+                      <div style={{ display: 'flex', gap: '6px', flexWrap: 'wrap' }}>
                         <button
-                          onClick={() => handleTogglePublish(act.id)}
+                          onClick={() => handleTogglePublish(act)}
                           className="btn btn-outline btn-sm"
                           title={act.isPublished ? 'Ocultar para alunos' : 'Publicar para alunos'}
                         >

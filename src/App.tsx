@@ -1,7 +1,8 @@
 // Componente Raiz da Aplicação - Inglês Fácil
 import React, { useState, useEffect } from 'react';
 import { useAuth } from './contexts/AuthContext';
-import { DemoStore } from './services/storage/demoStore';
+import { DataService } from './services/dataService';
+import { computeStudentMetrics } from './services/progress/progressRules';
 import { Activity, Attempt, ReviewItem, StudentMetrics } from './types';
 
 // Componentes Estruturais
@@ -13,6 +14,7 @@ import { MobileNav } from './components/MobileNav';
 import { LoginPage } from './pages/LoginPage';
 import { RegisterPage } from './pages/RegisterPage';
 import { ForgotPasswordPage } from './pages/ForgotPasswordPage';
+import { ResetPasswordPage } from './pages/ResetPasswordPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { ActivitiesPage } from './pages/ActivitiesPage';
 import { ActivityPlayerPage } from './pages/ActivityPlayerPage';
@@ -22,7 +24,7 @@ import { SettingsPage } from './pages/SettingsPage';
 import { AdminPage } from './pages/AdminPage';
 
 export const App: React.FC = () => {
-  const { user, role, isLoading } = useAuth();
+  const { user, role, settings, isLoading, isPasswordRecovery } = useAuth();
 
   // Rotas e Navegação
   const [currentTab, setCurrentTab] = useState<string>('dashboard');
@@ -34,30 +36,26 @@ export const App: React.FC = () => {
   const [activities, setActivities] = useState<Activity[]>([]);
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
-  const [metrics, setMetrics] = useState<StudentMetrics>({
-    totalMinutesPracticed: 0,
-    completedActivitiesCount: 0,
-    averageScorePercentage: 0,
-    audioScoreAverage: 0,
-    writingScoreAverage: 0,
-    currentStreakDays: 1,
-    pendingReviewsCount: 0,
-    dailyGoalCompleted: false,
-    todayMinutesPracticed: 0,
-  });
+  const [dataError, setDataError] = useState<string | null>(null);
+
+  const metrics: StudentMetrics = computeStudentMetrics(attempts, reviewItems, settings);
 
   // Carrega e sincroniza dados do usuário ativo
-  const refreshAppData = () => {
+  const refreshAppData = async () => {
     if (!user) return;
-    const acts = DemoStore.getActivities(role);
-    const userAttempts = DemoStore.getStudentAttempts(user.id, user);
-    const userReviews = DemoStore.getReviewItems(user.id);
-    const userMetrics = DemoStore.getStudentMetrics(user.id);
-
-    setActivities(acts);
-    setAttempts(userAttempts);
-    setReviewItems(userReviews);
-    setMetrics(userMetrics);
+    try {
+      const [acts, userAttempts, userReviews] = await Promise.all([
+        DataService.getActivities(role),
+        DataService.getStudentAttempts(user),
+        DataService.getReviewItems(user.id),
+      ]);
+      setActivities(acts);
+      setAttempts(userAttempts);
+      setReviewItems(userReviews);
+      setDataError(null);
+    } catch (err: unknown) {
+      setDataError(`Não foi possível carregar seus dados: ${(err as Error).message}`);
+    }
   };
 
   useEffect(() => {
@@ -65,8 +63,12 @@ export const App: React.FC = () => {
       refreshAppData();
       // Se estava no player de outra atividade, reseta para dashboard na troca de usuário
       setSelectedActivityId(null);
+    } else {
+      setActivities([]);
+      setAttempts([]);
+      setReviewItems([]);
     }
-  }, [user, role]);
+  }, [user?.id, role]);
 
   // Loading inicial
   if (isLoading) {
@@ -78,6 +80,11 @@ export const App: React.FC = () => {
         </div>
       </div>
     );
+  }
+
+  // Usuário chegou pelo link de redefinição de senha do e-mail
+  if (isPasswordRecovery) {
+    return <ResetPasswordPage />;
   }
 
   // Se não estiver logado, exibe fluxo de autenticação
@@ -111,9 +118,13 @@ export const App: React.FC = () => {
   };
 
   // Finalizar atividade
-  const handleFinishActivity = (attempt: Attempt) => {
-    DemoStore.saveAttempt(attempt);
-    refreshAppData();
+  const handleFinishActivity = async (attempt: Attempt, activity: Activity) => {
+    const res = await DataService.saveAttempt(attempt, activity);
+    if (!res.success) {
+      setDataError(`Não foi possível salvar seu resultado: ${res.error}`);
+      return;
+    }
+    await refreshAppData();
   };
 
   // Navegar para atividades com filtro
@@ -124,7 +135,7 @@ export const App: React.FC = () => {
 
   // Atividade selecionada para o player
   const currentActiveActivity = selectedActivityId
-    ? DemoStore.getActivityById(selectedActivityId, role)
+    ? activities.find((a) => a.id === selectedActivityId) || null
     : null;
 
   return (
@@ -154,6 +165,12 @@ export const App: React.FC = () => {
             }}
             pendingReviewsCount={metrics.pendingReviewsCount}
           />
+
+          {dataError && (
+            <div className="alert alert-danger" role="alert" style={{ margin: '16px' }}>
+              <span>{dataError}</span>
+            </div>
+          )}
 
           {/* Roteamento de Abas */}
           {currentTab === 'dashboard' && (

@@ -1,7 +1,7 @@
 // Tela de Revisão Espaçada (1, 3 e 7 dias) - Inglês Fácil
 import React, { useState } from 'react';
 import { ReviewItem } from '../types';
-import { DemoStore } from '../services/storage/demoStore';
+import { DataService } from '../services/dataService';
 import { AudioService } from '../services/audio/audioService';
 import { GradingService } from '../services/grading/gradingService';
 import {
@@ -41,7 +41,7 @@ export const ReviewPage: React.FC<ReviewPageProps> = ({ reviewItems, onRefreshRe
     AudioService.speak(phrase, 1.0);
   };
 
-  const handleVerify = () => {
+  const handleVerify = async () => {
     if (!activeReviewItem) return;
 
     const evalResult = GradingService.evaluate(
@@ -66,7 +66,11 @@ export const ReviewPage: React.FC<ReviewPageProps> = ({ reviewItems, onRefreshRe
     }
 
     // Processa repetição espaçada (1 -> 3 -> 7 dias ou volta para 1)
-    DemoStore.processReviewAnswer(activeReviewItem.id, evalResult.isCorrect);
+    const res = await DataService.processReviewAnswer(activeReviewItem, evalResult.isCorrect);
+    if (!res.success) {
+      setFeedback({ isCorrect: false, text: `Não foi possível salvar sua revisão: ${res.error}` });
+      return;
+    }
     onRefreshReviews();
   };
 

@@ -215,7 +215,6 @@ export const INITIAL_ACTIVITIES: Activity[] = [
           'One bag',
           'Just one bag',
           'Only one bag',
-          'I have two bags'
         ],
         explanationPt: '"Bag" ou "suitcase" significam mala. Para uma mala: "one bag" ou "just one bag".',
         difficulty: 'beginner',

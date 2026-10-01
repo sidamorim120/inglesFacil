@@ -458,6 +458,48 @@
   background-color: #fafbfc;
 }
 
+/* Tabelas do admin viram cartões no celular */
+@media (max-width: 768px) {
+  .admin-table-responsive thead {
+    display: none;
+  }
+  .admin-table-responsive tr {
+    display: block;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .admin-table-responsive td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 6px 0;
+    border-bottom: none;
+    overflow-wrap: anywhere;
+    text-align: right;
+  }
+  .admin-table-responsive td::before {
+    content: attr(data-label);
+    flex-shrink: 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-muted);
+    text-align: left;
+  }
+  .admin-table-responsive td:first-child {
+    display: block;
+    text-align: left;
+  }
+  .admin-table-responsive td:first-child::before {
+    display: none;
+  }
+  .admin-table-responsive tr:hover td {
+    background-color: transparent;
+  }
+}
+
 /* Modal */
 .modal-overlay {
   position: fixed;

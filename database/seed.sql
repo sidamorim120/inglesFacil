@@ -1,105 +1,84 @@
--- SEED DE DADOS INICIAIS: 12 ATIVIDADES PEDAGÓGICAS (PostgreSQL / Supabase)
+-- SEED DE DADOS INICIAIS: 12 ATIVIDADES E 24 QUESTÕES (PostgreSQL / Supabase)
 -- Inglês Fácil: Aeroporto, Hotel e Restaurante
+-- ARQUIVO GERADO por scripts/generate-seed.mjs a partir de src/services/storage/initialData.ts — não edite à mão.
+-- Pode ser executado várias vezes: atualiza o conteúdo sem duplicar questões.
 
--- 1. LIMPEZA SEGURA (Opcional, comente se quiser manter registros existentes)
--- DELETE FROM public.questions;
--- DELETE FROM public.activities;
+BEGIN;
 
-DO $$
-DECLARE
-  v_act_air1 UUID := 'a1111111-1111-4111-8111-111111111101';
-  v_act_air2 UUID := 'a1111111-1111-4111-8111-111111111102';
-  v_act_air3 UUID := 'a1111111-1111-4111-8111-111111111103';
-  v_act_air4 UUID := 'a1111111-1111-4111-8111-111111111104';
+INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published, created_at)
+VALUES
+  ('a1111111-1111-4111-8111-111111111101', 1, 'Chegando ao Aeroporto: Escuta e Frases Chave', 'Aprenda a reconhecer instruções básicas sonoras na chegada ao aeroporto internacional.', 'airport', 'audio', 'beginner', 5, true, '2026-09-10T10:00:00Z'),
+  ('a1111111-1111-4111-8111-111111111102', 1, 'Mostrando seu Passaporte e Cartão de Embarque', 'Pratique a escrita e organização de frases para interagir no controle de segurança e imigração.', 'airport', 'writing', 'beginner', 6, true, '2026-09-10T11:00:00Z'),
+  ('a1111111-1111-4111-8111-111111111103', 1, 'Encontrando o Portão de Embarque (Gate)', 'Compreensão de áudio sobre informações de voo e numeração de portões.', 'airport', 'audio', 'beginner', 5, true, '2026-09-11T09:00:00Z'),
+  ('a1111111-1111-4111-8111-111111111104', 1, 'Alfândega e Bagagem: Diálogo Prático', 'Responda a perguntas comuns sobre o motivo da viagem e quantidade de malas.', 'airport', 'mixed', 'beginner', 7, true, '2026-09-12T14:00:00Z'),
+  ('b2222222-2222-4222-8222-222222222205', 1, 'Check-in no Hotel: Escuta Atenta', 'Entenda as instruções da recepção ao chegar ao seu hotel.', 'hotel', 'audio', 'beginner', 5, true, '2026-09-13T10:00:00Z'),
+  ('b2222222-2222-4222-8222-222222222206', 1, 'Pedindo a Senha do Wi-Fi e Toalhas Extras', 'Escreva solicitações comuns que você precisará fazer durante sua estadia.', 'hotel', 'writing', 'beginner', 6, true, '2026-09-14T11:00:00Z'),
+  ('b2222222-2222-4222-8222-222222222207', 1, 'Informações sobre o Café da Manhã (Breakfast)', 'Prática de escuta e fala sobre horários do café no hotel.', 'hotel', 'audio', 'beginner', 5, true, '2026-09-15T15:00:00Z'),
+  ('b2222222-2222-4222-8222-222222222208', 1, 'Horário de Check-out e Pagamento', 'Organização de frases e respostas no momento de encerrar sua hospedagem.', 'hotel', 'mixed', 'beginner', 6, true, '2026-09-16T16:00:00Z'),
+  ('c3333333-3333-4333-8333-333333333309', 1, 'Pedindo uma Mesa para Dois', 'Treine a audição para entender o recepcionista (host) do restaurante.', 'restaurant', 'audio', 'beginner', 5, true, '2026-09-17T12:00:00Z'),
+  ('c3333333-3333-4333-8333-333333333310', 1, 'Pedindo um Café e Água sem Gás', 'Aprenda a fazer pedidos básicos e pedir água da maneira que você deseja.', 'restaurant', 'writing', 'beginner', 5, true, '2026-09-18T15:00:00Z'),
+  ('c3333333-3333-4333-8333-333333333311', 1, 'Escolhendo a Refeição e Restrições', 'Tradução e ordenação de frases para informar preferências culinárias.', 'restaurant', 'writing', 'beginner', 6, true, '2026-09-19T13:00:00Z'),
+  ('c3333333-3333-4333-8333-333333333312', 1, 'Pedindo a Conta (The Check, Please)', 'Finalize a refeição pedindo a conta com clareza em inglês.', 'restaurant', 'mixed', 'beginner', 6, true, '2026-09-20T17:00:00Z')
+ON CONFLICT (id) DO UPDATE SET
+  title = EXCLUDED.title,
+  description = EXCLUDED.description,
+  category = EXCLUDED.category,
+  modality = EXCLUDED.modality,
+  difficulty = EXCLUDED.difficulty,
+  estimated_minutes = EXCLUDED.estimated_minutes,
+  created_at = EXCLUDED.created_at,
+  updated_at = timezone('utc'::text, now());
 
-  v_act_hot5 UUID := 'b2222222-2222-4222-8222-222222222205';
-  v_act_hot6 UUID := 'b2222222-2222-4222-8222-222222222206';
-  v_act_hot7 UUID := 'b2222222-2222-4222-8222-222222222207';
-  v_act_hot8 UUID := 'b2222222-2222-4222-8222-222222222208';
+-- Remove questões antigas (sem ID fixo) das atividades do seed
+DELETE FROM public.questions
+WHERE activity_id IN ('a1111111-1111-4111-8111-111111111101', 'a1111111-1111-4111-8111-111111111102', 'a1111111-1111-4111-8111-111111111103', 'a1111111-1111-4111-8111-111111111104', 'b2222222-2222-4222-8222-222222222205', 'b2222222-2222-4222-8222-222222222206', 'b2222222-2222-4222-8222-222222222207', 'b2222222-2222-4222-8222-222222222208', 'c3333333-3333-4333-8333-333333333309', 'c3333333-3333-4333-8333-333333333310', 'c3333333-3333-4333-8333-333333333311', 'c3333333-3333-4333-8333-333333333312')
+  AND id NOT IN ('d0000000-0000-4000-8000-000000000001', 'd0000000-0000-4000-8000-000000000002', 'd0000000-0000-4000-8000-000000000003', 'd0000000-0000-4000-8000-000000000004', 'd0000000-0000-4000-8000-000000000005', 'd0000000-0000-4000-8000-000000000006', 'd0000000-0000-4000-8000-000000000007', 'd0000000-0000-4000-8000-000000000008', 'd0000000-0000-4000-8000-000000000009', 'd0000000-0000-4000-8000-00000000000a', 'd0000000-0000-4000-8000-00000000000b', 'd0000000-0000-4000-8000-00000000000c', 'd0000000-0000-4000-8000-00000000000d', 'd0000000-0000-4000-8000-00000000000e', 'd0000000-0000-4000-8000-00000000000f', 'd0000000-0000-4000-8000-000000000010', 'd0000000-0000-4000-8000-000000000011', 'd0000000-0000-4000-8000-000000000012', 'd0000000-0000-4000-8000-000000000013', 'd0000000-0000-4000-8000-000000000014', 'd0000000-0000-4000-8000-000000000015', 'd0000000-0000-4000-8000-000000000016', 'd0000000-0000-4000-8000-000000000017', 'd0000000-0000-4000-8000-000000000018');
 
-  v_act_res9  UUID := 'c3333333-3333-4333-8333-333333333309';
-  v_act_res10 UUID := 'c3333333-3333-4333-8333-333333333310';
-  v_act_res11 UUID := 'c3333333-3333-4333-8333-333333333311';
-  v_act_res12 UUID := 'c3333333-3333-4333-8333-333333333312';
-BEGIN
+INSERT INTO public.questions (id, activity_id, type, prompt_pt, prompt_en, audio_phrase_en, options, correct_option_id, expected_answer, accepted_variations, scrambled_words, explanation_pt, sort_order)
+VALUES
+  ('d0000000-0000-4000-8000-000000000001', 'a1111111-1111-4111-8111-111111111101', 'listening_choice', 'Ouça o áudio e selecione o significado correto da frase anunciada:', NULL, 'Please have your passport and boarding pass ready.', '[{"id":"opt-1","text":"Por favor, tenha seu passaporte e cartão de embarque em mãos."},{"id":"opt-2","text":"Por favor, dirija-se à esteira de bagagens número cinco."},{"id":"opt-3","text":"Seu voo está atrasado em trinta minutos."},{"id":"opt-4","text":"Apresente sua carteira de motorista na entrada."}]'::jsonb, 'opt-1', 'Por favor, tenha seu passaporte e cartão de embarque em mãos.', ARRAY['Por favor tenha seu passaporte e cartao de embarque em maos']::text[], '{}'::text[], '"Boarding pass" é o cartão de embarque. "Ready" significa pronto ou em mãos para apresentar.', 1),
+  ('d0000000-0000-4000-8000-000000000002', 'a1111111-1111-4111-8111-111111111101', 'dictation', 'Ouça atentamente a frase e digite o que você escutou em inglês:', NULL, 'Where is terminal two?', NULL, NULL, 'Where is terminal two?', ARRAY['Where is terminal 2?', 'Where is terminal two', 'Where is terminal 2']::text[], '{}'::text[], 'A pergunta "Where is...?" significa "Onde fica...?" ou "Onde é...?". Muito usada em viagens.', 2),
+  ('d0000000-0000-4000-8000-000000000003', 'a1111111-1111-4111-8111-111111111102', 'fill_in_the_blanks', 'Complete a frase com a palavra correta para dizer "Aqui está meu passaporte":
+"Here is my _______."', NULL, NULL, NULL, NULL, 'passport', ARRAY['passport.']::text[], '{}'::text[], '"Here is my passport" é a forma mais educada e direta de entregar o documento ao oficial.', 1),
+  ('d0000000-0000-4000-8000-000000000004', 'a1111111-1111-4111-8111-111111111102', 'word_reorder', 'Organize as palavras abaixo para formar a frase em inglês:', NULL, NULL, NULL, NULL, 'Here is your boarding pass', ARRAY['Here is your boarding pass.']::text[], ARRAY['is', 'your', 'Here', 'boarding', 'pass']::text[], 'Estrutura: "Here is" (Aqui está) + "your" (seu/sua) + objeto.', 2),
+  ('d0000000-0000-4000-8000-000000000005', 'a1111111-1111-4111-8111-111111111103', 'listening_choice', 'Ouça o anúncio e indique qual é o portão de embarque correto:', NULL, 'Flight 304 is boarding at gate 15.', '[{"id":"opt-1","text":"O voo 304 está embarcando no portão 15."},{"id":"opt-2","text":"O voo 304 foi cancelado no portão 50."},{"id":"opt-3","text":"O voo 403 está pousando na pista 15."},{"id":"opt-4","text":"O voo 304 mudou para o portão 5."}]'::jsonb, 'opt-1', 'O voo 304 está embarcando no portão 15.', '{}'::text[], '{}'::text[], 'Atenção aos números em inglês: "fifteen" (15) tem o som no final diferente de "fifty" (50).', 1),
+  ('d0000000-0000-4000-8000-000000000006', 'a1111111-1111-4111-8111-111111111103', 'dictation', 'Ouça o áudio e digite o que você ouviu:', NULL, 'Is this the flight to London?', NULL, NULL, 'Is this the flight to London?', ARRAY['Is this the flight to London', 'is this the flight to london']::text[], '{}'::text[], 'Em perguntas com o verbo To Be, o verbo vem antes: "Is this...?" (Isto/Este é...?).', 2),
+  ('d0000000-0000-4000-8000-000000000007', 'a1111111-1111-4111-8111-111111111104', 'oral_practice', 'Ouça a frase em inglês e grave sua repetição em voz alta para treinar sua pronúncia:', NULL, 'I am here on vacation.', NULL, NULL, 'I am here on vacation.', ARRAY['I''m here on vacation.', 'I am here on vacation']::text[], '{}'::text[], '"On vacation" significa "de férias". Nos Estados Unidos usa-se vacation; no Reino Unido é comum ouvir holiday.', 1),
+  ('d0000000-0000-4000-8000-000000000008', 'a1111111-1111-4111-8111-111111111104', 'situational_response', 'O oficial da alfândega pergunta: "How many bags do you have?" (Quantas malas você tem?). Responda que você tem uma mala:', NULL, NULL, NULL, NULL, 'I have one bag, please.', ARRAY['I have one bag', 'I have one suitcase', 'One bag', 'Just one bag', 'Only one bag']::text[], '{}'::text[], '"Bag" ou "suitcase" significam mala. Para uma mala: "one bag" ou "just one bag".', 2),
+  ('d0000000-0000-4000-8000-000000000009', 'b2222222-2222-4222-8222-222222222205', 'listening_choice', 'Ouça a recepcionista e escolha o significado do que ela disse:', NULL, 'Welcome! Do you have a reservation?', '[{"id":"opt-1","text":"Bem-vindo! Você tem uma reserva?"},{"id":"opt-2","text":"Boa tarde! O café da manhã é gratuito?"},{"id":"opt-3","text":"Olá! Seu quarto ainda não está limpo."},{"id":"opt-4","text":"Por favor, assine este documento de saída."}]'::jsonb, 'opt-1', 'Bem-vindo! Você tem uma reserva?', '{}'::text[], '{}'::text[], '"Reservation" é reserva. "Do you have...?" é a pergunta clássica: "Você tem...?".', 1),
+  ('d0000000-0000-4000-8000-00000000000a', 'b2222222-2222-4222-8222-222222222205', 'dictation', 'Digite em inglês a frase dita pelo recepcionista:', NULL, 'Your room is on the third floor.', NULL, NULL, 'Your room is on the third floor.', ARRAY['Your room is on the 3rd floor.', 'Your room is on the third floor', 'Your room is on the 3rd floor']::text[], '{}'::text[], '"Third floor" é o terceiro andar. Em inglês usa-se a preposição "on" para andares de edifícios.', 2),
+  ('d0000000-0000-4000-8000-00000000000b', 'b2222222-2222-4222-8222-222222222206', 'translation', 'Traduza para o inglês de forma educada: "Qual é a senha do Wi-Fi?"', NULL, NULL, NULL, NULL, 'What is the Wi-Fi password?', ARRAY['What''s the Wi-Fi password?', 'What is the wifi password?', 'What''s the wifi password?', 'What is the Wi-Fi password, please?', 'What is the Wi-Fi password']::text[], '{}'::text[], '"Password" é a senha. "Wi-Fi" pronuncia-se "uai-fai" em inglês.', 1),
+  ('d0000000-0000-4000-8000-00000000000c', 'b2222222-2222-4222-8222-222222222206', 'fill_in_the_blanks', 'Complete a frase para pedir toalhas adicionais:
+"Could I have extra _______, please?" (toalhas)', NULL, NULL, NULL, NULL, 'towels', ARRAY['towels.']::text[], '{}'::text[], '"Towel" é toalha. O plural é "towels". "Could I have...?" é um jeito muito simpático e educado de pedir algo.', 2),
+  ('d0000000-0000-4000-8000-00000000000d', 'b2222222-2222-4222-8222-222222222207', 'listening_choice', 'Ouça o aviso e marque qual é o horário do café da manhã:', NULL, 'Breakfast is served from seven to ten a.m.', '[{"id":"opt-1","text":"O café da manhã é servido das sete às dez da manhã."},{"id":"opt-2","text":"O almoço começa às onze horas da manhã."},{"id":"opt-3","text":"O café da manhã encerra às sete horas."},{"id":"opt-4","text":"O restaurante fecha às dez da noite."}]'::jsonb, 'opt-1', 'O café da manhã é servido das sete às dez da manhã.', '{}'::text[], '{}'::text[], '"From... to..." indica o intervalo "de... até...". "a.m." refere-se ao período da manhã (antes do meio-dia).', 1),
+  ('d0000000-0000-4000-8000-00000000000e', 'b2222222-2222-4222-8222-222222222207', 'oral_practice', 'Ouça a frase em inglês e grave a repetição para praticar sua pronúncia:', NULL, 'Is breakfast included in the room price?', NULL, NULL, 'Is breakfast included in the room price?', ARRAY['Is breakfast included in the room price']::text[], '{}'::text[], '"Included" significa incluído. Uma dúvida clássica de todo viajante!', 2),
+  ('d0000000-0000-4000-8000-00000000000f', 'b2222222-2222-4222-8222-222222222208', 'word_reorder', 'Organize as palavras para perguntar: "Que horas é o check-out?"', NULL, NULL, NULL, NULL, 'What time is check-out', ARRAY['What time is check-out?', 'What time is checkout?']::text[], ARRAY['is', 'time', 'check-out', 'What']::text[], '"What time is...?" significa "Que horas é...?". Simples e essencial para não pagar diária extra.', 1),
+  ('d0000000-0000-4000-8000-000000000010', 'b2222222-2222-4222-8222-222222222208', 'situational_response', 'A recepção pergunta como você prefere pagar a conta. Responda que quer pagar com cartão de crédito:', NULL, NULL, NULL, NULL, 'By credit card, please.', ARRAY['By credit card', 'With credit card', 'Credit card, please', 'Credit card', 'I want to pay by credit card', 'I would like to pay with credit card']::text[], '{}'::text[], 'Dizer "By credit card, please" ou "Credit card" é natural e suficiente no dia a dia.', 2),
+  ('d0000000-0000-4000-8000-000000000011', 'c3333333-3333-4333-8333-333333333309', 'listening_choice', 'Ouça o recepcionista do restaurante e marque a tradução correta:', NULL, 'Table for two? Right this way, please.', '[{"id":"opt-1","text":"Mesa para dois? Por aqui, por favor."},{"id":"opt-2","text":"Temos apenas mesas para quatro pessoas."},{"id":"opt-3","text":"O restaurante está lotado no momento."},{"id":"opt-4","text":"Deseja ver o cardápio de bebidas?"}]'::jsonb, 'opt-1', 'Mesa para dois? Por aqui, por favor.', '{}'::text[], '{}'::text[], '"Right this way" é a expressão usada para conduzir você ("por aqui" ou "siga-me").', 1),
+  ('d0000000-0000-4000-8000-000000000012', 'c3333333-3333-4333-8333-333333333309', 'dictation', 'Ouça a frase em inglês e digite o que escutou:', NULL, 'Can we have a menu, please?', NULL, NULL, 'Can we have a menu, please?', ARRAY['Can we have a menu please?', 'Can we have the menu, please?', 'Can we have a menu']::text[], '{}'::text[], '"Menu" pronuncia-se "mén-iu". "Can we have...?" é como dizemos "Pode nos trazer...?".', 2),
+  ('d0000000-0000-4000-8000-000000000013', 'c3333333-3333-4333-8333-333333333310', 'situational_response', 'O garçom chega e diz "What can I get for you?". Peça um café com leite, por favor:', NULL, NULL, NULL, NULL, 'A coffee with milk, please.', ARRAY['Coffee with milk, please', 'Coffee with milk', 'I would like a coffee with milk, please', 'I''d like a coffee with milk, please', 'I''d like a coffee with milk', 'One coffee with milk, please']::text[], '{}'::text[], '"Coffee with milk" é café com leite. "I would like" ou simplesmente o item seguido de "please" é muito educado.', 1),
+  ('d0000000-0000-4000-8000-000000000014', 'c3333333-3333-4333-8333-333333333310', 'fill_in_the_blanks', 'Complete com a palavra que significa água sem gás:
+"Still _______, please."', NULL, NULL, NULL, NULL, 'water', ARRAY['water.']::text[], '{}'::text[], '"Still water" é água sem gás; "Sparkling water" é água com gás.', 2),
+  ('d0000000-0000-4000-8000-000000000015', 'c3333333-3333-4333-8333-333333333311', 'translation', 'Traduza para o inglês: "Eu gostaria de ver as opções vegetarianas."', NULL, NULL, NULL, NULL, 'I would like to see the vegetarian options.', ARRAY['I''d like to see the vegetarian options.', 'I would like to see the vegetarian options', 'I''d like to see the vegetarian options']::text[], '{}'::text[], '"I would like to see" = "Eu gostaria de ver". "Vegetarian options" = opções vegetarianas.', 1),
+  ('d0000000-0000-4000-8000-000000000016', 'c3333333-3333-4333-8333-333333333311', 'word_reorder', 'Ordene as palavras para dizer: "A comida está deliciosa, obrigado."', NULL, NULL, NULL, NULL, 'The food is delicious, thank you.', ARRAY['The food is delicious thank you', 'The food is delicious, thank you']::text[], ARRAY['delicious,', 'The', 'is', 'food', 'thank', 'you.']::text[], 'Elogiar o prato é sempre bem recebido pelos atendentes!', 2),
+  ('d0000000-0000-4000-8000-000000000017', 'c3333333-3333-4333-8333-333333333312', 'oral_practice', 'Ouça e pratique a frase falada ao chamar o garçom para pagar a conta:', NULL, 'Excuse me, could we have the check, please?', NULL, NULL, 'Excuse me, could we have the check, please?', ARRAY['Excuse me, could we have the check, please', 'Excuse me, could we have the bill, please?']::text[], '{}'::text[], 'Nos EUA diz-se "the check"; no Reino Unido e Europa é comum ouvir "the bill". Ambas são amplamente compreendidas.', 1),
+  ('d0000000-0000-4000-8000-000000000018', 'c3333333-3333-4333-8333-333333333312', 'dictation', 'Ouça o áudio e digite em inglês a confirmação do garçom:', NULL, 'Sure, here is your receipt.', NULL, NULL, 'Sure, here is your receipt.', ARRAY['Sure, here is your receipt', 'Sure here is your receipt']::text[], '{}'::text[], 'Atenção à pronúncia de "receipt" (recibo/comprovante): a letra "p" é muda, pronuncia-se "re-siit".', 2)
+ON CONFLICT (id) DO UPDATE SET
+  type = EXCLUDED.type,
+  prompt_pt = EXCLUDED.prompt_pt,
+  prompt_en = EXCLUDED.prompt_en,
+  audio_phrase_en = EXCLUDED.audio_phrase_en,
+  options = EXCLUDED.options,
+  correct_option_id = EXCLUDED.correct_option_id,
+  expected_answer = EXCLUDED.expected_answer,
+  accepted_variations = EXCLUDED.accepted_variations,
+  scrambled_words = EXCLUDED.scrambled_words,
+  explanation_pt = EXCLUDED.explanation_pt,
+  sort_order = EXCLUDED.sort_order;
 
-  -- ATIVIDADE 1: Aeroporto 1
-  INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published)
-  VALUES (v_act_air1, 1, 'Chegando ao Aeroporto: Escuta e Frases Chave', 'Aprenda a reconhecer instruções básicas sonoras na chegada ao aeroporto internacional.', 'airport', 'audio', 'beginner', 5, true)
-  ON CONFLICT (id) DO UPDATE SET title = EXCLUDED.title, is_published = true;
+COMMIT;
 
-  INSERT INTO public.questions (activity_id, type, prompt_pt, audio_phrase_en, expected_answer, accepted_variations, options, correct_option_id, explanation_pt, sort_order)
-  VALUES
-  (v_act_air1, 'listening_choice', 'Ouça o áudio e selecione o significado correto da frase anunciada:', 'Please have your passport and boarding pass ready.', 'Por favor, tenha seu passaporte e cartão de embarque em mãos.', ARRAY['Por favor tenha seu passaporte e cartao de embarque em maos'], '[{"id": "opt-1", "text": "Por favor, tenha seu passaporte e cartão de embarque em mãos."}, {"id": "opt-2", "text": "Por favor, dirija-se à esteira de bagagens número cinco."}, {"id": "opt-3", "text": "Seu voo está atrasado em trinta minutos."}, {"id": "opt-4", "text": "Apresente sua carteira de motorista na entrada."}]'::jsonb, 'opt-1', '"Boarding pass" é o cartão de embarque. "Ready" significa pronto ou em mãos para apresentar.', 1),
-  (v_act_air1, 'dictation', 'Ouça atentamente a frase e digite o que você escutou em inglês:', 'Where is terminal two?', 'Where is terminal two?', ARRAY['Where is terminal 2?', 'Where is terminal two', 'Where is terminal 2'], NULL, NULL, 'A pergunta "Where is...?" significa "Onde fica...?" ou "Onde é...?". Muito usada em viagens.', 2);
-
-  -- ATIVIDADE 2: Aeroporto 2
-  INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published)
-  VALUES (v_act_air2, 1, 'Mostrando seu Passaporte e Cartão de Embarque', 'Pratique a escrita e organização de frases para interagir no controle de segurança e imigração.', 'airport', 'writing', 'beginner', 6, true)
-  ON CONFLICT (id) DO UPDATE SET title = EXCLUDED.title, is_published = true;
-
-  INSERT INTO public.questions (activity_id, type, prompt_pt, expected_answer, accepted_variations, scrambled_words, explanation_pt, sort_order)
-  VALUES
-  (v_act_air2, 'fill_in_the_blanks', 'Complete a frase com a palavra correta para dizer "Aqui está meu passaporte":\n"Here is my _______."', 'passport', ARRAY['passport.'], '{}', '"Here is my passport" é a forma mais educada e direta de entregar o documento ao oficial.', 1),
-  (v_act_air2, 'word_reorder', 'Organize as palavras abaixo para formar a frase em inglês:', 'Here is your boarding pass', ARRAY['Here is your boarding pass.'], ARRAY['is', 'your', 'Here', 'boarding', 'pass'], 'Estrutura: "Here is" (Aqui está) + "your" (seu/sua) + objeto.', 2);
-
-  -- ATIVIDADE 3: Aeroporto 3
-  INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published)
-  VALUES (v_act_air3, 1, 'Encontrando o Portão de Embarque (Gate)', 'Compreensão de áudio sobre informações de voo e numeração de portões.', 'airport', 'audio', 'beginner', 5, true)
-  ON CONFLICT (id) DO UPDATE SET title = EXCLUDED.title, is_published = true;
-
-  INSERT INTO public.questions (activity_id, type, prompt_pt, audio_phrase_en, expected_answer, accepted_variations, options, correct_option_id, explanation_pt, sort_order)
-  VALUES
-  (v_act_air3, 'listening_choice', 'Ouça o anúncio e indique qual é o portão de embarque correto:', 'Flight 304 is boarding at gate 15.', 'O voo 304 está embarcando no portão 15.', '{}', '[{"id": "opt-1", "text": "O voo 304 está embarcando no portão 15."}, {"id": "opt-2", "text": "O voo 304 foi cancelado no portão 50."}, {"id": "opt-3", "text": "O voo 403 está pousando na pista 15."}, {"id": "opt-4", "text": "O voo 304 mudou para o portão 5."}]'::jsonb, 'opt-1', 'Atenção aos números em inglês: "fifteen" (15) tem o som no final diferente de "fifty" (50).', 1),
-  (v_act_air3, 'dictation', 'Ouça o áudio e digite o que você ouviu:', 'Is this the flight to London?', 'Is this the flight to London?', ARRAY['Is this the flight to London', 'is this the flight to london'], NULL, NULL, 'Em perguntas com o verbo To Be, o verbo vem antes: "Is this...?" (Isto/Este é...?).', 2);
-
-  -- ATIVIDADE 4: Aeroporto 4
-  INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published)
-  VALUES (v_act_air4, 1, 'Alfândega e Bagagem: Diálogo Prático', 'Responda a perguntas comuns sobre o motivo da viagem e quantidade de malas.', 'airport', 'mixed', 'beginner', 7, true)
-  ON CONFLICT (id) DO UPDATE SET title = EXCLUDED.title, is_published = true;
-
-  INSERT INTO public.questions (activity_id, type, prompt_pt, audio_phrase_en, expected_answer, accepted_variations, explanation_pt, sort_order)
-  VALUES
-  (v_act_air4, 'oral_practice', 'Ouça a frase em inglês e grave sua repetição em voz alta para treinar sua pronúncia:', 'I am here on vacation.', 'I am here on vacation.', ARRAY['I''m here on vacation.', 'I am here on vacation'], '"On vacation" significa "de férias". Nos EUA usa-se vacation; no Reino Unido é comum holiday.', 1),
-  (v_act_air4, 'situational_response', 'O oficial da alfândega pergunta: "How many bags do you have?" (Quantas malas você tem?). Responda que você tem uma mala:', NULL, 'I have one bag, please.', ARRAY['I have one bag', 'I have one suitcase', 'One bag', 'Just one bag', 'Only one bag'], '"Bag" ou "suitcase" significam mala. Para uma mala: "one bag" ou "just one bag".', 2);
-
-  -- ATIVIDADES 5 a 8: Hotel
-  INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published)
-  VALUES (v_act_hot5, 1, 'Check-in no Hotel: Escuta Atenta', 'Entenda as instruções da recepção ao chegar ao seu hotel.', 'hotel', 'audio', 'beginner', 5, true)
-  ON CONFLICT (id) DO UPDATE SET title = EXCLUDED.title, is_published = true;
-
-  INSERT INTO public.questions (activity_id, type, prompt_pt, audio_phrase_en, expected_answer, accepted_variations, options, correct_option_id, explanation_pt, sort_order)
-  VALUES
-  (v_act_hot5, 'listening_choice', 'Ouça a recepcionista e escolha o significado do que ela disse:', 'Welcome! Do you have a reservation?', 'Bem-vindo! Você tem uma reserva?', '{}', '[{"id": "opt-1", "text": "Bem-vindo! Você tem uma reserva?"}, {"id": "opt-2", "text": "Boa tarde! O café da manhã é gratuito?"}, {"id": "opt-3", "text": "Olá! Seu quarto ainda não está limpo."}, {"id": "opt-4", "text": "Por favor, assine este documento de saída."}]'::jsonb, 'opt-1', '"Reservation" é reserva. "Do you have...?" é a pergunta clássica: "Você tem...?".', 1),
-  (v_act_hot5, 'dictation', 'Digite em inglês a frase dita pelo recepcionista:', 'Your room is on the third floor.', 'Your room is on the third floor.', ARRAY['Your room is on the 3rd floor.', 'Your room is on the third floor'], NULL, NULL, '"Third floor" é o terceiro andar. Em inglês usa-se a preposição "on" para andares de edifícios.', 2);
-
-  INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published)
-  VALUES (v_act_hot6, 1, 'Pedindo a Senha do Wi-Fi e Toalhas Extras', 'Escreva solicitações comuns que você precisará fazer durante sua estadia.', 'hotel', 'writing', 'beginner', 6, true)
-  ON CONFLICT (id) DO UPDATE SET title = EXCLUDED.title, is_published = true;
-
-  INSERT INTO public.questions (activity_id, type, prompt_pt, expected_answer, accepted_variations, explanation_pt, sort_order)
-  VALUES
-  (v_act_hot6, 'translation', 'Traduza para o inglês de forma educada: "Qual é a senha do Wi-Fi?"', 'What is the Wi-Fi password?', ARRAY['What''s the Wi-Fi password?', 'What is the wifi password?', 'What''s the wifi password?'], '"Password" é a senha. "Wi-Fi" pronuncia-se "uai-fai" em inglês.', 1),
-  (v_act_hot6, 'fill_in_the_blanks', 'Complete a frase para pedir toalhas adicionais:\n"Could I have extra _______, please?" (toalhas)', 'towels', ARRAY['towels.'], '"Towel" é toalha. Plural "towels". "Could I have...?" é muito simpático e educado.', 2);
-
-  -- ATIVIDADES 9 a 12: Restaurante
-  INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published)
-  VALUES (v_act_res9, 1, 'Pedindo uma Mesa para Dois', 'Treine a audição para entender o recepcionista (host) do restaurante.', 'restaurant', 'audio', 'beginner', 5, true)
-  ON CONFLICT (id) DO UPDATE SET title = EXCLUDED.title, is_published = true;
-
-  INSERT INTO public.questions (activity_id, type, prompt_pt, audio_phrase_en, expected_answer, accepted_variations, options, correct_option_id, explanation_pt, sort_order)
-  VALUES
-  (v_act_res9, 'listening_choice', 'Ouça o recepcionista do restaurante e marque a tradução correta:', 'Table for two? Right this way, please.', 'Mesa para dois? Por aqui, por favor.', '{}', '[{"id": "opt-1", "text": "Mesa para dois? Por aqui, por favor."}, {"id": "opt-2", "text": "Temos apenas mesas para quatro pessoas."}, {"id": "opt-3", "text": "O restaurante está lotado no momento."}, {"id": "opt-4", "text": "Deseja ver o cardápio de bebidas?"}]'::jsonb, 'opt-1', '"Right this way" é a expressão usada para conduzir você ("por aqui" ou "siga-me").', 1),
-  (v_act_res9, 'dictation', 'Ouça a frase em inglês e digite o que escutou:', 'Can we have a menu, please?', 'Can we have a menu, please?', ARRAY['Can we have a menu please?', 'Can we have the menu, please?'], NULL, NULL, '"Menu" pronuncia-se "mén-iu". "Can we have...?" é "Pode nos trazer...?".', 2);
-
-  INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published)
-  VALUES (v_act_res10, 1, 'Pedindo um Café e Água sem Gás', 'Aprenda a fazer pedidos básicos e pedir água da maneira que você deseja.', 'restaurant', 'writing', 'beginner', 5, true)
-  ON CONFLICT (id) DO UPDATE SET title = EXCLUDED.title, is_published = true;
-
-  INSERT INTO public.questions (activity_id, type, prompt_pt, expected_answer, accepted_variations, explanation_pt, sort_order)
-  VALUES
-  (v_act_res10, 'situational_response', 'O garçom chega e diz "What can I get for you?". Peça um café com leite, por favor:', 'A coffee with milk, please.', ARRAY['Coffee with milk, please', 'Coffee with milk', 'I would like a coffee with milk, please', 'I''d like a coffee with milk, please'], '"Coffee with milk" é café com leite. "I would like" ou o item seguido de "please" é muito educado.', 1),
-  (v_act_res10, 'fill_in_the_blanks', 'Complete com a palavra que significa água sem gás:\n"Still _______, please."', 'water', ARRAY['water.'], '"Still water" é água sem gás; "Sparkling water" é água com gás.', 2);
-
-  RAISE NOTICE 'Seed das 12 atividades pedagógicas concluído com sucesso!';
-END $$;
+-- Conferência
+SELECT a.title, a.is_published, count(q.id) AS questoes
+FROM public.activities a LEFT JOIN public.questions q ON q.activity_id = a.id
+GROUP BY a.id, a.title, a.is_published ORDER BY a.id;

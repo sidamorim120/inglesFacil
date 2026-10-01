@@ -1,5 +1,5 @@
 // Tela de Configurações - Inglês Fácil
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { AudioService } from '../services/audio/audioService';
 import {
@@ -15,7 +15,7 @@ import {
 } from 'lucide-react';
 
 export const SettingsPage: React.FC = () => {
-  const { user, settings, updateSettings } = useAuth();
+  const { user, settings, updateSettings, updateName, isSupabaseMode } = useAuth();
 
   const [name, setName] = useState(user?.name || '');
   const [dailyGoalMinutes, setDailyGoalMinutes] = useState(settings?.dailyGoalMinutes || 10);
@@ -29,6 +29,20 @@ export const SettingsPage: React.FC = () => {
   const [timezone, setTimezone] = useState(settings?.reminders.timezone || 'America/Sao_Paulo');
 
   const [savedSuccess, setSavedSuccess] = useState(false);
+  const [saveError, setSaveError] = useState<string | null>(null);
+  const [isSaving, setIsSaving] = useState(false);
+
+  // Configurações chegam do banco depois da primeira renderização
+  useEffect(() => {
+    if (!settings) return;
+    setDailyGoalMinutes(settings.dailyGoalMinutes);
+    setAudioSpeed(settings.audioSpeed);
+    setAutoPlayAudio(settings.autoPlayAudio);
+    setRemindersEnabled(settings.reminders.enabled);
+    setReminderTime(settings.reminders.time);
+    setSelectedDays(settings.reminders.daysOfWeek);
+    setTimezone(settings.reminders.timezone);
+  }, [settings]);
   const [testSpeechPlaying, setTestSpeechPlaying] = useState(false);
 
   const daysOfWeekLabels = [
@@ -59,10 +73,24 @@ export const SettingsPage: React.FC = () => {
     );
   };
 
-  const handleSave = (e: React.FormEvent) => {
+  const handleSave = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!user) return;
+    setSaveError(null);
+    setIsSaving(true);
 
-    updateSettings({
+    const trimmedName = name.trim();
+    if (isSupabaseMode && trimmedName && trimmedName !== user.name) {
+      const nameRes = await updateName(trimmedName);
+      if (!nameRes.success) {
+        setIsSaving(false);
+        setSaveError(nameRes.error || 'Não foi possível atualizar o nome.');
+        return;
+      }
+    }
+
+    const res = await updateSettings({
+      userId: user.id,
       dailyGoalMinutes,
       audioSpeed,
       autoPlayAudio,
@@ -73,7 +101,12 @@ export const SettingsPage: React.FC = () => {
         timezone,
       },
     });
+    setIsSaving(false);
 
+    if (!res.success) {
+      setSaveError(res.error || 'Não foi possível salvar as configurações.');
+      return;
+    }
     setSavedSuccess(true);
     setTimeout(() => setSavedSuccess(false), 3000);
   };
@@ -86,6 +119,13 @@ export const SettingsPage: React.FC = () => {
           Ajuste sua rotina de estudos, lembretes e preferências de áudio.
         </p>
       </header>
+
+      {saveError && (
+        <div className="alert alert-danger" style={{ marginBottom: '24px' }}>
+          <AlertCircle size={20} />
+          <span>{saveError}</span>
+        </div>
+      )}
 
       {savedSuccess && (
         <div className="alert alert-success" style={{ marginBottom: '24px' }}>
@@ -107,8 +147,8 @@ export const SettingsPage: React.FC = () => {
               className="form-input"
               value={name}
               onChange={(e) => setName(e.target.value)}
-              disabled
-              title="Para alterar o nome cadastrado no modo demonstração, use a aba de usuários ou recadastre-se"
+              disabled={!isSupabaseMode}
+              maxLength={80}
             />
             <span className="form-hint">E-mail associado: {user?.email}</span>
           </div>
@@ -280,9 +320,9 @@ export const SettingsPage: React.FC = () => {
 
         {/* Botão Salvar */}
         <div>
-          <button type="submit" className="btn btn-primary btn-lg" style={{ minWidth: '220px' }}>
+          <button type="submit" className="btn btn-primary btn-lg" style={{ minWidth: '220px' }} disabled={isSaving}>
             <Save size={20} />
-            <span>Salvar Preferências</span>
+            <span>{isSaving ? 'Salvando...' : 'Salvar Preferências'}</span>
           </button>
         </div>
       </form>

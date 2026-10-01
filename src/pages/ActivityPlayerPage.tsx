@@ -4,6 +4,7 @@ import { Activity, Question, QuestionSubmission, Attempt } from '../types';
 import { AudioService, VoiceRecorder } from '../services/audio/audioService';
 import { GradingService, GradingResult } from '../services/grading/gradingService';
 import { useAuth } from '../contexts/AuthContext';
+import { newId } from '../services/dataService';
 import {
   Volume2,
   Mic,
@@ -23,7 +24,7 @@ import {
 
 interface ActivityPlayerPageProps {
   activity: Activity;
-  onFinishActivity: (attempt: Attempt) => void;
+  onFinishActivity: (attempt: Attempt, activity: Activity) => void;
   onExit: () => void;
 }
 
@@ -212,11 +213,11 @@ export const ActivityPlayerPage: React.FC<ActivityPlayerPageProps> = ({
     } else {
       // Conclui atividade
       const total = activity.questions.length;
-      const correct = [...submissions, submissions[submissions.length - 1]].filter((s) => s.isCorrect).length;
-      const score = Math.round((correct / total) * 100);
+      const correct = submissions.filter((s) => s.isCorrect).length;
+      const score = total > 0 ? Math.min(100, Math.round((correct / total) * 100)) : 0;
 
       const attempt: Attempt = {
-        id: `att-${Date.now()}`,
+        id: newId(),
         userId: user?.id || 'demo-user',
         activityId: activity.id,
         activityVersion: activity.version, // Imutabilidade de versão
@@ -232,7 +233,7 @@ export const ActivityPlayerPage: React.FC<ActivityPlayerPageProps> = ({
       };
 
       setIsCompleted(true);
-      onFinishActivity(attempt);
+      onFinishActivity(attempt, activity);
     }
   };
 
