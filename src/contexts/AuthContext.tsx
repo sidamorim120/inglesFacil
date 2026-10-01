@@ -75,10 +75,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (res.error) {
         return { success: false, error: res.error };
       }
-      if (res.user) {
-        setUser(res.user);
-        return { success: true };
+      if (!res.user) {
+        await SupabaseAuthService.signOut();
+        return { success: false, error: 'Conta autenticada, mas sem perfil cadastrado. Contate o administrador.' };
       }
+      if (res.user.status !== 'active') {
+        await SupabaseAuthService.signOut();
+        return { success: false, error: 'Sua conta está inativa. Contate o administrador.' };
+      }
+      setUser(res.user);
+      return { success: true };
     }
 
     // Modo demonstração

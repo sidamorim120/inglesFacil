@@ -120,24 +120,6 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateToRegister, onNa
             <span>{isLoading ? 'Entrando...' : 'Entrar no aplicativo'}</span>
           </button>
         </form>
-
-        <div style={{ textAlign: 'center', marginTop: '28px', fontSize: '0.9rem' }}>
-          Não tem uma conta?{' '}
-          <button
-            type="button"
-            onClick={onNavigateToRegister}
-            style={{
-              background: 'none',
-              border: 'none',
-              color: 'var(--primary)',
-              fontWeight: 700,
-              cursor: 'pointer',
-              textDecoration: 'underline',
-            }}
-          >
-            Cadastre-se gratuitamente
-          </button>
-        </div>
       </div>
     </div>
   );

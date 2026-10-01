@@ -18,6 +18,12 @@ export class SupabaseAuthService {
       });
 
       if (error) {
+        if (error.code === 'email_not_confirmed') {
+          return { user: null, error: 'E-mail ainda não confirmado. Verifique sua caixa de entrada.' };
+        }
+        if (error.code === 'invalid_credentials') {
+          return { user: null, error: 'E-mail ou senha incorretos.' };
+        }
         return { user: null, error: error.message };
       }
 
