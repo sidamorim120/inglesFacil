@@ -34,9 +34,7 @@ export class DemoStore {
     if (!localStorage.getItem(STORAGE_KEYS.USERS)) {
       localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(DEMO_USERS));
     }
-    if (!localStorage.getItem(STORAGE_KEYS.CURRENT_USER_ID)) {
-      localStorage.setItem(STORAGE_KEYS.CURRENT_USER_ID, 'user-carlos-student');
-    }
+    // Não força usuário logado por padrão para exigir tela de login inicial
     if (!localStorage.getItem(STORAGE_KEYS.ACTIVITIES)) {
       localStorage.setItem(STORAGE_KEYS.ACTIVITIES, JSON.stringify(INITIAL_ACTIVITIES));
     }

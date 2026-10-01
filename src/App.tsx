@@ -84,7 +84,6 @@ export const App: React.FC = () => {
   if (!user) {
     return (
       <>
-        <DemoHeader />
         {authView === 'login' && (
           <LoginPage
             onNavigateToRegister={() => setAuthView('register')}

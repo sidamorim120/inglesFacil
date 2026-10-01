@@ -43,13 +43,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateToRegister, onNa
           <p>Prática diária curta para adultos brasileiros</p>
         </div>
 
-        {/* Alerta de Modo Demonstração Transparente */}
-        <div className="alert alert-info" style={{ fontSize: '0.85rem' }}>
-          <Sparkles size={18} style={{ flexShrink: 0 }} />
-          <div>
-            <strong>Modo Demonstração:</strong> Você pode digitar seus dados ou clicar nos botões rápidos abaixo para testar instantaneamente como Aluno ou Administrador.
-          </div>
-        </div>
+
 
         {errorMessage && (
           <div className="alert alert-danger" style={{ fontSize: '0.875rem' }}>
@@ -127,34 +121,7 @@ export const LoginPage: React.FC<LoginPageProps> = ({ onNavigateToRegister, onNa
           </button>
         </form>
 
-        {/* Atalhos de Demonstração Rápida */}
-        <div style={{ marginTop: '24px', paddingTop: '20px', borderTop: '1px solid var(--border-subtle)' }}>
-          <p style={{ fontSize: '0.8125rem', textAlign: 'center', marginBottom: '12px', fontWeight: 600 }}>
-            OU ENTRE RAPIDAMENTE COM UM CLIQUE:
-          </p>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '8px' }}>
-            <button
-              type="button"
-              className="btn btn-outline btn-sm"
-              onClick={() => switchUser('user-carlos-student')}
-              style={{ width: '100%', justifyContent: 'flex-start' }}
-            >
-              <User size={16} />
-              <span>Entrar como Carlos Silva (Perfil Aluno)</span>
-            </button>
-            <button
-              type="button"
-              className="btn btn-outline btn-sm"
-              onClick={() => switchUser('user-helena-admin')}
-              style={{ width: '100%', justifyContent: 'flex-start' }}
-            >
-              <User size={16} />
-              <span>Entrar como Prof.ª Helena (Perfil Admin)</span>
-            </button>
-          </div>
-        </div>
-
-        <div style={{ textAlign: 'center', marginTop: '24px', fontSize: '0.9rem' }}>
+        <div style={{ textAlign: 'center', marginTop: '28px', fontSize: '0.9rem' }}>
           Não tem uma conta?{' '}
           <button
             type="button"
