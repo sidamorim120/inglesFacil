@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from './contexts/AuthContext';
 import { DataService } from './services/dataService';
 import { computeStudentMetrics } from './services/progress/progressRules';
+import { bestScores, computeLevelState, isLevelUnlocked, levelIndex, LEVEL_LABELS, PASSING_SCORE } from './services/progress/levelRules';
 import { Activity, Attempt, ReviewItem, StudentMetrics } from './types';
 
 // Componentes Estruturais
@@ -24,7 +25,7 @@ import { SettingsPage } from './pages/SettingsPage';
 import { AdminPage } from './pages/AdminPage';
 
 export const App: React.FC = () => {
-  const { user, role, settings, isLoading, isPasswordRecovery } = useAuth();
+  const { user, role, isAdmin, settings, isLoading, isPasswordRecovery } = useAuth();
 
   // Rotas e Navegação
   const [currentTab, setCurrentTab] = useState<string>('dashboard');
@@ -37,12 +38,16 @@ export const App: React.FC = () => {
   const [attempts, setAttempts] = useState<Attempt[]>([]);
   const [reviewItems, setReviewItems] = useState<ReviewItem[]>([]);
   const [dataError, setDataError] = useState<string | null>(null);
+  const [levelUpMessage, setLevelUpMessage] = useState<string | null>(null);
 
   const metrics: StudentMetrics = computeStudentMetrics(attempts, reviewItems, settings);
+  const levelState = computeLevelState(activities, attempts, user?.minLevel);
+  // Admin vê e faz todos os níveis
+  const isActivityUnlocked = (activity: Activity) => isAdmin || isLevelUnlocked(activity.level, levelState.current);
 
   // Carrega e sincroniza dados do usuário ativo
-  const refreshAppData = async () => {
-    if (!user) return;
+  const refreshAppData = async (): Promise<{ acts: Activity[]; userAttempts: Attempt[] } | null> => {
+    if (!user) return null;
     try {
       const [acts, userAttempts, userReviews] = await Promise.all([
         DataService.getActivities(role),
@@ -53,8 +58,10 @@ export const App: React.FC = () => {
       setAttempts(userAttempts);
       setReviewItems(userReviews);
       setDataError(null);
+      return { acts, userAttempts };
     } catch (err: unknown) {
       setDataError(`Não foi possível carregar seus dados: ${(err as Error).message}`);
+      return null;
     }
   };
 
@@ -107,12 +114,19 @@ export const App: React.FC = () => {
     );
   }
 
-  // Atividade do Dia (primeira não concluída ou a primeira da lista)
-  const completedIds = new Set(attempts.map((a) => a.activityId));
-  const todayActivity = activities.find((a) => !completedIds.has(a.id)) || activities[0] || null;
+  // Atividade do Dia: a próxima do nível atual ainda sem nota de aprovação; senão, qualquer liberada ainda não feita
+  const best = bestScores(attempts);
+  const unlockedActivities = activities.filter(isActivityUnlocked);
+  const todayActivity =
+    unlockedActivities.find((a) => a.level === levelState.current && (best[a.id] ?? 0) < PASSING_SCORE) ||
+    unlockedActivities.find((a) => best[a.id] === undefined) ||
+    null;
 
   // Iniciar atividade no player
   const handleStartActivity = (activityId: string) => {
+    const activity = activities.find((a) => a.id === activityId);
+    if (activity && !isActivityUnlocked(activity)) return;
+    setLevelUpMessage(null);
     setSelectedActivityId(activityId);
     setCurrentTab('player');
   };
@@ -124,7 +138,13 @@ export const App: React.FC = () => {
       setDataError(`Não foi possível salvar seu resultado: ${res.error}`);
       return;
     }
-    await refreshAppData();
+    const fresh = await refreshAppData();
+    if (fresh && !isAdmin) {
+      const next = computeLevelState(fresh.acts, fresh.userAttempts, user.minLevel).current;
+      if (levelIndex(next) > levelIndex(levelState.current)) {
+        setLevelUpMessage(`Parabéns! Você concluiu o ${LEVEL_LABELS[levelState.current]} e liberou o ${LEVEL_LABELS[next]}.`);
+      }
+    }
   };
 
   // Navegar para atividades com filtro
@@ -149,6 +169,7 @@ export const App: React.FC = () => {
           currentTab={currentTab}
           onSelectTab={(tab) => {
             setSelectedActivityId(null);
+            setLevelUpMessage(null);
             setCurrentTab(tab);
           }}
           pendingReviewsCount={metrics.pendingReviewsCount}
@@ -161,10 +182,17 @@ export const App: React.FC = () => {
             currentTab={currentTab}
             onSelectTab={(tab) => {
               setSelectedActivityId(null);
+              setLevelUpMessage(null);
               setCurrentTab(tab);
             }}
             pendingReviewsCount={metrics.pendingReviewsCount}
           />
+
+          {levelUpMessage && (
+            <div className="alert alert-success" role="status" style={{ margin: '16px' }}>
+              <span>🎉 {levelUpMessage}</span>
+            </div>
+          )}
 
           {dataError && (
             <div className="alert alert-danger" role="alert" style={{ margin: '16px' }}>
@@ -176,6 +204,7 @@ export const App: React.FC = () => {
           {currentTab === 'dashboard' && (
             <DashboardPage
               metrics={metrics}
+              levelState={levelState}
               todayActivity={todayActivity}
               onStartActivity={handleStartActivity}
               onNavigateToReviews={() => setCurrentTab('review')}
@@ -187,6 +216,8 @@ export const App: React.FC = () => {
             <ActivitiesPage
               activities={activities}
               studentAttempts={attempts}
+              currentLevel={levelState.current}
+              allUnlocked={isAdmin}
               onSelectActivity={handleStartActivity}
               initialCategoryFilter={activityCategoryFilter}
             />
@@ -213,6 +244,7 @@ export const App: React.FC = () => {
           {currentTab === 'progress' && (
             <ProgressPage
               metrics={metrics}
+              levelState={levelState}
               attempts={attempts}
               onNavigateToActivities={() => setCurrentTab('activities')}
             />

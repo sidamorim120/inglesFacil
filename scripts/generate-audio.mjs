@@ -52,7 +52,15 @@ fs.mkdirSync(outDir, { recursive: true });
 const synth = (text, file, rate) => {
   const args = ['--voice', voice, '--text', text, '--write-media', file];
   if (rate) args.push(`--rate=${rate}`);
-  execFileSync(edgeTts, args, { stdio: 'pipe' });
+  // O serviço às vezes não responde: limita cada chamada a 60s e tenta de novo
+  for (let attempt = 1; ; attempt += 1) {
+    try {
+      execFileSync(edgeTts, args, { stdio: 'pipe', timeout: 60_000 });
+      break;
+    } catch (err) {
+      if (attempt >= 3) throw err;
+    }
+  }
   if (!fs.existsSync(file) || fs.statSync(file).size === 0) {
     throw new Error(`edge-tts não gerou áudio para: ${text}`);
   }

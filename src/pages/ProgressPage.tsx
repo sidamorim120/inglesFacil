@@ -1,6 +1,8 @@
 // Tela Meu Progresso - Inglês Fácil
 import React, { useState } from 'react';
 import { Attempt, StudentMetrics } from '../types';
+import { categoryInfo } from '../services/categories';
+import { isLevelUnlocked, LevelState, LEVEL_LABELS, PASSING_SCORE } from '../services/progress/levelRules';
 import { useAuth } from '../contexts/AuthContext';
 import {
   TrendingUp,
@@ -13,20 +15,23 @@ import {
   ChevronUp,
   XCircle,
   Award,
+  Lock,
 } from 'lucide-react';
 
 interface ProgressPageProps {
   metrics: StudentMetrics;
+  levelState: LevelState;
   attempts: Attempt[];
   onNavigateToActivities: () => void;
 }
 
 export const ProgressPage: React.FC<ProgressPageProps> = ({
   metrics,
+  levelState,
   attempts,
   onNavigateToActivities,
 }) => {
-  const { settings } = useAuth();
+  const { settings, isAdmin } = useAuth();
   const [expandedAttemptId, setExpandedAttemptId] = useState<string | null>(null);
 
   // Formatação de data em UTC respeitando o fuso horário configurado
@@ -87,6 +92,44 @@ export const ProgressPage: React.FC<ProgressPageProps> = ({
           <p style={{ fontSize: '0.85rem' }}>Calculado a partir de todas as respostas registradas.</p>
         </div>
       </section>
+
+      {/* Trilha de Níveis */}
+      {!isAdmin && (
+        <section className="card" style={{ marginBottom: '32px' }}>
+          <h2 style={{ fontSize: '1.25rem', marginBottom: '6px' }}>Trilha de Níveis</h2>
+          <p style={{ fontSize: '0.85rem', marginBottom: '18px' }}>
+            Tire {PASSING_SCORE}% ou mais em todas as atividades de um nível para liberar o próximo.
+          </p>
+
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+            {levelState.progress.map((p) => {
+              const unlocked = isLevelUnlocked(p.level, levelState.current);
+              const isCurrent = p.level === levelState.current;
+              const done = unlocked && !isCurrent;
+              const percent = p.total > 0 ? Math.round((p.completed / p.total) * 100) : 0;
+
+              return (
+                <div key={p.level} style={{ opacity: unlocked ? 1 : 0.55 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 8, marginBottom: '6px' }}>
+                    <span style={{ display: 'flex', alignItems: 'center', gap: 6, fontWeight: 600 }}>
+                      {done && <CheckCircle2 size={18} color="var(--success)" />}
+                      {!unlocked && <Lock size={16} color="var(--text-light)" />}
+                      {LEVEL_LABELS[p.level]}
+                      {isCurrent && <span className="badge badge-primary">Atual</span>}
+                    </span>
+                    <span style={{ fontSize: '0.85rem', color: 'var(--text-muted)' }}>
+                      {p.total === 0 ? 'Em breve' : `${p.completed}/${p.total}`}
+                    </span>
+                  </div>
+                  <div className="progress-track" style={{ height: '10px' }}>
+                    <div className="progress-bar-fill" style={{ width: `${done ? 100 : percent}%` }} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       {/* Comparativo: Áudio vs Escrita */}
       <section className="card" style={{ marginBottom: '32px' }}>
@@ -164,8 +207,10 @@ export const ProgressPage: React.FC<ProgressPageProps> = ({
                   >
                     <div>
                       <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-                        <span className="badge badge-primary">{attempt.category}</span>
-                        <span className="badge badge-secondary">{attempt.modality}</span>
+                        <span className="badge badge-primary">{categoryInfo(attempt.category).label}</span>
+                        <span className="badge badge-secondary">
+                          {attempt.modality === 'audio' ? 'Áudio' : attempt.modality === 'writing' ? 'Escrita' : 'Misto'}
+                        </span>
                         <span style={{ fontSize: '0.8rem', color: 'var(--text-light)' }}>
                           {formatDate(attempt.completedAt)}
                         </span>

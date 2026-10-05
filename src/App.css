@@ -199,6 +199,25 @@
   border-top: 1px solid var(--border-subtle);
 }
 
+.activity-item-locked {
+  opacity: 0.6;
+}
+
+.activity-item-locked:hover {
+  transform: none;
+  box-shadow: none;
+  border-color: var(--border-subtle);
+}
+
+.level-section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 4px 12px;
+  margin-bottom: 14px;
+}
+
 /* Player de Exercícios e Áudio */
 .player-container {
   max-width: 720px;

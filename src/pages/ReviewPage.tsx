@@ -1,5 +1,6 @@
 // Tela de Revisão Espaçada (1, 3 e 7 dias) - Inglês Fácil
 import React, { useState } from 'react';
+import { categoryInfo } from '../services/categories';
 import { ReviewItem } from '../types';
 import { DataService } from '../services/dataService';
 import { AudioService } from '../services/audio/audioService';
@@ -148,7 +149,7 @@ export const ReviewPage: React.FC<ReviewPageProps> = ({ reviewItems, onRefreshRe
               >
                 <div style={{ flex: '1 1 300px' }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: '8px', marginBottom: '4px' }}>
-                    <span className="badge badge-primary">{item.category}</span>
+                    <span className="badge badge-primary">{categoryInfo(item.category).label}</span>
                     <span className="badge badge-warning">Intervalo: {item.intervalDays} dia(s)</span>
                     {isDueToday && (
                       <span className="badge badge-success">

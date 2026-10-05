@@ -7,9 +7,12 @@ CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 -- 2. TIPOS CUSTOMIZADOS (ENUMS)
 CREATE TYPE user_role AS ENUM ('student', 'admin');
 CREATE TYPE user_status AS ENUM ('active', 'inactive');
-CREATE TYPE activity_category AS ENUM ('airport', 'hotel', 'restaurant');
+CREATE TYPE activity_category AS ENUM (
+  'introductions', 'events', 'feelings', 'people', 'food',
+  'technology', 'travel', 'shopping', 'health', 'plans'
+);
 CREATE TYPE activity_modality AS ENUM ('audio', 'writing', 'mixed');
-CREATE TYPE difficulty_level AS ENUM ('beginner', 'intermediate');
+CREATE TYPE study_level AS ENUM ('basic_1', 'basic_2', 'basic_3', 'intermediate', 'advanced');
 CREATE TYPE exercise_type AS ENUM (
   'listening_choice',
   'dictation',
@@ -27,6 +30,7 @@ CREATE TABLE IF NOT EXISTS public.profiles (
   email TEXT NOT NULL UNIQUE,
   role user_role NOT NULL DEFAULT 'student',
   status user_status NOT NULL DEFAULT 'active',
+  min_level study_level NOT NULL DEFAULT 'basic_1', -- Nível liberado pelo admin; o aluno avança sozinho a partir dele
   created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
   updated_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now())
 );
@@ -52,7 +56,7 @@ CREATE TABLE IF NOT EXISTS public.activities (
   description TEXT NOT NULL,
   category activity_category NOT NULL,
   modality activity_modality NOT NULL,
-  difficulty difficulty_level NOT NULL DEFAULT 'beginner',
+  level study_level NOT NULL DEFAULT 'basic_1',
   estimated_minutes INTEGER NOT NULL DEFAULT 5,
   is_published BOOLEAN NOT NULL DEFAULT false,
   created_at TIMESTAMPTZ NOT NULL DEFAULT timezone('utc'::text, now()),
@@ -217,6 +221,7 @@ USING (auth.uid() = id)
 WITH CHECK (
   auth.uid() = id
   AND role = (SELECT role FROM public.profiles WHERE id = auth.uid()) -- Impede auto-promoção
+  AND min_level = (SELECT min_level FROM public.profiles WHERE id = auth.uid()) -- Só o admin muda o nível
 );
 
 CREATE POLICY "Apenas administradores gerenciam outros perfis"

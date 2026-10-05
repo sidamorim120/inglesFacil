@@ -1,8 +1,10 @@
 // Painel de Administração - Inglês Fácil
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../contexts/AuthContext';
-import { User, Activity, ActivityCategory, ActivityModality, Question } from '../types';
+import { User, Activity, ActivityCategory, ActivityModality, Question, StudyLevel } from '../types';
 import { DataService, newId } from '../services/dataService';
+import { CATEGORIES, categoryInfo } from '../services/categories';
+import { LEVELS, LEVEL_LABELS } from '../services/progress/levelRules';
 import {
   Shield,
   Users,
@@ -19,12 +21,6 @@ import {
   X,
   Save,
 } from 'lucide-react';
-
-const CATEGORY_LABELS: Record<ActivityCategory, string> = {
-  airport: 'Aeroporto',
-  hotel: 'Hotel',
-  restaurant: 'Restaurante',
-};
 
 const MODALITY_LABELS: Record<ActivityModality, string> = {
   audio: 'Áudio',
@@ -53,8 +49,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
   // Form State da Atividade
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
-  const [category, setCategory] = useState<ActivityCategory>('airport');
+  const [category, setCategory] = useState<ActivityCategory>('introductions');
   const [modality, setModality] = useState<ActivityModality>('audio');
+  const [level, setLevel] = useState<StudyLevel>('basic_1');
   const [estimatedMinutes, setEstimatedMinutes] = useState(5);
   const [isPublished, setIsPublished] = useState(true);
 
@@ -116,6 +113,19 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
     }
   };
 
+  const handleChangeMinLevel = async (targetUser: User, minLevel: StudyLevel) => {
+    setActionError(null);
+    setActionSuccess(null);
+
+    const result = await DataService.setUserMinLevel(targetUser, minLevel);
+    if (!result.success) {
+      setActionError(result.error || 'Erro ao alterar o nível.');
+    } else {
+      setActionSuccess(`${targetUser.name} agora tem acesso até o ${LEVEL_LABELS[minLevel]}.`);
+      loadData();
+    }
+  };
+
   // Ações de Atividades
   const handleTogglePublish = async (activity: Activity) => {
     setActionError(null);
@@ -134,8 +144,9 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
     setEditingActivity(null);
     setTitle('');
     setDescription('');
-    setCategory('airport');
+    setCategory('introductions');
     setModality('audio');
+    setLevel('basic_1');
     setEstimatedMinutes(5);
     setIsPublished(true);
     setIsActivityModalOpen(true);
@@ -147,6 +158,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
     setDescription(act.description);
     setCategory(act.category);
     setModality(act.modality);
+    setLevel(act.level);
     setEstimatedMinutes(act.estimatedMinutes);
     setIsPublished(act.isPublished);
     setIsActivityModalOpen(true);
@@ -169,7 +181,6 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
             expectedAnswer: 'Can I have your boarding pass?',
             acceptedVariations: ['Can I have your boarding pass'],
             explanationPt: 'Pergunta educada usada com frequência na imigração e portão de embarque.',
-            difficulty: 'beginner',
           },
         ];
 
@@ -180,7 +191,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
       description: description.trim(),
       category,
       modality,
-      difficulty: 'beginner',
+      level,
       estimatedMinutes,
       isPublished,
       questions: baseQuestions,
@@ -275,6 +286,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
                   <th>Nome</th>
                   <th>E-mail</th>
                   <th>Papel</th>
+                  <th>Nível liberado</th>
                   <th>Status</th>
                   <th>Ações</th>
                 </tr>
@@ -294,6 +306,24 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
                         <span className={`badge ${u.role === 'admin' ? 'badge-primary' : 'badge-secondary'}`}>
                           {u.role === 'admin' ? 'Administrador' : 'Aluno'}
                         </span>
+                      </td>
+                      <td data-label="Nível liberado">
+                        {u.role === 'admin' ? (
+                          <span style={{ color: 'var(--text-light)' }}>Todos</span>
+                        ) : (
+                          <select
+                            className="form-select"
+                            style={{ minHeight: '36px', padding: '4px 8px', width: 'auto' }}
+                            value={u.minLevel}
+                            onChange={(e) => handleChangeMinLevel(u, e.target.value as StudyLevel)}
+                            title="O aluno avança sozinho a partir deste nível"
+                            aria-label={`Nível liberado para ${u.name}`}
+                          >
+                            {LEVELS.map((l) => (
+                              <option key={l} value={l}>{LEVEL_LABELS[l]}</option>
+                            ))}
+                          </select>
+                        )}
                       </td>
                       <td data-label="Status">
                         <span className={`badge ${isActive ? 'badge-success' : 'badge-warning'}`}>
@@ -338,6 +368,7 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
               <thead>
                 <tr>
                   <th>Título</th>
+                  <th>Nível</th>
                   <th>Tema</th>
                   <th>Modalidade</th>
                   <th>Versão</th>
@@ -354,8 +385,11 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
                         {act.questions.length} questões cadastradas
                       </div>
                     </td>
+                    <td data-label="Nível">
+                      <span className="badge badge-secondary">{LEVEL_LABELS[act.level]}</span>
+                    </td>
                     <td data-label="Tema">
-                      <span className="badge badge-primary">{CATEGORY_LABELS[act.category]}</span>
+                      <span className="badge badge-primary">{categoryInfo(act.category).label}</span>
                     </td>
                     <td data-label="Modalidade">
                       <span className="badge badge-secondary">{MODALITY_LABELS[act.modality]}</span>
@@ -436,16 +470,16 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
 
               <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
                 <div className="form-group">
-                  <label className="form-label" htmlFor="act-cat">Tema de Viagem</label>
+                  <label className="form-label" htmlFor="act-cat">Tema</label>
                   <select
                     id="act-cat"
                     className="form-select"
                     value={category}
                     onChange={(e) => setCategory(e.target.value as ActivityCategory)}
                   >
-                    <option value="airport">Aeroporto</option>
-                    <option value="hotel">Hotel</option>
-                    <option value="restaurant">Restaurante</option>
+                    {CATEGORIES.map((c) => (
+                      <option key={c.id} value={c.id}>{c.label}</option>
+                    ))}
                   </select>
                 </div>
 
@@ -464,17 +498,33 @@ export const AdminPage: React.FC<AdminPageProps> = ({ onRefreshActivities }) => 
                 </div>
               </div>
 
-              <div className="form-group">
-                <label className="form-label" htmlFor="act-min">Tempo Estimado (minutos)</label>
-                <input
-                  id="act-min"
-                  type="number"
-                  min="3"
-                  max="15"
-                  className="form-input"
-                  value={estimatedMinutes}
-                  onChange={(e) => setEstimatedMinutes(Number(e.target.value))}
-                />
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '12px' }}>
+                <div className="form-group">
+                  <label className="form-label" htmlFor="act-level">Nível</label>
+                  <select
+                    id="act-level"
+                    className="form-select"
+                    value={level}
+                    onChange={(e) => setLevel(e.target.value as StudyLevel)}
+                  >
+                    {LEVELS.map((l) => (
+                      <option key={l} value={l}>{LEVEL_LABELS[l]}</option>
+                    ))}
+                  </select>
+                </div>
+
+                <div className="form-group">
+                  <label className="form-label" htmlFor="act-min">Tempo Estimado (minutos)</label>
+                  <input
+                    id="act-min"
+                    type="number"
+                    min="3"
+                    max="15"
+                    className="form-input"
+                    value={estimatedMinutes}
+                    onChange={(e) => setEstimatedMinutes(Number(e.target.value))}
+                  />
+                </div>
               </div>
 
               <div className="form-group">

@@ -2,6 +2,8 @@
 import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
 import { Activity, StudentMetrics } from '../types';
+import { CATEGORIES, categoryInfo } from '../services/categories';
+import { LevelState, LEVEL_LABELS, PASSING_SCORE } from '../services/progress/levelRules';
 import {
   Play,
   RotateCcw,
@@ -9,14 +11,13 @@ import {
   Bell,
   CheckCircle,
   Clock,
-  Plane,
-  Building,
-  UtensilsCrossed,
   ArrowRight,
+  GraduationCap,
 } from 'lucide-react';
 
 interface DashboardPageProps {
   metrics: StudentMetrics;
+  levelState: LevelState;
   todayActivity: Activity | null;
   onStartActivity: (activityId: string) => void;
   onNavigateToReviews: () => void;
@@ -25,12 +26,17 @@ interface DashboardPageProps {
 
 export const DashboardPage: React.FC<DashboardPageProps> = ({
   metrics,
+  levelState,
   todayActivity,
   onStartActivity,
   onNavigateToReviews,
   onNavigateToActivities,
 }) => {
-  const { user, settings } = useAuth();
+  const { user, settings, isAdmin } = useAuth();
+  const currentProgress = levelState.progress.find((p) => p.level === levelState.current);
+  const levelPercent = currentProgress && currentProgress.total > 0
+    ? Math.round((currentProgress.completed / currentProgress.total) * 100)
+    : 0;
 
   // Saudação de acordo com o horário do dia
   const getGreeting = () => {
@@ -65,9 +71,7 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
               ~{todayActivity.estimatedMinutes} minutos
             </span>
             <span className="featured-meta-item">
-              {todayActivity.category === 'airport' && '✈️ Aeroporto'}
-              {todayActivity.category === 'hotel' && '🏨 Hotel'}
-              {todayActivity.category === 'restaurant' && '🍽️ Restaurante'}
+              {categoryInfo(todayActivity.category).emoji} {categoryInfo(todayActivity.category).label}
             </span>
           </div>
 
@@ -96,6 +100,27 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
 
       {/* Grid de Métricas Diárias */}
       <section className="dashboard-grid" aria-label="Resumo de metas e progresso diário">
+        {/* Nível Atual */}
+        {!isAdmin && currentProgress && (
+          <div className="metric-card">
+            <div>
+              <div className="metric-card-header">
+                <span className="metric-card-title">Seu Nível</span>
+                <GraduationCap size={20} color="var(--primary)" />
+              </div>
+              <div className="metric-card-value">{LEVEL_LABELS[levelState.current]}</div>
+              <p style={{ fontSize: '0.875rem' }}>
+                {currentProgress.total === 0
+                  ? 'Novas atividades deste nível chegam em breve.'
+                  : `${currentProgress.completed} de ${currentProgress.total} atividades com nota ≥ ${PASSING_SCORE}%. Conclua todas para avançar.`}
+              </p>
+            </div>
+            <div className="progress-track">
+              <div className="progress-bar-fill" style={{ width: `${levelPercent}%` }} />
+            </div>
+          </div>
+        )}
+
         {/* Meta Diária */}
         <div className="metric-card">
           <div>
@@ -172,12 +197,12 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
         </div>
       </section>
 
-      {/* Módulos de Viagem Rápida */}
+      {/* Temas */}
       <section style={{ marginTop: '36px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '18px' }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 12, marginBottom: '18px' }}>
           <div>
-            <h2 style={{ fontSize: '1.35rem' }}>Situações Reais de Viagem</h2>
-            <p style={{ fontSize: '0.9rem' }}>Pratique nos contextos que você mais vai usar no exterior</p>
+            <h2 style={{ fontSize: '1.35rem' }}>Temas</h2>
+            <p style={{ fontSize: '0.9rem' }}>Pratique o inglês das situações do dia a dia</p>
           </div>
           <button
             onClick={() => onNavigateToActivities()}
@@ -188,48 +213,21 @@ export const DashboardPage: React.FC<DashboardPageProps> = ({
           </button>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '16px' }}>
-          <button
-            onClick={() => onNavigateToActivities('airport')}
-            className="card"
-            style={{ textAlign: 'left', cursor: 'pointer', borderLeft: '4px solid var(--primary)' }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-              <div style={{ padding: '8px', background: 'var(--primary-light)', borderRadius: 'var(--radius-md)' }}>
-                <Plane size={24} color="var(--primary)" />
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: '16px' }}>
+          {CATEGORIES.map((c) => (
+            <button
+              key={c.id}
+              onClick={() => onNavigateToActivities(c.id)}
+              className="card"
+              style={{ textAlign: 'left', cursor: 'pointer', borderLeft: '4px solid var(--primary)' }}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '6px' }}>
+                <span style={{ fontSize: '1.5rem' }} aria-hidden="true">{c.emoji}</span>
+                <h3 style={{ fontSize: '1.05rem' }}>{c.label}</h3>
               </div>
-              <h3 style={{ fontSize: '1.1rem' }}>Aeroporto</h3>
-            </div>
-            <p style={{ fontSize: '0.875rem' }}>Passaporte, portão de embarque e alfândega sem aperto.</p>
-          </button>
-
-          <button
-            onClick={() => onNavigateToActivities('hotel')}
-            className="card"
-            style={{ textAlign: 'left', cursor: 'pointer', borderLeft: '4px solid var(--secondary)' }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-              <div style={{ padding: '8px', background: 'var(--secondary-light)', borderRadius: 'var(--radius-md)' }}>
-                <Building size={24} color="var(--secondary)" />
-              </div>
-              <h3 style={{ fontSize: '1.1rem' }}>Hotel</h3>
-            </div>
-            <p style={{ fontSize: '0.875rem' }}>Check-in, senha do Wi-Fi, toalhas e horários do café.</p>
-          </button>
-
-          <button
-            onClick={() => onNavigateToActivities('restaurant')}
-            className="card"
-            style={{ textAlign: 'left', cursor: 'pointer', borderLeft: '4px solid #f59e0b' }}
-          >
-            <div style={{ display: 'flex', alignItems: 'center', gap: '12px', marginBottom: '8px' }}>
-              <div style={{ padding: '8px', background: '#fef3c7', borderRadius: 'var(--radius-md)' }}>
-                <UtensilsCrossed size={24} color="#d97706" />
-              </div>
-              <h3 style={{ fontSize: '1.1rem' }}>Restaurante</h3>
-            </div>
-            <p style={{ fontSize: '0.875rem' }}>Mesa para dois, café com leite, água e pedir a conta.</p>
-          </button>
+              <p style={{ fontSize: '0.85rem' }}>{c.description}</p>
+            </button>
+          ))}
         </div>
       </section>
     </div>

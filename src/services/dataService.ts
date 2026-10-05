@@ -1,6 +1,6 @@
 // Camada de Dados Única - Inglês Fácil
 // Em produção usa o Supabase (dados por usuário no banco); sem chaves configuradas usa o modo demonstração local.
-import { Activity, Attempt, ReviewItem, User, UserRole, UserSettings } from '../types';
+import { Activity, Attempt, ReviewItem, StudyLevel, User, UserRole, UserSettings } from '../types';
 import { isSupabaseConfigured } from './supabase/client';
 import { SupabaseDatabaseService } from './supabase/databaseService';
 import { DemoStore } from './storage/demoStore';
@@ -75,5 +75,11 @@ export const DataService = {
     return useSupabase
       ? SupabaseDatabaseService.setUserStatus(target.id, target.status === 'active' ? 'inactive' : 'active')
       : DemoStore.toggleUserStatus(target.id, 'admin');
+  },
+
+  async setUserMinLevel(target: User, minLevel: StudyLevel): Promise<Result> {
+    return useSupabase
+      ? SupabaseDatabaseService.setUserMinLevel(target.id, minLevel)
+      : DemoStore.setUserMinLevel(target.id, minLevel, 'admin');
   },
 };

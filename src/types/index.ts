@@ -9,6 +9,7 @@ export interface User {
   email: string;
   role: UserRole;
   status: UserStatus;
+  minLevel: StudyLevel; // Nível liberado pelo admin; o aluno avança sozinho a partir dele
   createdAt: string; // ISO 8601 UTC
 }
 
@@ -27,9 +28,19 @@ export interface UserSettings {
   reminders: ReminderSettings;
 }
 
-export type ActivityCategory = 'airport' | 'hotel' | 'restaurant';
+export type ActivityCategory =
+  | 'introductions'
+  | 'events'
+  | 'feelings'
+  | 'people'
+  | 'food'
+  | 'technology'
+  | 'travel'
+  | 'shopping'
+  | 'health'
+  | 'plans';
 export type ActivityModality = 'audio' | 'writing' | 'mixed';
-export type DifficultyLevel = 'beginner' | 'intermediate';
+export type StudyLevel = 'basic_1' | 'basic_2' | 'basic_3' | 'intermediate' | 'advanced';
 
 export type ExerciseType =
   | 'listening_choice'     // Compreensão auditiva: ouvir frase em inglês e escolher significado em português
@@ -59,7 +70,6 @@ export interface Question {
   scrambledWords?: string[];       // Palavras soltas para exercício de ordenação
   explanationPt: string;           // Explicação curta didática em português
   referenceDialogue?: string;      // Diálogo de apoio para situações
-  difficulty?: DifficultyLevel;
 }
 
 export interface Activity {
@@ -69,7 +79,7 @@ export interface Activity {
   description: string;
   category: ActivityCategory;
   modality: ActivityModality;
-  difficulty: DifficultyLevel;
+  level: StudyLevel;
   estimatedMinutes: number;        // Ex: 5 a 8 min
   isPublished: boolean;
   questions: Question[];

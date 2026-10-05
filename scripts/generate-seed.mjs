@@ -1,5 +1,6 @@
 // Gera database/seed.sql a partir de src/services/storage/initialData.ts
 // Uso: node scripts/generate-seed.mjs
+import crypto from 'node:crypto';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
@@ -28,6 +29,13 @@ const ACTIVITY_UUIDS = {
   'act-res-12': 'c3333333-3333-4333-8333-333333333312',
 };
 
+// Atividades novas: UUID fixo derivado do id, para o seed não duplicar ao rodar de novo
+const activityUuid = (id) => {
+  if (ACTIVITY_UUIDS[id]) return ACTIVITY_UUIDS[id];
+  const h = crypto.createHash('sha1').update(`activity:${id}`).digest('hex');
+  return `${h.slice(0, 8)}-${h.slice(8, 12)}-4${h.slice(13, 16)}-8${h.slice(17, 20)}-${h.slice(20, 32)}`;
+};
+
 const q = (v) => (v === undefined || v === null ? 'NULL' : `'${String(v).replace(/'/g, "''")}'`);
 const arr = (a) => (a && a.length ? `ARRAY[${a.map(q).join(', ')}]::text[]` : `'{}'::text[]`);
 const json = (v) => (v ? `${q(JSON.stringify(v))}::jsonb` : 'NULL');
@@ -38,10 +46,9 @@ const questionIds = [];
 let questionIndex = 0;
 
 for (const act of INITIAL_ACTIVITIES) {
-  const actId = ACTIVITY_UUIDS[act.id];
-  if (!actId) throw new Error(`Sem UUID para ${act.id}`);
+  const actId = activityUuid(act.id);
   activityRows.push(
-    `  (${q(actId)}, 1, ${q(act.title)}, ${q(act.description)}, ${q(act.category)}, ${q(act.modality)}, ${q(act.difficulty)}, ${act.estimatedMinutes}, ${act.isPublished}, ${q(act.createdAt)})`
+    `  (${q(actId)}, 1, ${q(act.title)}, ${q(act.description)}, ${q(act.category)}, ${q(act.modality)}, ${q(act.level)}, ${act.estimatedMinutes}, ${act.isPublished}, ${q(act.createdAt)})`
   );
   act.questions.forEach((question, i) => {
     questionIndex += 1;
@@ -53,16 +60,16 @@ for (const act of INITIAL_ACTIVITIES) {
   });
 }
 
-const activityIds = Object.values(ACTIVITY_UUIDS).map(q).join(', ');
+const activityIds = INITIAL_ACTIVITIES.map((a) => q(activityUuid(a.id))).join(', ');
 
 const sql = `-- SEED DE DADOS INICIAIS: ${activityRows.length} ATIVIDADES E ${questionRows.length} QUESTÕES (PostgreSQL / Supabase)
--- Inglês Fácil: Aeroporto, Hotel e Restaurante
+-- Inglês Fácil: Básico 1 a 3 (Connectivity 1) e Intermediário (Basic Grammar in Use)
 -- ARQUIVO GERADO por scripts/generate-seed.mjs a partir de src/services/storage/initialData.ts — não edite à mão.
 -- Pode ser executado várias vezes: atualiza o conteúdo sem duplicar questões.
 
 BEGIN;
 
-INSERT INTO public.activities (id, version, title, description, category, modality, difficulty, estimated_minutes, is_published, created_at)
+INSERT INTO public.activities (id, version, title, description, category, modality, level, estimated_minutes, is_published, created_at)
 VALUES
 ${activityRows.join(',\n')}
 ON CONFLICT (id) DO UPDATE SET
@@ -70,7 +77,7 @@ ON CONFLICT (id) DO UPDATE SET
   description = EXCLUDED.description,
   category = EXCLUDED.category,
   modality = EXCLUDED.modality,
-  difficulty = EXCLUDED.difficulty,
+  level = EXCLUDED.level,
   estimated_minutes = EXCLUDED.estimated_minutes,
   created_at = EXCLUDED.created_at,
   updated_at = timezone('utc'::text, now());

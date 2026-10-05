@@ -104,6 +104,1942 @@
     "Sure, here is your receipt.": {
       "normal": "audio/2381a655d1e0b09a.mp3",
       "slow": "audio/2381a655d1e0b09a-slow.mp3"
+    },
+    "Nice to meet you. I'm Paula.": {
+      "normal": "audio/fdd005d507c9e5b3.mp3",
+      "slow": "audio/fdd005d507c9e5b3-slow.mp3"
+    },
+    "What do you do?": {
+      "normal": "audio/cf1d528c4d184ed5.mp3",
+      "slow": "audio/cf1d528c4d184ed5-slow.mp3"
+    },
+    "She's a lawyer, and her husband is an accountant.": {
+      "normal": "audio/87554af7d3de0088.mp3",
+      "slow": "audio/87554af7d3de0088-slow.mp3"
+    },
+    "an": {
+      "normal": "audio/00e6373f29a5b85b.mp3",
+      "slow": "audio/00e6373f29a5b85b-slow.mp3"
+    },
+    "I am a teacher.": {
+      "normal": "audio/0fbc3bdca7992f0b.mp3",
+      "slow": "audio/0fbc3bdca7992f0b-slow.mp3"
+    },
+    "I'd like you to meet my friend Mark.": {
+      "normal": "audio/76b7edf347526b73.mp3",
+      "slow": "audio/76b7edf347526b73-slow.mp3"
+    },
+    "Nice to meet you too. I'm Ana.": {
+      "normal": "audio/870fa7348966953e.mp3",
+      "slow": "audio/870fa7348966953e-slow.mp3"
+    },
+    "Where are you from?": {
+      "normal": "audio/53df5bc9f3fbde7e.mp3",
+      "slow": "audio/53df5bc9f3fbde7e-slow.mp3"
+    },
+    "When": {
+      "normal": "audio/f2daa4234e1ad68d.mp3",
+      "slow": "audio/f2daa4234e1ad68d-slow.mp3"
+    },
+    "Who's": {
+      "normal": "audio/8cc4bb6981788109.mp3",
+      "slow": "audio/8cc4bb6981788109-slow.mp3"
+    },
+    "What is your last name?": {
+      "normal": "audio/916a21aff9929de3.mp3",
+      "slow": "audio/916a21aff9929de3-slow.mp3"
+    },
+    "How old is your daughter?": {
+      "normal": "audio/fbd54523709d1cd5.mp3",
+      "slow": "audio/fbd54523709d1cd5-slow.mp3"
+    },
+    "Same here! I'm from Brazil too.": {
+      "normal": "audio/7c30d22863857962.mp3",
+      "slow": "audio/7c30d22863857962-slow.mp3"
+    },
+    "What is your email address?": {
+      "normal": "audio/8d5533280cc9e4a5.mp3",
+      "slow": "audio/8d5533280cc9e4a5-slow.mp3"
+    },
+    "I need English for my job.": {
+      "normal": "audio/fca5ab440c1cd3a8.mp3",
+      "slow": "audio/fca5ab440c1cd3a8-slow.mp3"
+    },
+    "am": {
+      "normal": "audio/8fb6a689d1f679d8.mp3",
+      "slow": "audio/8fb6a689d1f679d8-slow.mp3"
+    },
+    "is": {
+      "normal": "audio/6eb70a8d90dd1194.mp3",
+      "slow": "audio/6eb70a8d90dd1194-slow.mp3"
+    },
+    "English is the language of the internet.": {
+      "normal": "audio/d8a1e8129674190c.mp3",
+      "slow": "audio/d8a1e8129674190c-slow.mp3"
+    },
+    "I want to travel and study abroad.": {
+      "normal": "audio/b106b1c4ebc2153c.mp3",
+      "slow": "audio/b106b1c4ebc2153c-slow.mp3"
+    },
+    "I study English because I want to travel.": {
+      "normal": "audio/48d42d41c8724a6b.mp3",
+      "slow": "audio/48d42d41c8724a6b-slow.mp3"
+    },
+    "Pronunciation is difficult for me.": {
+      "normal": "audio/f691e5c995ff3ad7.mp3",
+      "slow": "audio/f691e5c995ff3ad7-slow.mp3"
+    },
+    "easy": {
+      "normal": "audio/0921536d568a3d97.mp3",
+      "slow": "audio/0921536d568a3d97-slow.mp3"
+    },
+    "Their": {
+      "normal": "audio/2ba4722b1924a8c6.mp3",
+      "slow": "audio/2ba4722b1924a8c6-slow.mp3"
+    },
+    "Can you repeat that, please?": {
+      "normal": "audio/4c8c06b466087f89.mp3",
+      "slow": "audio/4c8c06b466087f89-slow.mp3"
+    },
+    "Can you speak more slowly, please?": {
+      "normal": "audio/b57668a911859341.mp3",
+      "slow": "audio/b57668a911859341-slow.mp3"
+    },
+    "What does this word mean?": {
+      "normal": "audio/7318e0ec6310583e.mp3",
+      "slow": "audio/7318e0ec6310583e-slow.mp3"
+    },
+    "Sorry, can you repeat that, please?": {
+      "normal": "audio/efa89ef8cc42cfb1.mp3",
+      "slow": "audio/efa89ef8cc42cfb1-slow.mp3"
+    },
+    "This is my colleague, Mr. Garcia. He works in a bank.": {
+      "normal": "audio/1df05e75a19247d0.mp3",
+      "slow": "audio/1df05e75a19247d0-slow.mp3"
+    },
+    "What's your phone number?": {
+      "normal": "audio/a4a59b215d0cda2e.mp3",
+      "slow": "audio/a4a59b215d0cda2e-slow.mp3"
+    },
+    "Her": {
+      "normal": "audio/ded6e5ceda7f9e30.mp3",
+      "slow": "audio/ded6e5ceda7f9e30-slow.mp3"
+    },
+    "are": {
+      "normal": "audio/c5bf27273edeec28.mp3",
+      "slow": "audio/c5bf27273edeec28-slow.mp3"
+    },
+    "isn't": {
+      "normal": "audio/5c398a463b5710cb.mp3",
+      "slow": "audio/5c398a463b5710cb-slow.mp3"
+    },
+    "Are you a student or a teacher?": {
+      "normal": "audio/9fed168c78934fc7.mp3",
+      "slow": "audio/9fed168c78934fc7-slow.mp3"
+    },
+    "My nickname is Bia.": {
+      "normal": "audio/dde94cd481ac469d.mp3",
+      "slow": "audio/dde94cd481ac469d-slow.mp3"
+    },
+    "Is he a doctor?": {
+      "normal": "audio/0b0b2fca4a2c6074.mp3",
+      "slow": "audio/0b0b2fca4a2c6074-slow.mp3"
+    },
+    "Excuse me, are you Mr. Brown?": {
+      "normal": "audio/df19ff595c26fb09.mp3",
+      "slow": "audio/df19ff595c26fb09-slow.mp3"
+    },
+    "I'm a nurse.": {
+      "normal": "audio/b22c4295f564b377.mp3",
+      "slow": "audio/b22c4295f564b377-slow.mp3"
+    },
+    "Are you free on Saturday night?": {
+      "normal": "audio/47773de510e0f013.mp3",
+      "slow": "audio/47773de510e0f013-slow.mp3"
+    },
+    "Let's go to the movies tonight.": {
+      "normal": "audio/6c34a92f92cc8234.mp3",
+      "slow": "audio/6c34a92f92cc8234-slow.mp3"
+    },
+    "The concert starts at eight.": {
+      "normal": "audio/7cb0d1b174329dc3.mp3",
+      "slow": "audio/7cb0d1b174329dc3-slow.mp3"
+    },
+    "Let's": {
+      "normal": "audio/bd0b38fd437c394b.mp3",
+      "slow": "audio/bd0b38fd437c394b-slow.mp3"
+    },
+    "Too bad. I'm busy on Friday.": {
+      "normal": "audio/5bacbd74beb61ea3.mp3",
+      "slow": "audio/5bacbd74beb61ea3-slow.mp3"
+    },
+    "I'm sorry, I can't. I have to work.": {
+      "normal": "audio/98c9a13111819028.mp3",
+      "slow": "audio/98c9a13111819028-slow.mp3"
+    },
+    "Sure! That sounds great.": {
+      "normal": "audio/4b0cc812c4a26219.mp3",
+      "slow": "audio/4b0cc812c4a26219-slow.mp3"
+    },
+    "Turn left at the corner.": {
+      "normal": "audio/1363109f84ee92ea.mp3",
+      "slow": "audio/1363109f84ee92ea-slow.mp3"
+    },
+    "It's across the street from the bank.": {
+      "normal": "audio/edb18560f34080c4.mp3",
+      "slow": "audio/edb18560f34080c4-slow.mp3"
+    },
+    "Where is the theater?": {
+      "normal": "audio/b5bacd67e9388e9d.mp3",
+      "slow": "audio/b5bacd67e9388e9d-slow.mp3"
+    },
+    "The bank is next to the park.": {
+      "normal": "audio/4a81e930d0e71c46.mp3",
+      "slow": "audio/4a81e930d0e71c46-slow.mp3"
+    },
+    "between": {
+      "normal": "audio/8654b112a386fd94.mp3",
+      "slow": "audio/8654b112a386fd94-slow.mp3"
+    },
+    "Excuse me, how do I get to the train station?": {
+      "normal": "audio/cc9083d6aeacde6d.mp3",
+      "slow": "audio/cc9083d6aeacde6d-slow.mp3"
+    },
+    "No, it's two blocks from here.": {
+      "normal": "audio/720103a8db2d2811.mp3",
+      "slow": "audio/720103a8db2d2811-slow.mp3"
+    },
+    "I'm a big fan of rock music.": {
+      "normal": "audio/ee250e370b9d0c8a.mp3",
+      "slow": "audio/ee250e370b9d0c8a-slow.mp3"
+    },
+    "What kind of music do you like?": {
+      "normal": "audio/8044b60b9d302359.mp3",
+      "slow": "audio/8044b60b9d302359-slow.mp3"
+    },
+    "to": {
+      "normal": "audio/e527212c9cdee56f.mp3",
+      "slow": "audio/e527212c9cdee56f-slow.mp3"
+    },
+    "I don't like classical music.": {
+      "normal": "audio/b66dedc027bb9f6a.mp3",
+      "slow": "audio/b66dedc027bb9f6a-slow.mp3"
+    },
+    "Who is your favorite singer?": {
+      "normal": "audio/7bc33b5e3f089dfb.mp3",
+      "slow": "audio/7bc33b5e3f089dfb-slow.mp3"
+    },
+    "I love dancing to Brazilian music.": {
+      "normal": "audio/bf31a1d5a1deb139.mp3",
+      "slow": "audio/bf31a1d5a1deb139-slow.mp3"
+    },
+    "Not really.": {
+      "normal": "audio/9d05a6885c444057.mp3",
+      "slow": "audio/9d05a6885c444057-slow.mp3"
+    },
+    "on": {
+      "normal": "audio/990e1e8334e197c7.mp3",
+      "slow": "audio/990e1e8334e197c7-slow.mp3"
+    },
+    "at": {
+      "normal": "audio/d1f120c1d8388c4a.mp3",
+      "slow": "audio/d1f120c1d8388c4a-slow.mp3"
+    },
+    "in": {
+      "normal": "audio/6b5ccb1b58ca6bed.mp3",
+      "slow": "audio/6b5ccb1b58ca6bed-slow.mp3"
+    },
+    "Let's meet in front of the theater.": {
+      "normal": "audio/c1eb911ce133c8ae.mp3",
+      "slow": "audio/c1eb911ce133c8ae-slow.mp3"
+    },
+    "The show is on Saturday at eight.": {
+      "normal": "audio/6b13b8f694a41aa9.mp3",
+      "slow": "audio/6b13b8f694a41aa9-slow.mp3"
+    },
+    "It's at seven thirty.": {
+      "normal": "audio/d255397742d7da1e.mp3",
+      "slow": "audio/d255397742d7da1e-slow.mp3"
+    },
+    "The art exhibit is free, and it opens at ten.": {
+      "normal": "audio/3ef742d435c532d7.mp3",
+      "slow": "audio/3ef742d435c532d7-slow.mp3"
+    },
+    "Go straight for two blocks.": {
+      "normal": "audio/08fac089cb990e92.mp3",
+      "slow": "audio/08fac089cb990e92-slow.mp3"
+    },
+    "Do you want to go to a concert?": {
+      "normal": "audio/60dcca1bd5aaa87d.mp3",
+      "slow": "audio/60dcca1bd5aaa87d-slow.mp3"
+    },
+    "The pharmacy is around the corner.": {
+      "normal": "audio/e60eded912445edb.mp3",
+      "slow": "audio/e60eded912445edb-slow.mp3"
+    },
+    "Let's go to the park tomorrow.": {
+      "normal": "audio/35b0ba37e2425d0d.mp3",
+      "slow": "audio/35b0ba37e2425d0d-slow.mp3"
+    },
+    "Thanks a lot for your help!": {
+      "normal": "audio/727dbc9fbb0dd1c4.mp3",
+      "slow": "audio/727dbc9fbb0dd1c4-slow.mp3"
+    },
+    "Thanks anyway.": {
+      "normal": "audio/25f51ea9a5fd4e50.mp3",
+      "slow": "audio/25f51ea9a5fd4e50-slow.mp3"
+    },
+    "At eight?": {
+      "normal": "audio/4a3604ffaa1fb595.mp3",
+      "slow": "audio/4a3604ffaa1fb595-slow.mp3"
+    },
+    "I can swim, but I can't dance.": {
+      "normal": "audio/d563346586546374.mp3",
+      "slow": "audio/d563346586546374-slow.mp3"
+    },
+    "Can you speak Spanish?": {
+      "normal": "audio/efcbac78a4aa2890.mp3",
+      "slow": "audio/efcbac78a4aa2890-slow.mp3"
+    },
+    "I can cook, but I can't sing.": {
+      "normal": "audio/8e1ee7903481e1c8.mp3",
+      "slow": "audio/8e1ee7903481e1c8-slow.mp3"
+    },
+    "can": {
+      "normal": "audio/69239e7c7114b6d3.mp3",
+      "slow": "audio/69239e7c7114b6d3-slow.mp3"
+    },
+    "can't": {
+      "normal": "audio/ad3083a8a4bafa18.mp3",
+      "slow": "audio/ad3083a8a4bafa18-slow.mp3"
+    },
+    "My brother can play the piano very well.": {
+      "normal": "audio/1759ec7083157bb1.mp3",
+      "slow": "audio/1759ec7083157bb1-slow.mp3"
+    },
+    "Can you cook?": {
+      "normal": "audio/ff06420764de19a4.mp3",
+      "slow": "audio/ff06420764de19a4-slow.mp3"
+    },
+    "I have a terrible headache.": {
+      "normal": "audio/edc92be1908cdf16.mp3",
+      "slow": "audio/edc92be1908cdf16-slow.mp3"
+    },
+    "You should see a doctor.": {
+      "normal": "audio/87b9eced1143bd5e.mp3",
+      "slow": "audio/87b9eced1143bd5e-slow.mp3"
+    },
+    "should": {
+      "normal": "audio/d9b79e27f3beb6fd.mp3",
+      "slow": "audio/d9b79e27f3beb6fd-slow.mp3"
+    },
+    "You shouldn't drink coffee at night.": {
+      "normal": "audio/39f6442c2799df76.mp3",
+      "slow": "audio/39f6442c2799df76-slow.mp3"
+    },
+    "I have a sore throat.": {
+      "normal": "audio/1b746db28d8ae8c7.mp3",
+      "slow": "audio/1b746db28d8ae8c7-slow.mp3"
+    },
+    "You should rest.": {
+      "normal": "audio/c0a70eb7fa217332.mp3",
+      "slow": "audio/c0a70eb7fa217332-slow.mp3"
+    },
+    "Feel better!": {
+      "normal": "audio/541f4bad11808ec6.mp3",
+      "slow": "audio/541f4bad11808ec6-slow.mp3"
+    },
+    "I'm tired.": {
+      "normal": "audio/ba11dadb657c620d.mp3",
+      "slow": "audio/ba11dadb657c620d-slow.mp3"
+    },
+    "I'm nervous about my job interview.": {
+      "normal": "audio/1ad6d0dd72b4aa66.mp3",
+      "slow": "audio/1ad6d0dd72b4aa66-slow.mp3"
+    },
+    "bored": {
+      "normal": "audio/c62f823a7b9f353a.mp3",
+      "slow": "audio/c62f823a7b9f353a-slow.mp3"
+    },
+    "happy": {
+      "normal": "audio/00e4dd32c76e790e.mp3",
+      "slow": "audio/00e4dd32c76e790e-slow.mp3"
+    },
+    "Why are you so worried?": {
+      "normal": "audio/030de4c0be7377f1.mp3",
+      "slow": "audio/030de4c0be7377f1-slow.mp3"
+    },
+    "Sure. What's up?": {
+      "normal": "audio/573556332e102c17.mp3",
+      "slow": "audio/573556332e102c17-slow.mp3"
+    },
+    "You can learn to play an instrument at any age.": {
+      "normal": "audio/f336b49857a45726.mp3",
+      "slow": "audio/f336b49857a45726-slow.mp3"
+    },
+    "Can": {
+      "normal": "audio/100c67589cba3268.mp3",
+      "slow": "audio/100c67589cba3268-slow.mp3"
+    },
+    "Practice is the best way to learn.": {
+      "normal": "audio/2a01b007e63cecfd.mp3",
+      "slow": "audio/2a01b007e63cecfd-slow.mp3"
+    },
+    "I practice every day for twenty minutes.": {
+      "normal": "audio/928edfc351e064f8.mp3",
+      "slow": "audio/928edfc351e064f8-slow.mp3"
+    },
+    "Can I use your phone?": {
+      "normal": "audio/eacccc96394afd94.mp3",
+      "slow": "audio/eacccc96394afd94-slow.mp3"
+    },
+    "Thanks! I owe you one.": {
+      "normal": "audio/175278bd1053fd53.mp3",
+      "slow": "audio/175278bd1053fd53-slow.mp3"
+    },
+    "She can't come today because she has a fever.": {
+      "normal": "audio/6de0afec13099574.mp3",
+      "slow": "audio/6de0afec13099574-slow.mp3"
+    },
+    "You should drink a lot of water.": {
+      "normal": "audio/cc5ab0efc3152940.mp3",
+      "slow": "audio/cc5ab0efc3152940-slow.mp3"
+    },
+    "sad": {
+      "normal": "audio/2034437a0d149a0a.mp3",
+      "slow": "audio/2034437a0d149a0a-slow.mp3"
+    },
+    "Can I ask you a question?": {
+      "normal": "audio/6f349f34addab3b0.mp3",
+      "slow": "audio/6f349f34addab3b0-slow.mp3"
+    },
+    "I can't sleep at night.": {
+      "normal": "audio/fa9a88f81afca888.mp3",
+      "slow": "audio/fa9a88f81afca888-slow.mp3"
+    },
+    "He has a stomachache.": {
+      "normal": "audio/ec4f2033ae3ce8d6.mp3",
+      "slow": "audio/ec4f2033ae3ce8d6-slow.mp3"
+    },
+    "Feel better soon!": {
+      "normal": "audio/2639adf4cc27bebd.mp3",
+      "slow": "audio/2639adf4cc27bebd-slow.mp3"
+    },
+    "My sister is getting married next month!": {
+      "normal": "audio/b8b9f1ebbf280497.mp3",
+      "slow": "audio/b8b9f1ebbf280497-slow.mp3"
+    },
+    "That's great news! Congratulations!": {
+      "normal": "audio/018c8e93a62111bc.mp3",
+      "slow": "audio/018c8e93a62111bc-slow.mp3"
+    },
+    "I'm sorry to hear that.": {
+      "normal": "audio/fa07d0e5b814cd89.mp3",
+      "slow": "audio/fa07d0e5b814cd89-slow.mp3"
+    },
+    "That's wonderful! Congratulations!": {
+      "normal": "audio/7d02b94738da44c4.mp3",
+      "slow": "audio/7d02b94738da44c4-slow.mp3"
+    },
+    "asking": {
+      "normal": "audio/5a81131312f36aca.mp3",
+      "slow": "audio/5a81131312f36aca-slow.mp3"
+    },
+    "How is your family doing?": {
+      "normal": "audio/210a77cf9c4c02ba.mp3",
+      "slow": "audio/210a77cf9c4c02ba-slow.mp3"
+    },
+    "My sister is married and has two kids.": {
+      "normal": "audio/0c4cb3a665353e6e.mp3",
+      "slow": "audio/0c4cb3a665353e6e-slow.mp3"
+    },
+    "He lives with his parents.": {
+      "normal": "audio/36f2ea974b9ebead.mp3",
+      "slow": "audio/36f2ea974b9ebead-slow.mp3"
+    },
+    "works": {
+      "normal": "audio/242f813ec3a9ca23.mp3",
+      "slow": "audio/242f813ec3a9ca23-slow.mp3"
+    },
+    "watches": {
+      "normal": "audio/3aec5ee5e89975b3.mp3",
+      "slow": "audio/3aec5ee5e89975b3-slow.mp3"
+    },
+    "doesn't like": {
+      "normal": "audio/6efb5a387237499a.mp3",
+      "slow": "audio/6efb5a387237499a-slow.mp3"
+    },
+    "Does your sister have any children?": {
+      "normal": "audio/398841172cca6af7.mp3",
+      "slow": "audio/398841172cca6af7-slow.mp3"
+    },
+    "My father works a lot.": {
+      "normal": "audio/36652523ea145cd9.mp3",
+      "slow": "audio/36652523ea145cd9-slow.mp3"
+    },
+    "My brother is taller than me.": {
+      "normal": "audio/d3ea7bbaeafa1a30.mp3",
+      "slow": "audio/d3ea7bbaeafa1a30-slow.mp3"
+    },
+    "older": {
+      "normal": "audio/88dc6d1a6b4fffd7.mp3",
+      "slow": "audio/88dc6d1a6b4fffd7-slow.mp3"
+    },
+    "funnier": {
+      "normal": "audio/b9972b15cad00121.mp3",
+      "slow": "audio/b9972b15cad00121-slow.mp3"
+    },
+    "more": {
+      "normal": "audio/ae130ea5a85329fc.mp3",
+      "slow": "audio/ae130ea5a85329fc-slow.mp3"
+    },
+    "My mother is much more patient than my father.": {
+      "normal": "audio/8990e38f62f3bd8a.mp3",
+      "slow": "audio/8990e38f62f3bd8a-slow.mp3"
+    },
+    "My sister is taller than me.": {
+      "normal": "audio/2e852193ba0d8ff2.mp3",
+      "slow": "audio/2e852193ba0d8ff2-slow.mp3"
+    },
+    "We are very similar.": {
+      "normal": "audio/e0d04534ffe73fb7.mp3",
+      "slow": "audio/e0d04534ffe73fb7-slow.mp3"
+    },
+    "Both of my parents work full-time.": {
+      "normal": "audio/427324caafa5b85e.mp3",
+      "slow": "audio/427324caafa5b85e-slow.mp3"
+    },
+    "Like my father, I love soccer.": {
+      "normal": "audio/cf28caeb6bbd5f7d.mp3",
+      "slow": "audio/cf28caeb6bbd5f7d-slow.mp3"
+    },
+    "but": {
+      "normal": "audio/a1d5040155e000de.mp3",
+      "slow": "audio/a1d5040155e000de-slow.mp3"
+    },
+    "and": {
+      "normal": "audio/6fb2948df0f61d29.mp3",
+      "slow": "audio/6fb2948df0f61d29-slow.mp3"
+    },
+    "Many young people live alone today.": {
+      "normal": "audio/60b45e81b81e97bf.mp3",
+      "slow": "audio/60b45e81b81e97bf-slow.mp3"
+    },
+    "We have a lot in common.": {
+      "normal": "audio/bf49a275d0849385.mp3",
+      "slow": "audio/bf49a275d0849385-slow.mp3"
+    },
+    "Let me think.": {
+      "normal": "audio/6130926bdb268196.mp3",
+      "slow": "audio/6130926bdb268196-slow.mp3"
+    },
+    "My cousin lives in Canada and works as a nurse.": {
+      "normal": "audio/ae3846628e3ff161.mp3",
+      "slow": "audio/ae3846628e3ff161-slow.mp3"
+    },
+    "She's divorced and lives with her two daughters.": {
+      "normal": "audio/8043e969df401cd9.mp3",
+      "slow": "audio/8043e969df401cd9-slow.mp3"
+    },
+    "goes": {
+      "normal": "audio/a679a0c902dc181c.mp3",
+      "slow": "audio/a679a0c902dc181c-slow.mp3"
+    },
+    "Do": {
+      "normal": "audio/e9e0ab0459e0ad6b.mp3",
+      "slow": "audio/e9e0ab0459e0ad6b-slow.mp3"
+    },
+    "bigger": {
+      "normal": "audio/2e26107a47de5d5a.mp3",
+      "slow": "audio/2e26107a47de5d5a-slow.mp3"
+    },
+    "My grandmother lives with us.": {
+      "normal": "audio/4cc938921d7229e0.mp3",
+      "slow": "audio/4cc938921d7229e0-slow.mp3"
+    },
+    "Are you the oldest child?": {
+      "normal": "audio/2076991a9f80c1a5.mp3",
+      "slow": "audio/2076991a9f80c1a5-slow.mp3"
+    },
+    "She doesn't have any brothers or sisters.": {
+      "normal": "audio/85068540e0a043d3.mp3",
+      "slow": "audio/85068540e0a043d3-slow.mp3"
+    },
+    "Congratulations on your new job!": {
+      "normal": "audio/41c8b59c34ee4d56.mp3",
+      "slow": "audio/41c8b59c34ee4d56-slow.mp3"
+    },
+    "No, we're very different.": {
+      "normal": "audio/a421a673e424b3a3.mp3",
+      "slow": "audio/a421a673e424b3a3-slow.mp3"
+    },
+    "I'd like the chicken with rice, please.": {
+      "normal": "audio/5cdb291e492feb3f.mp3",
+      "slow": "audio/5cdb291e492feb3f-slow.mp3"
+    },
+    "I'll have the salad and a glass of water.": {
+      "normal": "audio/c079fc5f5682315b.mp3",
+      "slow": "audio/c079fc5f5682315b-slow.mp3"
+    },
+    "Could we have the check, please?": {
+      "normal": "audio/a014bdea0bfa8d82.mp3",
+      "slow": "audio/a014bdea0bfa8d82-slow.mp3"
+    },
+    "Certainly. And for you, sir?": {
+      "normal": "audio/d7d8c48a0482ab93.mp3",
+      "slow": "audio/d7d8c48a0482ab93-slow.mp3"
+    },
+    "like": {
+      "normal": "audio/cbabe1215c6d7227.mp3",
+      "slow": "audio/cbabe1215c6d7227-slow.mp3"
+    },
+    "I'd like a still water, please.": {
+      "normal": "audio/f9ba9e3df31006f1.mp3",
+      "slow": "audio/f9ba9e3df31006f1-slow.mp3"
+    },
+    "Yes, I'd like the fish, please.": {
+      "normal": "audio/70bebd706b199e26.mp3",
+      "slow": "audio/70bebd706b199e26-slow.mp3"
+    },
+    "The fish is grilled and served with vegetables.": {
+      "normal": "audio/0f3d717af269cecf.mp3",
+      "slow": "audio/0f3d717af269cecf-slow.mp3"
+    },
+    "raw": {
+      "normal": "audio/3b101cb23d040324.mp3",
+      "slow": "audio/3b101cb23d040324-slow.mp3"
+    },
+    "the": {
+      "normal": "audio/3573e93eef2a596d.mp3",
+      "slow": "audio/3573e93eef2a596d-slow.mp3"
+    },
+    "This soup is too salty for me.": {
+      "normal": "audio/5e32b5866d17c932.mp3",
+      "slow": "audio/5e32b5866d17c932-slow.mp3"
+    },
+    "How would you like your steak?": {
+      "normal": "audio/133e633489454e81.mp3",
+      "slow": "audio/133e633489454e81-slow.mp3"
+    },
+    "I prefer grilled chicken.": {
+      "normal": "audio/8c30b98292c1d996.mp3",
+      "slow": "audio/8c30b98292c1d996-slow.mp3"
+    },
+    "Well-done, please.": {
+      "normal": "audio/56ad668f0541beca.mp3",
+      "slow": "audio/56ad668f0541beca-slow.mp3"
+    },
+    "any": {
+      "normal": "audio/8b8a197ac11f980e.mp3",
+      "slow": "audio/8b8a197ac11f980e-slow.mp3"
+    },
+    "some": {
+      "normal": "audio/3a76d40a7c95f7e0.mp3",
+      "slow": "audio/3a76d40a7c95f7e0-slow.mp3"
+    },
+    "many": {
+      "normal": "audio/8c69240e12f964f8.mp3",
+      "slow": "audio/8c69240e12f964f8-slow.mp3"
+    },
+    "much": {
+      "normal": "audio/ae5cb3e1d3f5d9d9.mp3",
+      "slow": "audio/ae5cb3e1d3f5d9d9-slow.mp3"
+    },
+    "slices": {
+      "normal": "audio/d1fc04f5c0a967e6.mp3",
+      "slow": "audio/d1fc04f5c0a967e6-slow.mp3"
+    },
+    "I don't eat meat.": {
+      "normal": "audio/b97dadd47904e586.mp3",
+      "slow": "audio/b97dadd47904e586-slow.mp3"
+    },
+    "There is nothing in the fridge.": {
+      "normal": "audio/946102cd3a1abfb5.mp3",
+      "slow": "audio/946102cd3a1abfb5-slow.mp3"
+    },
+    "I don't like spicy food. Me neither.": {
+      "normal": "audio/d0eafa1f4f55341b.mp3",
+      "slow": "audio/d0eafa1f4f55341b-slow.mp3"
+    },
+    "Me too!": {
+      "normal": "audio/1c9fd7175cdc073d.mp3",
+      "slow": "audio/1c9fd7175cdc073d-slow.mp3"
+    },
+    "Me neither.": {
+      "normal": "audio/d4b1ca176a990fdf.mp3",
+      "slow": "audio/d4b1ca176a990fdf-slow.mp3"
+    },
+    "How much sugar do you want?": {
+      "normal": "audio/ebb0f74d39bb5b2b.mp3",
+      "slow": "audio/ebb0f74d39bb5b2b-slow.mp3"
+    },
+    "I usually have lunch at noon.": {
+      "normal": "audio/8299175ebf38e882.mp3",
+      "slow": "audio/8299175ebf38e882-slow.mp3"
+    },
+    "Do you like street food?": {
+      "normal": "audio/97150838ceb8f089.mp3",
+      "slow": "audio/97150838ceb8f089-slow.mp3"
+    },
+    "Could we see the menu, please?": {
+      "normal": "audio/41998579bdc18b90.mp3",
+      "slow": "audio/41998579bdc18b90-slow.mp3"
+    },
+    "Would you like anything to drink?": {
+      "normal": "audio/c520a3184963d59d.mp3",
+      "slow": "audio/c520a3184963d59d-slow.mp3"
+    },
+    "We don't have any fish today, but the chicken is great.": {
+      "normal": "audio/59183afe2f8df386.mp3",
+      "slow": "audio/59183afe2f8df386-slow.mp3"
+    },
+    "anything": {
+      "normal": "audio/f9895f45c384e295.mp3",
+      "slow": "audio/f9895f45c384e295-slow.mp3"
+    },
+    "Can I have the check, please?": {
+      "normal": "audio/63941732df098cc8.mp3",
+      "slow": "audio/63941732df098cc8-slow.mp3"
+    },
+    "A table for two, please.": {
+      "normal": "audio/b1ffa1f6133a9b0a.mp3",
+      "slow": "audio/b1ffa1f6133a9b0a-slow.mp3"
+    },
+    "The food is delicious.": {
+      "normal": "audio/18b4e2a13525929e.mp3",
+      "slow": "audio/18b4e2a13525929e-slow.mp3"
+    },
+    "I'm a vegetarian. Do you have any vegetarian dishes?": {
+      "normal": "audio/36f50c599122dc84.mp3",
+      "slow": "audio/36f50c599122dc84-slow.mp3"
+    },
+    "Everything is great, thank you.": {
+      "normal": "audio/61ded005077f353c.mp3",
+      "slow": "audio/61ded005077f353c-slow.mp3"
+    },
+    "This phone is fast, but the battery is terrible.": {
+      "normal": "audio/d14129058edcde81.mp3",
+      "slow": "audio/d14129058edcde81-slow.mp3"
+    },
+    "cheap": {
+      "normal": "audio/664b9e171249e42a.mp3",
+      "slow": "audio/664b9e171249e42a-slow.mp3"
+    },
+    "reliable": {
+      "normal": "audio/f49daf9d35c94bde.mp3",
+      "slow": "audio/f49daf9d35c94bde-slow.mp3"
+    },
+    "This app is very easy to use.": {
+      "normal": "audio/80530722c798a3a0.mp3",
+      "slow": "audio/80530722c798a3a0-slow.mp3"
+    },
+    "The screen is too small.": {
+      "normal": "audio/1143314ab2fac973.mp3",
+      "slow": "audio/1143314ab2fac973-slow.mp3"
+    },
+    "My laptop is very slow.": {
+      "normal": "audio/963ddcd94eee9b57.mp3",
+      "slow": "audio/963ddcd94eee9b57-slow.mp3"
+    },
+    "What's the best brand for laptops?": {
+      "normal": "audio/9def135ad15cfcf3.mp3",
+      "slow": "audio/9def135ad15cfcf3-slow.mp3"
+    },
+    "My laptop isn't working.": {
+      "normal": "audio/e025ee62ea263f77.mp3",
+      "slow": "audio/e025ee62ea263f77-slow.mp3"
+    },
+    "My phone battery is dead.": {
+      "normal": "audio/ba87b896408424af.mp3",
+      "slow": "audio/ba87b896408424af-slow.mp3"
+    },
+    "I need to charge my phone.": {
+      "normal": "audio/950ab847e94223a9.mp3",
+      "slow": "audio/950ab847e94223a9-slow.mp3"
+    },
+    "making": {
+      "normal": "audio/2cd1eee0081aaf5d.mp3",
+      "slow": "audio/2cd1eee0081aaf5d-slow.mp3"
+    },
+    "The air conditioner is not working.": {
+      "normal": "audio/b301332772eb4b2a.mp3",
+      "slow": "audio/b301332772eb4b2a-slow.mp3"
+    },
+    "The TV in my room isn't working.": {
+      "normal": "audio/fe056cfc0a4823bf.mp3",
+      "slow": "audio/fe056cfc0a4823bf-slow.mp3"
+    },
+    "I usually take photos with my phone.": {
+      "normal": "audio/f450c2e822add8fe.mp3",
+      "slow": "audio/f450c2e822add8fe-slow.mp3"
+    },
+    "She always checks her email in the morning.": {
+      "normal": "audio/f435279f1499f34f.mp3",
+      "slow": "audio/f435279f1499f34f-slow.mp3"
+    },
+    "I am never online after midnight.": {
+      "normal": "audio/b8c9491a43ceda19.mp3",
+      "slow": "audio/b8c9491a43ceda19-slow.mp3"
+    },
+    "sending": {
+      "normal": "audio/2a61e46c35a5188e.mp3",
+      "slow": "audio/2a61e46c35a5188e-slow.mp3"
+    },
+    "What are you doing?": {
+      "normal": "audio/279e5cc2abef2eda.mp3",
+      "slow": "audio/279e5cc2abef2eda-slow.mp3"
+    },
+    "I check it all the time.": {
+      "normal": "audio/038324c6cd257b80.mp3",
+      "slow": "audio/038324c6cd257b80-slow.mp3"
+    },
+    "Do you have an adapter for this plug?": {
+      "normal": "audio/20a589410daeda4f.mp3",
+      "slow": "audio/20a589410daeda4f-slow.mp3"
+    },
+    "Is there free Wi-Fi in the hotel?": {
+      "normal": "audio/f5f19273b27e5581.mp3",
+      "slow": "audio/f5f19273b27e5581-slow.mp3"
+    },
+    "off": {
+      "normal": "audio/05bb7e325b2af6a9.mp3",
+      "slow": "audio/05bb7e325b2af6a9-slow.mp3"
+    },
+    "charge": {
+      "normal": "audio/986931295abf2bf6.mp3",
+      "slow": "audio/986931295abf2bf6-slow.mp3"
+    },
+    "I always bring a portable charger.": {
+      "normal": "audio/82fd1a59b0bbdc49.mp3",
+      "slow": "audio/82fd1a59b0bbdc49-slow.mp3"
+    },
+    "What's the Wi-Fi password?": {
+      "normal": "audio/e7f3939f336b4ff9.mp3",
+      "slow": "audio/e7f3939f336b4ff9-slow.mp3"
+    },
+    "Sure, here you go.": {
+      "normal": "audio/05cd0b334ac0cc19.mp3",
+      "slow": "audio/05cd0b334ac0cc19-slow.mp3"
+    },
+    "The printer isn't working again!": {
+      "normal": "audio/3eeb6a72bc9de2ad.mp3",
+      "slow": "audio/3eeb6a72bc9de2ad-slow.mp3"
+    },
+    "I'm downloading the new app right now.": {
+      "normal": "audio/3f2199fde1ed6fed.mp3",
+      "slow": "audio/3f2199fde1ed6fed-slow.mp3"
+    },
+    "use": {
+      "normal": "audio/ece0b668817b639d.mp3",
+      "slow": "audio/ece0b668817b639d-slow.mp3"
+    },
+    "using": {
+      "normal": "audio/5f3b2baf1c1966ec.mp3",
+      "slow": "audio/5f3b2baf1c1966ec-slow.mp3"
+    },
+    "never": {
+      "normal": "audio/f53396f97cc2be5f.mp3",
+      "slow": "audio/f53396f97cc2be5f-slow.mp3"
+    },
+    "How often do you update your phone?": {
+      "normal": "audio/4d9519bdeab7d3f9.mp3",
+      "slow": "audio/4d9519bdeab7d3f9-slow.mp3"
+    },
+    "My computer is very old and slow.": {
+      "normal": "audio/b6cd26e2d5f7709a.mp3",
+      "slow": "audio/b6cd26e2d5f7709a-slow.mp3"
+    },
+    "I never use my phone at dinner.": {
+      "normal": "audio/b840a620dc284426.mp3",
+      "slow": "audio/b840a620dc284426-slow.mp3"
+    },
+    "Could you turn on the lights, please?": {
+      "normal": "audio/d13ea04175b10e27.mp3",
+      "slow": "audio/d13ea04175b10e27-slow.mp3"
+    },
+    "I'm working on my computer.": {
+      "normal": "audio/bcb599d90dbfd160.mp3",
+      "slow": "audio/bcb599d90dbfd160-slow.mp3"
+    },
+    "How was your flight?": {
+      "normal": "audio/f383d14a4d7aeef8.mp3",
+      "slow": "audio/f383d14a4d7aeef8-slow.mp3"
+    },
+    "Welcome back! How was your trip?": {
+      "normal": "audio/7d13caea089f3725.mp3",
+      "slow": "audio/7d13caea089f3725-slow.mp3"
+    },
+    "The flight was very long.": {
+      "normal": "audio/48406862485aca56.mp3",
+      "slow": "audio/48406862485aca56-slow.mp3"
+    },
+    "were": {
+      "normal": "audio/560634c983fe65a1.mp3",
+      "slow": "audio/560634c983fe65a1-slow.mp3"
+    },
+    "was": {
+      "normal": "audio/7c0c35fb5998f084.mp3",
+      "slow": "audio/7c0c35fb5998f084-slow.mp3"
+    },
+    "I was tired yesterday.": {
+      "normal": "audio/9a2ba40d621a859c.mp3",
+      "slow": "audio/9a2ba40d621a859c-slow.mp3"
+    },
+    "How long were you there?": {
+      "normal": "audio/4219f4594a4e4a86.mp3",
+      "slow": "audio/4219f4594a4e4a86-slow.mp3"
+    },
+    "Our flight was canceled, so we stayed one more day.": {
+      "normal": "audio/4eba71ab9b259372.mp3",
+      "slow": "audio/4eba71ab9b259372-slow.mp3"
+    },
+    "We visited the museum and walked on the beach.": {
+      "normal": "audio/f2ddb11f5dea4595.mp3",
+      "slow": "audio/f2ddb11f5dea4595-slow.mp3"
+    },
+    "arrived": {
+      "normal": "audio/2b8aa358420ea2f0.mp3",
+      "slow": "audio/2b8aa358420ea2f0-slow.mp3"
+    },
+    "stopped": {
+      "normal": "audio/7028cd4b88821e9b.mp3",
+      "slow": "audio/7028cd4b88821e9b-slow.mp3"
+    },
+    "didn't": {
+      "normal": "audio/1033df5efd16d0d4.mp3",
+      "slow": "audio/1033df5efd16d0d4-slow.mp3"
+    },
+    "Did you take a lot of pictures?": {
+      "normal": "audio/de4ecf9af8396a25.mp3",
+      "slow": "audio/de4ecf9af8396a25-slow.mp3"
+    },
+    "We missed our connecting flight.": {
+      "normal": "audio/43dc1018402a2539.mp3",
+      "slow": "audio/43dc1018402a2539-slow.mp3"
+    },
+    "The weather was really awful, but the food was excellent.": {
+      "normal": "audio/9c52525d60d016fa.mp3",
+      "slow": "audio/9c52525d60d016fa-slow.mp3"
+    },
+    "went": {
+      "normal": "audio/8bdf42aeb5d06f26.mp3",
+      "slow": "audio/8bdf42aeb5d06f26-slow.mp3"
+    },
+    "ate": {
+      "normal": "audio/3a280f8fed7b1c1f.mp3",
+      "slow": "audio/3a280f8fed7b1c1f-slow.mp3"
+    },
+    "had": {
+      "normal": "audio/d6d3de38f32c165d.mp3",
+      "slow": "audio/d6d3de38f32c165d-slow.mp3"
+    },
+    "It was the best vacation of my life.": {
+      "normal": "audio/717adec2e745a66b.mp3",
+      "slow": "audio/717adec2e745a66b-slow.mp3"
+    },
+    "We had a great time.": {
+      "normal": "audio/6d35b7d81c507f3e.mp3",
+      "slow": "audio/6d35b7d81c507f3e-slow.mp3"
+    },
+    "Not really. The room was very small.": {
+      "normal": "audio/199a499ba3b7cb14.mp3",
+      "slow": "audio/199a499ba3b7cb14-slow.mp3"
+    },
+    "Your flight is delayed. The new departure time is 6:45.": {
+      "normal": "audio/aac7cc4f02def0b6.mp3",
+      "slow": "audio/aac7cc4f02def0b6-slow.mp3"
+    },
+    "Where is gate twelve?": {
+      "normal": "audio/a8ad3cbe469a4013.mp3",
+      "slow": "audio/a8ad3cbe469a4013-slow.mp3"
+    },
+    "round-trip": {
+      "normal": "audio/20621fd62af0d80c.mp3",
+      "slow": "audio/20621fd62af0d80c-slow.mp3"
+    },
+    "How many bags are you checking?": {
+      "normal": "audio/630dd515fdeebed4.mp3",
+      "slow": "audio/630dd515fdeebed4-slow.mp3"
+    },
+    "A window seat, please.": {
+      "normal": "audio/9856cf4fbee66bdd.mp3",
+      "slow": "audio/9856cf4fbee66bdd-slow.mp3"
+    },
+    "Where did you go on your last vacation?": {
+      "normal": "audio/edda98bad9c6b880.mp3",
+      "slow": "audio/edda98bad9c6b880-slow.mp3"
+    },
+    "We stayed at a small hotel near the beach.": {
+      "normal": "audio/77824a0955e87154.mp3",
+      "slow": "audio/77824a0955e87154-slow.mp3"
+    },
+    "bought": {
+      "normal": "audio/4c53abbb938527f1.mp3",
+      "slow": "audio/4c53abbb938527f1-slow.mp3"
+    },
+    "Did": {
+      "normal": "audio/4389243feddd0222.mp3",
+      "slow": "audio/4389243feddd0222-slow.mp3"
+    },
+    "We went to Rio in two thousand twenty.": {
+      "normal": "audio/b022b49813df4551.mp3",
+      "slow": "audio/b022b49813df4551-slow.mp3"
+    },
+    "The trip was too short.": {
+      "normal": "audio/28e8255ac89dd468.mp3",
+      "slow": "audio/28e8255ac89dd468-slow.mp3"
+    },
+    "Where did you stay?": {
+      "normal": "audio/b78202344b9092c8.mp3",
+      "slow": "audio/b78202344b9092c8-slow.mp3"
+    },
+    "It was a long trip, but it was worth it.": {
+      "normal": "audio/458941f621e7e824.mp3",
+      "slow": "audio/458941f621e7e824-slow.mp3"
+    },
+    "Yes, I did.": {
+      "normal": "audio/16b40dfbdf5ccb7c.mp3",
+      "slow": "audio/16b40dfbdf5ccb7c-slow.mp3"
+    },
+    "Can I try this on?": {
+      "normal": "audio/699edf14bf0bdb30.mp3",
+      "slow": "audio/699edf14bf0bdb30-slow.mp3"
+    },
+    "Do you have this in a medium?": {
+      "normal": "audio/8b000d7f81fd0a4d.mp3",
+      "slow": "audio/8b000d7f81fd0a4d-slow.mp3"
+    },
+    "How much is this jacket?": {
+      "normal": "audio/5101353ffbbced3d.mp3",
+      "slow": "audio/5101353ffbbced3d-slow.mp3"
+    },
+    "them": {
+      "normal": "audio/2dd62ab1454e3b33.mp3",
+      "slow": "audio/2dd62ab1454e3b33-slow.mp3"
+    },
+    "it": {
+      "normal": "audio/99cfac3ef2c3a005.mp3",
+      "slow": "audio/99cfac3ef2c3a005-slow.mp3"
+    },
+    "Will that be cash or credit?": {
+      "normal": "audio/72ee99faa6a8fab2.mp3",
+      "slow": "audio/72ee99faa6a8fab2-slow.mp3"
+    },
+    "No, thanks. I'm just looking.": {
+      "normal": "audio/dd0a52f4602e8257.mp3",
+      "slow": "audio/dd0a52f4602e8257-slow.mp3"
+    },
+    "That's the best place to buy shoes in the city.": {
+      "normal": "audio/1204456b59afc0d6.mp3",
+      "slow": "audio/1204456b59afc0d6-slow.mp3"
+    },
+    "cheapest": {
+      "normal": "audio/599fbec88b975fda.mp3",
+      "slow": "audio/599fbec88b975fda-slow.mp3"
+    },
+    "best": {
+      "normal": "audio/cd1ae899a79d4f93.mp3",
+      "slow": "audio/cd1ae899a79d4f93-slow.mp3"
+    },
+    "most": {
+      "normal": "audio/0d6f7eee5343f104.mp3",
+      "slow": "audio/0d6f7eee5343f104-slow.mp3"
+    },
+    "This is the most beautiful shirt.": {
+      "normal": "audio/dc0f0fc3fc1e20f4.mp3",
+      "slow": "audio/dc0f0fc3fc1e20f4-slow.mp3"
+    },
+    "Where can I buy a gift?": {
+      "normal": "audio/c04b05bcd417a2d6.mp3",
+      "slow": "audio/c04b05bcd417a2d6-slow.mp3"
+    },
+    "You should try Ibirapuera Mall.": {
+      "normal": "audio/ad553548294180ca.mp3",
+      "slow": "audio/ad553548294180ca-slow.mp3"
+    },
+    "The shoe store is on the second floor, next to the elevator.": {
+      "normal": "audio/20df55ac5c5321ea.mp3",
+      "slow": "audio/20df55ac5c5321ea-slow.mp3"
+    },
+    "Take the escalator to the third floor.": {
+      "normal": "audio/4026e0940213c96a.mp3",
+      "slow": "audio/4026e0940213c96a-slow.mp3"
+    },
+    "Excuse me, where is the fitting room?": {
+      "normal": "audio/64fa1f26c70c4a41.mp3",
+      "slow": "audio/64fa1f26c70c4a41-slow.mp3"
+    },
+    "The bookstore is across from the food court.": {
+      "normal": "audio/ee96ab5e37180a16.mp3",
+      "slow": "audio/ee96ab5e37180a16-slow.mp3"
+    },
+    "The restroom is on the first floor.": {
+      "normal": "audio/1c312f8f30596d18.mp3",
+      "slow": "audio/1c312f8f30596d18-slow.mp3"
+    },
+    "Is there an ATM in this mall?": {
+      "normal": "audio/1b793bc2fa817548.mp3",
+      "slow": "audio/1b793bc2fa817548-slow.mp3"
+    },
+    "You should wear something formal to the wedding.": {
+      "normal": "audio/33ca00b49b9893cb.mp3",
+      "slow": "audio/33ca00b49b9893cb-slow.mp3"
+    },
+    "Wear": {
+      "normal": "audio/7ad42a4c9433f93e.mp3",
+      "slow": "audio/7ad42a4c9433f93e-slow.mp3"
+    },
+    "These pants are too tight for me.": {
+      "normal": "audio/c856967ede211248.mp3",
+      "slow": "audio/c856967ede211248-slow.mp3"
+    },
+    "I need a new pair of shoes.": {
+      "normal": "audio/6f813735e0f483ec.mp3",
+      "slow": "audio/6f813735e0f483ec-slow.mp3"
+    },
+    "These pants are too big.": {
+      "normal": "audio/8d2d3cef6d492ed1.mp3",
+      "slow": "audio/8d2d3cef6d492ed1-slow.mp3"
+    },
+    "It's too small for me.": {
+      "normal": "audio/7a972331af55280c.mp3",
+      "slow": "audio/7a972331af55280c-slow.mp3"
+    },
+    "These jeans are on sale. They are twenty percent off.": {
+      "normal": "audio/ed8bb1714004b7a7.mp3",
+      "slow": "audio/ed8bb1714004b7a7-slow.mp3"
+    },
+    "Can I pay with a credit card?": {
+      "normal": "audio/46e026ff4dc63a06.mp3",
+      "slow": "audio/46e026ff4dc63a06-slow.mp3"
+    },
+    "her": {
+      "normal": "audio/bffecf9399d479e2.mp3",
+      "slow": "audio/bffecf9399d479e2-slow.mp3"
+    },
+    "biggest": {
+      "normal": "audio/6e75f019311167b8.mp3",
+      "slow": "audio/6e75f019311167b8-slow.mp3"
+    },
+    "What size do you wear?": {
+      "normal": "audio/ca6c76674f432f8b.mp3",
+      "slow": "audio/ca6c76674f432f8b-slow.mp3"
+    },
+    "I would like to return this shirt.": {
+      "normal": "audio/9b267190b7e331cf.mp3",
+      "slow": "audio/9b267190b7e331cf-slow.mp3"
+    },
+    "How much are these shoes?": {
+      "normal": "audio/f79822bd469f64b3.mp3",
+      "slow": "audio/f79822bd469f64b3-slow.mp3"
+    },
+    "I'll take it. Thank you!": {
+      "normal": "audio/c7d9c5ce65b5d20a.mp3",
+      "slow": "audio/c7d9c5ce65b5d20a-slow.mp3"
+    },
+    "Excuse me, where is the cashier?": {
+      "normal": "audio/413e16e4309ef048.mp3",
+      "slow": "audio/413e16e4309ef048-slow.mp3"
+    },
+    "Are you free to go running on Saturday morning?": {
+      "normal": "audio/74d42d9a610c28d4.mp3",
+      "slow": "audio/74d42d9a610c28d4-slow.mp3"
+    },
+    "Let's play soccer on Sunday.": {
+      "normal": "audio/d8e3b3ac7b480fcd.mp3",
+      "slow": "audio/d8e3b3ac7b480fcd-slow.mp3"
+    },
+    "go": {
+      "normal": "audio/fe74ed97e0148ad7.mp3",
+      "slow": "audio/fe74ed97e0148ad7-slow.mp3"
+    },
+    "does": {
+      "normal": "audio/14b921d6f5d3efac.mp3",
+      "slow": "audio/14b921d6f5d3efac-slow.mp3"
+    },
+    "play": {
+      "normal": "audio/fc08a91e42b86bcd.mp3",
+      "slow": "audio/fc08a91e42b86bcd-slow.mp3"
+    },
+    "What time is good for you?": {
+      "normal": "audio/58b62086614cb36f.mp3",
+      "slow": "audio/58b62086614cb36f-slow.mp3"
+    },
+    "Sure! See you at 7.": {
+      "normal": "audio/74df6f97a7b8affb.mp3",
+      "slow": "audio/74df6f97a7b8affb-slow.mp3"
+    },
+    "I go running three times a week.": {
+      "normal": "audio/be0fbcc9718f1f09.mp3",
+      "slow": "audio/be0fbcc9718f1f09-slow.mp3"
+    },
+    "has": {
+      "normal": "audio/cc20c64bac93759a.mp3",
+      "slow": "audio/cc20c64bac93759a-slow.mp3"
+    },
+    "have": {
+      "normal": "audio/78076ede64eb4aa6.mp3",
+      "slow": "audio/78076ede64eb4aa6-slow.mp3"
+    },
+    "You could try yoga.": {
+      "normal": "audio/3133382632140101.mp3",
+      "slow": "audio/3133382632140101-slow.mp3"
+    },
+    "I have to go to the doctor.": {
+      "normal": "audio/4e11387bbbab97e5.mp3",
+      "slow": "audio/4e11387bbbab97e5-slow.mp3"
+    },
+    "You don't have to go to a gym to get in shape.": {
+      "normal": "audio/31a3327b6ec9ad02.mp3",
+      "slow": "audio/31a3327b6ec9ad02-slow.mp3"
+    },
+    "You should go to the gym.": {
+      "normal": "audio/2d611f44dc5217ff.mp3",
+      "slow": "audio/2d611f44dc5217ff-slow.mp3"
+    },
+    "You need a helmet to ride a bike here.": {
+      "normal": "audio/b7058482baaa2be6.mp3",
+      "slow": "audio/b7058482baaa2be6-slow.mp3"
+    },
+    "could": {
+      "normal": "audio/7ee20130637cb6e6.mp3",
+      "slow": "audio/7ee20130637cb6e6-slow.mp3"
+    },
+    "able": {
+      "normal": "audio/8e57734a4cbf5e05.mp3",
+      "slow": "audio/8e57734a4cbf5e05-slow.mp3"
+    },
+    "Is there a swimming pool near here?": {
+      "normal": "audio/e8d23d6179ca1989.mp3",
+      "slow": "audio/e8d23d6179ca1989-slow.mp3"
+    },
+    "I go cycling in the park on weekends.": {
+      "normal": "audio/571df80714c0390e.mp3",
+      "slow": "audio/571df80714c0390e-slow.mp3"
+    },
+    "I can't swim.": {
+      "normal": "audio/2e84cb48e8f5d72b.mp3",
+      "slow": "audio/2e84cb48e8f5d72b-slow.mp3"
+    },
+    "Should I bring anything to the game?": {
+      "normal": "audio/885f2a34f6953041.mp3",
+      "slow": "audio/885f2a34f6953041-slow.mp3"
+    },
+    "I broke my arm playing basketball.": {
+      "normal": "audio/84b7b401ddd51017.mp3",
+      "slow": "audio/84b7b401ddd51017-slow.mp3"
+    },
+    "I hurt my back at the gym.": {
+      "normal": "audio/a727ede9c6fda927.mp3",
+      "slow": "audio/a727ede9c6fda927-slow.mp3"
+    },
+    "knee": {
+      "normal": "audio/c3dcedac5dd1ee20.mp3",
+      "slow": "audio/c3dcedac5dd1ee20-slow.mp3"
+    },
+    "fell": {
+      "normal": "audio/ada1ebf1db75a914.mp3",
+      "slow": "audio/ada1ebf1db75a914-slow.mp3"
+    },
+    "What happened to your hand?": {
+      "normal": "audio/2fe37b9ab7d60a94.mp3",
+      "slow": "audio/2fe37b9ab7d60a94-slow.mp3"
+    },
+    "I cut my finger in the kitchen.": {
+      "normal": "audio/a1059c6f0aad2364.mp3",
+      "slow": "audio/a1059c6f0aad2364-slow.mp3"
+    },
+    "What happened?": {
+      "normal": "audio/62945f29fe7bd01c.mp3",
+      "slow": "audio/62945f29fe7bd01c-slow.mp3"
+    },
+    "I have to stay home today. I hurt my foot.": {
+      "normal": "audio/94382f10d7c13d96.mp3",
+      "slow": "audio/94382f10d7c13d96-slow.mp3"
+    },
+    "You should warm up before you exercise.": {
+      "normal": "audio/66c4af214b568ab2.mp3",
+      "slow": "audio/66c4af214b568ab2-slow.mp3"
+    },
+    "have to": {
+      "normal": "audio/a379d4869b06c37f.mp3",
+      "slow": "audio/a379d4869b06c37f-slow.mp3"
+    },
+    "couldn't": {
+      "normal": "audio/abb40f9cfef6c781.mp3",
+      "slow": "audio/abb40f9cfef6c781-slow.mp3"
+    },
+    "How often do you exercise?": {
+      "normal": "audio/6c5ef2561780d95d.mp3",
+      "slow": "audio/6c5ef2561780d95d-slow.mp3"
+    },
+    "My legs hurt after the marathon.": {
+      "normal": "audio/fe43893f89d9375b.mp3",
+      "slow": "audio/fe43893f89d9375b-slow.mp3"
+    },
+    "You should drink more water.": {
+      "normal": "audio/669d77ca071e7630.mp3",
+      "slow": "audio/669d77ca071e7630-slow.mp3"
+    },
+    "Take care of yourself!": {
+      "normal": "audio/8cb329550bc8560e.mp3",
+      "slow": "audio/8cb329550bc8560e-slow.mp3"
+    },
+    "No, I don't.": {
+      "normal": "audio/537b7f0c3473531c.mp3",
+      "slow": "audio/537b7f0c3473531c-slow.mp3"
+    },
+    "I'd like to travel around the world.": {
+      "normal": "audio/e4cb94e2f85562c5.mp3",
+      "slow": "audio/e4cb94e2f85562c5-slow.mp3"
+    },
+    "I would love to open my own business.": {
+      "normal": "audio/ad7a4abbdf63fc29.mp3",
+      "slow": "audio/ad7a4abbdf63fc29-slow.mp3"
+    },
+    "I would prefer to work from home.": {
+      "normal": "audio/3e0543b0980ee4b0.mp3",
+      "slow": "audio/3e0543b0980ee4b0-slow.mp3"
+    },
+    "I would hate to work at night.": {
+      "normal": "audio/48d38985e56725e8.mp3",
+      "slow": "audio/48d38985e56725e8-slow.mp3"
+    },
+    "I'd like to live near the beach.": {
+      "normal": "audio/3a3ed26ff4bdc529.mp3",
+      "slow": "audio/3a3ed26ff4bdc529-slow.mp3"
+    },
+    "She's going to start a new job.": {
+      "normal": "audio/dcd8372c3d7df951.mp3",
+      "slow": "audio/dcd8372c3d7df951-slow.mp3"
+    },
+    "going": {
+      "normal": "audio/1e8ced969a9dd615.mp3",
+      "slow": "audio/1e8ced969a9dd615-slow.mp3"
+    },
+    "Are": {
+      "normal": "audio/5014b668186d6f27.mp3",
+      "slow": "audio/5014b668186d6f27-slow.mp3"
+    },
+    "We're going to rent a room for the party.": {
+      "normal": "audio/7e517ea802520a99.mp3",
+      "slow": "audio/7e517ea802520a99-slow.mp3"
+    },
+    "I'm going to study English every day.": {
+      "normal": "audio/e05a5aeb8929054c.mp3",
+      "slow": "audio/e05a5aeb8929054c-slow.mp3"
+    },
+    "What are you going to do tomorrow?": {
+      "normal": "audio/9c343e2b12361061.mp3",
+      "slow": "audio/9c343e2b12361061-slow.mp3"
+    },
+    "I'm going to study English.": {
+      "normal": "audio/4eef700a7ebd0ad1.mp3",
+      "slow": "audio/4eef700a7ebd0ad1-slow.mp3"
+    },
+    "First, I need to save some money.": {
+      "normal": "audio/73d9fefd4f73a311.mp3",
+      "slow": "audio/73d9fefd4f73a311-slow.mp3"
+    },
+    "Then": {
+      "normal": "audio/930e2f6fa32e092e.mp3",
+      "slow": "audio/930e2f6fa32e092e-slow.mp3"
+    },
+    "hope": {
+      "normal": "audio/7aac3fcf3336f0a2.mp3",
+      "slow": "audio/7aac3fcf3336f0a2-slow.mp3"
+    },
+    "My dream is to have my own restaurant.": {
+      "normal": "audio/aed49a6747375108.mp3",
+      "slow": "audio/aed49a6747375108-slow.mp3"
+    },
+    "I'm planning to go back to school.": {
+      "normal": "audio/a64957411ccf4eed.mp3",
+      "slow": "audio/a64957411ccf4eed-slow.mp3"
+    },
+    "My dream is to live in Canada.": {
+      "normal": "audio/4b9a66c75b317a96.mp3",
+      "slow": "audio/4b9a66c75b317a96-slow.mp3"
+    },
+    "Never give up on your dreams!": {
+      "normal": "audio/aa436be50e0128a7.mp3",
+      "slow": "audio/aa436be50e0128a7-slow.mp3"
+    },
+    "The salary is good, but the hours are long.": {
+      "normal": "audio/9baa63c99c36acf3.mp3",
+      "slow": "audio/9baa63c99c36acf3-slow.mp3"
+    },
+    "The company offers health insurance and flexible hours.": {
+      "normal": "audio/111c61e540c2fdf9.mp3",
+      "slow": "audio/111c61e540c2fdf9-slow.mp3"
+    },
+    "salary": {
+      "normal": "audio/a905b7624bb2a728.mp3",
+      "slow": "audio/a905b7624bb2a728-slow.mp3"
+    },
+    "I would like to work for a big company.": {
+      "normal": "audio/7720cdbd0eb49530.mp3",
+      "slow": "audio/7720cdbd0eb49530-slow.mp3"
+    },
+    "I love working with people.": {
+      "normal": "audio/baa4f452778a586d.mp3",
+      "slow": "audio/baa4f452778a586d-slow.mp3"
+    },
+    "I would like to work from home.": {
+      "normal": "audio/2efc67740cf6ed74.mp3",
+      "slow": "audio/2efc67740cf6ed74-slow.mp3"
+    },
+    "Because I like helping people.": {
+      "normal": "audio/b66e0defd22d121e.mp3",
+      "slow": "audio/b66e0defd22d121e-slow.mp3"
+    },
+    "I'm going to visit my parents this weekend.": {
+      "normal": "audio/ef4828bdaabb9e98.mp3",
+      "slow": "audio/ef4828bdaabb9e98-slow.mp3"
+    },
+    "Would you prefer to work alone or in a team?": {
+      "normal": "audio/bd3e5a765f98f1d9.mp3",
+      "slow": "audio/bd3e5a765f98f1d9-slow.mp3"
+    },
+    "be": {
+      "normal": "audio/a149aa8d6956a714.mp3",
+      "slow": "audio/a149aa8d6956a714-slow.mp3"
+    },
+    "What would you like to do in the future?": {
+      "normal": "audio/9d958e1d30946371.mp3",
+      "slow": "audio/9d958e1d30946371-slow.mp3"
+    },
+    "We are going to buy a new car next year.": {
+      "normal": "audio/002b39b0fbf6652b.mp3",
+      "slow": "audio/002b39b0fbf6652b-slow.mp3"
+    },
+    "I'm not going to work tomorrow.": {
+      "normal": "audio/79e16864ae2873f9.mp3",
+      "slow": "audio/79e16864ae2873f9-slow.mp3"
+    },
+    "I'd love to learn how to play the guitar.": {
+      "normal": "audio/fd35218365a46920.mp3",
+      "slow": "audio/fd35218365a46920-slow.mp3"
+    },
+    "Yes, I'm going to travel to Chile.": {
+      "normal": "audio/339d5c2fd7976c18.mp3",
+      "slow": "audio/339d5c2fd7976c18-slow.mp3"
+    },
+    "I was watching TV when you called.": {
+      "normal": "audio/090e1bd534b7d84f.mp3",
+      "slow": "audio/090e1bd534b7d84f-slow.mp3"
+    },
+    "was raining": {
+      "normal": "audio/75f5dadfe7c54b0a.mp3",
+      "slow": "audio/75f5dadfe7c54b0a-slow.mp3"
+    },
+    "saw": {
+      "normal": "audio/6e29366e678335c6.mp3",
+      "slow": "audio/6e29366e678335c6-slow.mp3"
+    },
+    "She was cooking dinner while he was working.": {
+      "normal": "audio/620bc6fb6268cbaa.mp3",
+      "slow": "audio/620bc6fb6268cbaa-slow.mp3"
+    },
+    "What were you doing yesterday at ten?": {
+      "normal": "audio/0d7ac68ecfbea360.mp3",
+      "slow": "audio/0d7ac68ecfbea360-slow.mp3"
+    },
+    "We were sleeping when the phone rang.": {
+      "normal": "audio/ded51386cd102d65.mp3",
+      "slow": "audio/ded51386cd102d65-slow.mp3"
+    },
+    "I used to play soccer every weekend.": {
+      "normal": "audio/5f0d26553375e8a3.mp3",
+      "slow": "audio/5f0d26553375e8a3-slow.mp3"
+    },
+    "I used to wake up early.": {
+      "normal": "audio/ba28931413a856cf.mp3",
+      "slow": "audio/ba28931413a856cf-slow.mp3"
+    },
+    "There used to be a cinema on this street.": {
+      "normal": "audio/745851a315e5dc2c.mp3",
+      "slow": "audio/745851a315e5dc2c-slow.mp3"
+    },
+    "My grandfather used to work on a farm.": {
+      "normal": "audio/0c423abe9ec39b1e.mp3",
+      "slow": "audio/0c423abe9ec39b1e-slow.mp3"
+    },
+    "No, but I used to.": {
+      "normal": "audio/cde22a1b6380cd59.mp3",
+      "slow": "audio/cde22a1b6380cd59-slow.mp3"
+    },
+    "Have you ever been to London?": {
+      "normal": "audio/cec6a52786514a1d.mp3",
+      "slow": "audio/cec6a52786514a1d-slow.mp3"
+    },
+    "seen": {
+      "normal": "audio/c4422e5a6d3320f6.mp3",
+      "slow": "audio/c4422e5a6d3320f6-slow.mp3"
+    },
+    "eaten": {
+      "normal": "audio/c54b1ff29fed4406.mp3",
+      "slow": "audio/c54b1ff29fed4406-slow.mp3"
+    },
+    "I've never been on a plane.": {
+      "normal": "audio/a7a4c87deee79fe8.mp3",
+      "slow": "audio/a7a4c87deee79fe8-slow.mp3"
+    },
+    "Have you ever seen this movie?": {
+      "normal": "audio/e16c3ccfff89197e.mp3",
+      "slow": "audio/e16c3ccfff89197e-slow.mp3"
+    },
+    "Yes, I have.": {
+      "normal": "audio/c80b0874d2c84588.mp3",
+      "slow": "audio/c80b0874d2c84588-slow.mp3"
+    },
+    "since": {
+      "normal": "audio/ee1850485e9156a9.mp3",
+      "slow": "audio/ee1850485e9156a9-slow.mp3"
+    },
+    "for": {
+      "normal": "audio/ab8ce321a76d1a1d.mp3",
+      "slow": "audio/ab8ce321a76d1a1d-slow.mp3"
+    },
+    "known": {
+      "normal": "audio/48168230d7f9976e.mp3",
+      "slow": "audio/48168230d7f9976e-slow.mp3"
+    },
+    "How long have you lived here?": {
+      "normal": "audio/59e531b8a4bcc6db.mp3",
+      "slow": "audio/59e531b8a4bcc6db-slow.mp3"
+    },
+    "I have been a teacher since two thousand ten.": {
+      "normal": "audio/5b540d4bac401ed2.mp3",
+      "slow": "audio/5b540d4bac401ed2-slow.mp3"
+    },
+    "We've been married for twenty years.": {
+      "normal": "audio/1e45e1314762484d.mp3",
+      "slow": "audio/1e45e1314762484d-slow.mp3"
+    },
+    "I've just finished my homework.": {
+      "normal": "audio/93787acdfdb7a7ac.mp3",
+      "slow": "audio/93787acdfdb7a7ac-slow.mp3"
+    },
+    "yet": {
+      "normal": "audio/b9eaee81e475f2a8.mp3",
+      "slow": "audio/b9eaee81e475f2a8-slow.mp3"
+    },
+    "already": {
+      "normal": "audio/9c79fd8a4691f57e.mp3",
+      "slow": "audio/9c79fd8a4691f57e-slow.mp3"
+    },
+    "I haven't finished the report yet.": {
+      "normal": "audio/f333e5fb8de36eef.mp3",
+      "slow": "audio/f333e5fb8de36eef-slow.mp3"
+    },
+    "I've lost my keys.": {
+      "normal": "audio/bbc4608b6719059f.mp3",
+      "slow": "audio/bbc4608b6719059f-slow.mp3"
+    },
+    "Yes, I sent it five minutes ago.": {
+      "normal": "audio/bee58b9a8a20cccd.mp3",
+      "slow": "audio/bee58b9a8a20cccd-slow.mp3"
+    },
+    "made": {
+      "normal": "audio/e850c9110142dec8.mp3",
+      "slow": "audio/e850c9110142dec8-slow.mp3"
+    },
+    "invented": {
+      "normal": "audio/62a2143398fffb89.mp3",
+      "slow": "audio/62a2143398fffb89-slow.mp3"
+    },
+    "English is spoken all over the world.": {
+      "normal": "audio/e6e3a73e3c4890cd.mp3",
+      "slow": "audio/e6e3a73e3c4890cd-slow.mp3"
+    },
+    "The museum was opened in nineteen fifty.": {
+      "normal": "audio/48514da86b1ae1c8.mp3",
+      "slow": "audio/48514da86b1ae1c8-slow.mp3"
+    },
+    "My bike was stolen last night.": {
+      "normal": "audio/360b1a8fb58ef033.mp3",
+      "slow": "audio/360b1a8fb58ef033-slow.mp3"
+    },
+    "I'm meeting my sister for lunch tomorrow.": {
+      "normal": "audio/31c60897086ef190.mp3",
+      "slow": "audio/31c60897086ef190-slow.mp3"
+    },
+    "'ll": {
+      "normal": "audio/bbe9125bcc092858.mp3",
+      "slow": "audio/bbe9125bcc092858-slow.mp3"
+    },
+    "What are you doing this weekend?": {
+      "normal": "audio/bccf771b56b6a2b2.mp3",
+      "slow": "audio/bccf771b56b6a2b2-slow.mp3"
+    },
+    "I think she'll love the gift.": {
+      "normal": "audio/f07798327df293e6.mp3",
+      "slow": "audio/f07798327df293e6-slow.mp3"
+    },
+    "Don't worry. I'll call you later.": {
+      "normal": "audio/b2fd5524850f7cf1.mp3",
+      "slow": "audio/b2fd5524850f7cf1-slow.mp3"
+    },
+    "I'll have an orange juice, please.": {
+      "normal": "audio/41a968ce88d8e39c.mp3",
+      "slow": "audio/41a968ce88d8e39c-slow.mp3"
+    },
+    "It might rain tomorrow, so take an umbrella.": {
+      "normal": "audio/683cdfb6e8c8e6f3.mp3",
+      "slow": "audio/683cdfb6e8c8e6f3-slow.mp3"
+    },
+    "might": {
+      "normal": "audio/f8387c8f629d578e.mp3",
+      "slow": "audio/f8387c8f629d578e-slow.mp3"
+    },
+    "might not": {
+      "normal": "audio/f2b242dd5d39b595.mp3",
+      "slow": "audio/f2b242dd5d39b595-slow.mp3"
+    },
+    "You must be tired after that long trip.": {
+      "normal": "audio/e8103e9b8087c5cb.mp3",
+      "slow": "audio/e8103e9b8087c5cb-slow.mp3"
+    },
+    "mustn't": {
+      "normal": "audio/a7fed1f04116b455.mp3",
+      "slow": "audio/a7fed1f04116b455-slow.mp3"
+    },
+    "We may be late for dinner.": {
+      "normal": "audio/b0c453920c675aa0.mp3",
+      "slow": "audio/b0c453920c675aa0-slow.mp3"
+    },
+    "I might travel next month.": {
+      "normal": "audio/03797ceb00e2625a.mp3",
+      "slow": "audio/03797ceb00e2625a-slow.mp3"
+    },
+    "If it rains, we'll stay home.": {
+      "normal": "audio/0be7e75cefc433f4.mp3",
+      "slow": "audio/0be7e75cefc433f4-slow.mp3"
+    },
+    "will": {
+      "normal": "audio/d48d845699b643d5.mp3",
+      "slow": "audio/d48d845699b643d5-slow.mp3"
+    },
+    "We'll miss the bus if we don't hurry.": {
+      "normal": "audio/1258d1ac36898c35.mp3",
+      "slow": "audio/1258d1ac36898c35-slow.mp3"
+    },
+    "If you need help, call me.": {
+      "normal": "audio/c949b477cf12cc02.mp3",
+      "slow": "audio/c949b477cf12cc02-slow.mp3"
+    },
+    "If I arrive early, I'll call you.": {
+      "normal": "audio/4dcdbae75459ba16.mp3",
+      "slow": "audio/4dcdbae75459ba16-slow.mp3"
+    },
+    "If I were rich, I would travel around the world.": {
+      "normal": "audio/261d2c44b1008db7.mp3",
+      "slow": "audio/261d2c44b1008db7-slow.mp3"
+    },
+    "told": {
+      "normal": "audio/b069b48b5e32e99c.mp3",
+      "slow": "audio/b069b48b5e32e99c-slow.mp3"
+    },
+    "said": {
+      "normal": "audio/39d0c848b796404c.mp3",
+      "slow": "audio/39d0c848b796404c-slow.mp3"
+    },
+    "liked": {
+      "normal": "audio/2a7c596e0cb439f2.mp3",
+      "slow": "audio/2a7c596e0cb439f2-slow.mp3"
+    },
+    "She said that she liked her job.": {
+      "normal": "audio/9022d1bf30d7ae9f.mp3",
+      "slow": "audio/9022d1bf30d7ae9f-slow.mp3"
+    },
+    "He told us that the meeting was canceled.": {
+      "normal": "audio/65d03201fc860e22.mp3",
+      "slow": "audio/65d03201fc860e22-slow.mp3"
+    },
+    "He said that the meeting was at 3.": {
+      "normal": "audio/63c4a5dd75c1b74f.mp3",
+      "slow": "audio/63c4a5dd75c1b74f-slow.mp3"
+    },
+    "swimming": {
+      "normal": "audio/1765e1c9567aa4a3.mp3",
+      "slow": "audio/1765e1c9567aa4a3-slow.mp3"
+    },
+    "to lose": {
+      "normal": "audio/33894428782d7f61.mp3",
+      "slow": "audio/33894428782d7f61-slow.mp3"
+    },
+    "smoking": {
+      "normal": "audio/bb662daa9eb0967e.mp3",
+      "slow": "audio/bb662daa9eb0967e-slow.mp3"
+    },
+    "helping": {
+      "normal": "audio/1826b22c6f70bb31.mp3",
+      "slow": "audio/1826b22c6f70bb31-slow.mp3"
+    },
+    "I want to start running again.": {
+      "normal": "audio/a0ae3f64214d2289.mp3",
+      "slow": "audio/a0ae3f64214d2289-slow.mp3"
+    },
+    "I need to stop eating sweets.": {
+      "normal": "audio/c8581c168cc5f550.mp3",
+      "slow": "audio/c8581c168cc5f550-slow.mp3"
+    },
+    "She is thinking about changing jobs.": {
+      "normal": "audio/e65ab3784618cef9.mp3",
+      "slow": "audio/e65ab3784618cef9-slow.mp3"
+    },
+    "The woman who lives next door is a doctor.": {
+      "normal": "audio/ab0482fc6c733af2.mp3",
+      "slow": "audio/ab0482fc6c733af2-slow.mp3"
+    },
+    "which": {
+      "normal": "audio/f8b66863d41557b7.mp3",
+      "slow": "audio/f8b66863d41557b7-slow.mp3"
+    },
+    "who": {
+      "normal": "audio/740f1bffa7c8a72e.mp3",
+      "slow": "audio/740f1bffa7c8a72e-slow.mp3"
+    },
+    "This is the friend who lives in London.": {
+      "normal": "audio/1d5409c6c052e612.mp3",
+      "slow": "audio/1d5409c6c052e612-slow.mp3"
+    },
+    "The book that you gave me is great.": {
+      "normal": "audio/0329ab6d55d0c39e.mp3",
+      "slow": "audio/0329ab6d55d0c39e-slow.mp3"
+    },
+    "Is this the bus that goes downtown?": {
+      "normal": "audio/1a29cdb1e9472eb8.mp3",
+      "slow": "audio/1a29cdb1e9472eb8-slow.mp3"
+    },
+    "I love the store that sells cheap shoes.": {
+      "normal": "audio/9cb42888642f0d44.mp3",
+      "slow": "audio/9cb42888642f0d44-slow.mp3"
+    },
+    "This jacket is too expensive. I can't buy it.": {
+      "normal": "audio/2426c4df9d4da9db.mp3",
+      "slow": "audio/2426c4df9d4da9db-slow.mp3"
+    },
+    "enough": {
+      "normal": "audio/18b5ee74af2cdd3e.mp3",
+      "slow": "audio/18b5ee74af2cdd3e-slow.mp3"
+    },
+    "as": {
+      "normal": "audio/63acc0ff7da7b208.mp3",
+      "slow": "audio/63acc0ff7da7b208-slow.mp3"
+    },
+    "This phone is not as good as the old one.": {
+      "normal": "audio/87bd88ea450cdff4.mp3",
+      "slow": "audio/87bd88ea450cdff4-slow.mp3"
+    },
+    "It's too cold to swim.": {
+      "normal": "audio/36834c0c81c219bd.mp3",
+      "slow": "audio/36834c0c81c219bd-slow.mp3"
+    },
+    "She speaks English very well.": {
+      "normal": "audio/1a0f7637ebc87a89.mp3",
+      "slow": "audio/1a0f7637ebc87a89-slow.mp3"
+    },
+    "quickly": {
+      "normal": "audio/db62e0ebe68fb086.mp3",
+      "slow": "audio/db62e0ebe68fb086-slow.mp3"
+    },
+    "carefully": {
+      "normal": "audio/4c8941f3a17d9f20.mp3",
+      "slow": "audio/4c8941f3a17d9f20-slow.mp3"
+    },
+    "good": {
+      "normal": "audio/9f2c6ea3221f0ec8.mp3",
+      "slow": "audio/9f2c6ea3221f0ec8-slow.mp3"
+    },
+    "hard": {
+      "normal": "audio/57e588e48130e360.mp3",
+      "slow": "audio/57e588e48130e360-slow.mp3"
+    },
+    "He plays the guitar badly.": {
+      "normal": "audio/ce081e18a16e9b15.mp3",
+      "slow": "audio/ce081e18a16e9b15-slow.mp3"
+    },
+    "Speak more slowly, please.": {
+      "normal": "audio/8601bb5c170aa886.mp3",
+      "slow": "audio/8601bb5c170aa886-slow.mp3"
+    },
+    "Do you know where the station is?": {
+      "normal": "audio/d3384f5ce50aa230.mp3",
+      "slow": "audio/d3384f5ce50aa230-slow.mp3"
+    },
+    "How long does it take to get there?": {
+      "normal": "audio/6cb88824487a97e9.mp3",
+      "slow": "audio/6cb88824487a97e9-slow.mp3"
+    },
+    "Do you know where he lives?": {
+      "normal": "audio/607e7437da4f1380.mp3",
+      "slow": "audio/607e7437da4f1380-slow.mp3"
+    },
+    "Could you tell me what time the museum opens?": {
+      "normal": "audio/89df31dcc16c8c14.mp3",
+      "slow": "audio/89df31dcc16c8c14-slow.mp3"
+    },
+    "I'm hungry. So am I.": {
+      "normal": "audio/a175238f04e5a474.mp3",
+      "slow": "audio/a175238f04e5a474-slow.mp3"
+    },
+    "do": {
+      "normal": "audio/dd9ac867f442f2f4.mp3",
+      "slow": "audio/dd9ac867f442f2f4-slow.mp3"
+    },
+    "did": {
+      "normal": "audio/25c00924a1484a30.mp3",
+      "slow": "audio/25c00924a1484a30-slow.mp3"
+    },
+    "either": {
+      "normal": "audio/1abb14d13c9ec73b.mp3",
+      "slow": "audio/1abb14d13c9ec73b-slow.mp3"
+    },
+    "So am I.": {
+      "normal": "audio/1720bdb52338cf31.mp3",
+      "slow": "audio/1720bdb52338cf31-slow.mp3"
+    },
+    "Neither did I.": {
+      "normal": "audio/037dc4e478ae8065.mp3",
+      "slow": "audio/037dc4e478ae8065-slow.mp3"
+    },
+    "I'm looking for my keys.": {
+      "normal": "audio/ab260bc3f67d9227.mp3",
+      "slow": "audio/ab260bc3f67d9227-slow.mp3"
+    },
+    "up": {
+      "normal": "audio/2eaa4ed58cf9fdde.mp3",
+      "slow": "audio/2eaa4ed58cf9fdde-slow.mp3"
+    },
+    "Please fill out this form.": {
+      "normal": "audio/fa73bca322e85a30.mp3",
+      "slow": "audio/fa73bca322e85a30-slow.mp3"
+    },
+    "Put on your jacket, it's cold.": {
+      "normal": "audio/99957f61ef5ff10d.mp3",
+      "slow": "audio/99957f61ef5ff10d-slow.mp3"
+    },
+    "You don't have to print your ticket. You can show it on your phone.": {
+      "normal": "audio/8d0be18f1af0a034.mp3",
+      "slow": "audio/8d0be18f1af0a034-slow.mp3"
+    },
+    "Passengers must not leave bags unattended.": {
+      "normal": "audio/3b9a05170f32f124.mp3",
+      "slow": "audio/3b9a05170f32f124-slow.mp3"
+    },
+    "don't have to": {
+      "normal": "audio/7bc7fab73702b533.mp3",
+      "slow": "audio/7bc7fab73702b533-slow.mp3"
+    },
+    "has to": {
+      "normal": "audio/e89b279e7c6800ef.mp3",
+      "slow": "audio/e89b279e7c6800ef-slow.mp3"
+    },
+    "Do I have to take off my shoes?": {
+      "normal": "audio/77c8882a0b3696f9.mp3",
+      "slow": "audio/77c8882a0b3696f9-slow.mp3"
+    },
+    "You can't smoke here.": {
+      "normal": "audio/704726790ce52fd9.mp3",
+      "slow": "audio/704726790ce52fd9-slow.mp3"
+    },
+    "Do I need a visa?": {
+      "normal": "audio/e595aafafbe46d8f.mp3",
+      "slow": "audio/e595aafafbe46d8f-slow.mp3"
+    },
+    "by": {
+      "normal": "audio/5fc9b004d386958e.mp3",
+      "slow": "audio/5fc9b004d386958e-slow.mp3"
+    },
+    "across": {
+      "normal": "audio/abcec00ea0b8543e.mp3",
+      "slow": "audio/abcec00ea0b8543e-slow.mp3"
+    },
+    "I have lived here since January.": {
+      "normal": "audio/048e7b9b9ca4a572.mp3",
+      "slow": "audio/048e7b9b9ca4a572-slow.mp3"
+    },
+    "She's on vacation until Monday.": {
+      "normal": "audio/74636533bfbf8dc1.mp3",
+      "slow": "audio/74636533bfbf8dc1-slow.mp3"
+    },
+    "mine": {
+      "normal": "audio/e952deece878dcf9.mp3",
+      "slow": "audio/e952deece878dcf9-slow.mp3"
+    },
+    "theirs": {
+      "normal": "audio/6f50d2ded2092bb7.mp3",
+      "slow": "audio/6f50d2ded2092bb7-slow.mp3"
+    },
+    "Whose": {
+      "normal": "audio/584b4930aa374001.mp3",
+      "slow": "audio/584b4930aa374001-slow.mp3"
+    },
+    "myself": {
+      "normal": "audio/d5d1ab863571a60e.mp3",
+      "slow": "audio/d5d1ab863571a60e-slow.mp3"
+    },
+    "themselves": {
+      "normal": "audio/240619a1450e03b8.mp3",
+      "slow": "audio/240619a1450e03b8-slow.mp3"
+    },
+    "This is my brother's car.": {
+      "normal": "audio/9974878f6b39c44e.mp3",
+      "slow": "audio/9974878f6b39c44e-slow.mp3"
+    },
+    "Is this book yours?": {
+      "normal": "audio/05b093230593f52d.mp3",
+      "slow": "audio/05b093230593f52d-slow.mp3"
+    },
+    "The": {
+      "normal": "audio/b8f98014ce3ca52a.mp3",
+      "slow": "audio/b8f98014ce3ca52a-slow.mp3"
+    },
+    "I go to work by bus.": {
+      "normal": "audio/6bca822bfc3f3a95.mp3",
+      "slow": "audio/6bca822bfc3f3a95-slow.mp3"
+    },
+    "Dogs are better than cats.": {
+      "normal": "audio/680cfe4e18b1a7ce.mp3",
+      "slow": "audio/680cfe4e18b1a7ce-slow.mp3"
+    },
+    "I play the guitar.": {
+      "normal": "audio/9c07039480010af7.mp3",
+      "slow": "audio/9c07039480010af7-slow.mp3"
+    },
+    "Life is beautiful.": {
+      "normal": "audio/b6682d952c3520d8.mp3",
+      "slow": "audio/b6682d952c3520d8-slow.mp3"
+    },
+    "Every": {
+      "normal": "audio/7f0d641b10a21ed3.mp3",
+      "slow": "audio/7f0d641b10a21ed3-slow.mp3"
+    },
+    "All": {
+      "normal": "audio/291da28d24a2f9cf.mp3",
+      "slow": "audio/291da28d24a2f9cf-slow.mp3"
+    },
+    "a little": {
+      "normal": "audio/c106ef1643bc435e.mp3",
+      "slow": "audio/c106ef1643bc435e-slow.mp3"
+    },
+    "a few": {
+      "normal": "audio/4b93b0983740a156.mp3",
+      "slow": "audio/4b93b0983740a156-slow.mp3"
+    },
+    "anybody": {
+      "normal": "audio/489eaf8a989aab5e.mp3",
+      "slow": "audio/489eaf8a989aab5e-slow.mp3"
+    },
+    "There is somebody at the door.": {
+      "normal": "audio/7931fbbf8574f11c.mp3",
+      "slow": "audio/7931fbbf8574f11c-slow.mp3"
+    },
+    "I don't know anybody here.": {
+      "normal": "audio/0248345f329236ef.mp3",
+      "slow": "audio/0248345f329236ef-slow.mp3"
     }
   }
 }

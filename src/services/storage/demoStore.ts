@@ -9,6 +9,7 @@ import {
   UserSettings,
   StudentMetrics,
   UserRole,
+  StudyLevel,
 } from '../../types';
 import {
   DEMO_USERS,
@@ -16,12 +17,13 @@ import {
   INITIAL_ACTIVITIES,
   INITIAL_REVIEW_ITEMS,
 } from './initialData';
+import { categoryInfo } from '../categories';
 import { computeStudentMetrics, nextReviewState, reviewFromMistake } from '../progress/progressRules';
 
 const STORAGE_KEYS = {
   USERS: 'ingles_facil_users_v1',
   CURRENT_USER_ID: 'ingles_facil_current_user_id_v1',
-  ACTIVITIES: 'ingles_facil_activities_v1',
+  ACTIVITIES: 'ingles_facil_activities_v2', // v2: níveis, temas e conteúdo dos livros (05/10),
   ATTEMPTS: 'ingles_facil_attempts_v1',
   REVIEWS: 'ingles_facil_reviews_v1',
   SETTINGS: 'ingles_facil_settings_v1',
@@ -54,7 +56,7 @@ export class DemoStore {
           activityId: 'act-air-01',
           activityVersion: 1,
           activityTitle: 'Chegando ao Aeroporto: Escuta e Frases Chave',
-          category: 'airport',
+          category: 'travel',
           modality: 'audio',
           score: 50,
           totalQuestions: 2,
@@ -135,6 +137,7 @@ export class DemoStore {
       email: cleanEmail,
       role: 'student',
       status: 'active',
+      minLevel: 'basic_1',
       createdAt: new Date().toISOString(),
     };
 
@@ -169,7 +172,12 @@ export class DemoStore {
 
   public static getActivities(requesterRole: UserRole): Activity[] {
     const raw = localStorage.getItem(STORAGE_KEYS.ACTIVITIES);
-    const activities: Activity[] = raw ? JSON.parse(raw) : INITIAL_ACTIVITIES;
+    // Dados salvos antes de 05/10 não têm "level" (entram no Básico 1) e usam os temas antigos
+    const activities: Activity[] = (raw ? JSON.parse(raw) : INITIAL_ACTIVITIES).map((a: Activity) => ({
+      ...a,
+      level: a.level ?? 'basic_1',
+      category: categoryInfo(a.category).id,
+    }));
 
     // Aluno visualiza apenas atividades publicadas
     if (requesterRole !== 'admin') {
@@ -255,6 +263,24 @@ export class DemoStore {
     }
 
     target.status = target.status === 'active' ? 'inactive' : 'active';
+    localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
+    return { success: true };
+  }
+
+  public static setUserMinLevel(
+    targetUserId: string,
+    minLevel: StudyLevel,
+    requesterRole: UserRole
+  ): { success: boolean; error?: string } {
+    if (requesterRole !== 'admin') {
+      return { success: false, error: 'Apenas administradores podem alterar o nível dos alunos.' };
+    }
+
+    const users = this.getUsersRaw();
+    const target = users.find((u) => u.id === targetUserId);
+    if (!target) return { success: false, error: 'Usuário não encontrado.' };
+
+    target.minLevel = minLevel;
     localStorage.setItem(STORAGE_KEYS.USERS, JSON.stringify(users));
     return { success: true };
   }
@@ -416,7 +442,8 @@ export class DemoStore {
 
   private static getUsersRaw(): User[] {
     const raw = localStorage.getItem(STORAGE_KEYS.USERS);
-    return raw ? JSON.parse(raw) : DEMO_USERS;
+    const users: User[] = raw ? JSON.parse(raw) : DEMO_USERS;
+    return users.map((u) => ({ ...u, minLevel: u.minLevel ?? 'basic_1' }));
   }
 
   private static getSettingsMapRaw(): Record<string, UserSettings> {

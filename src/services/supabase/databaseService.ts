@@ -1,7 +1,7 @@
 // Serviço de Acesso a Dados com Supabase PostgreSQL e RLS - Inglês Fácil
 // As permissões são garantidas pelas políticas RLS do schema.sql
 import { supabase } from './client';
-import { Activity, Attempt, Question, ReviewItem, User, UserRole, UserSettings } from '../../types';
+import { Activity, Attempt, Question, ReviewItem, StudyLevel, User, UserRole, UserSettings } from '../../types';
 import { nextReviewState, reviewFromMistake } from '../progress/progressRules';
 
 type Result = { success: boolean; error?: string };
@@ -21,7 +21,7 @@ const mapActivity = (row: any): Activity => ({
   description: row.description,
   category: row.category,
   modality: row.modality,
-  difficulty: row.difficulty,
+  level: row.level,
   estimatedMinutes: row.estimated_minutes,
   isPublished: row.is_published,
   createdAt: row.created_at,
@@ -95,6 +95,7 @@ const mapProfile = (p: any): User => ({
   email: p.email,
   role: p.role,
   status: p.status,
+  minLevel: p.min_level ?? 'basic_1',
   createdAt: p.created_at,
 });
 
@@ -118,7 +119,7 @@ export class SupabaseDatabaseService {
       description: activity.description,
       category: activity.category,
       modality: activity.modality,
-      difficulty: activity.difficulty,
+      level: activity.level,
       estimated_minutes: activity.estimatedMinutes,
       is_published: activity.isPublished,
     };
@@ -333,6 +334,14 @@ export class SupabaseDatabaseService {
       return fail(error.message);
     }
     return { success: true };
+  }
+
+  public static async setUserMinLevel(userId: string, minLevel: StudyLevel): Promise<Result> {
+    const { error } = await db()
+      .from('profiles')
+      .update({ min_level: minLevel, updated_at: new Date().toISOString() })
+      .eq('id', userId);
+    return error ? fail(error.message) : { success: true };
   }
 }
 /* eslint-enable @typescript-eslint/no-explicit-any */

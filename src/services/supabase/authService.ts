@@ -75,6 +75,7 @@ export class SupabaseAuthService {
         email: email.trim().toLowerCase(),
         role: 'student',
         status: 'active',
+        minLevel: 'basic_1',
         createdAt: new Date().toISOString(),
       };
 
@@ -134,6 +135,7 @@ export class SupabaseAuthService {
         email: data.email,
         role: data.role as UserRole,
         status: data.status,
+        minLevel: data.min_level ?? 'basic_1',
         createdAt: data.created_at,
       };
     } catch {

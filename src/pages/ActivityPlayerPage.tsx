@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Activity, Question, QuestionSubmission, Attempt } from '../types';
 import { AudioService, VoiceRecorder } from '../services/audio/audioService';
+import { categoryInfo } from '../services/categories';
 import { GradingService, GradingResult } from '../services/grading/gradingService';
 import { useAuth } from '../contexts/AuthContext';
 import { newId } from '../services/dataService';
@@ -353,9 +354,7 @@ export const ActivityPlayerPage: React.FC<ActivityPlayerPageProps> = ({
         </div>
 
         <span className="badge badge-primary">
-          {activity.category === 'airport' && 'Aeroporto'}
-          {activity.category === 'hotel' && 'Hotel'}
-          {activity.category === 'restaurant' && 'Restaurante'}
+          {categoryInfo(activity.category).emoji} {categoryInfo(activity.category).label}
         </span>
       </div>
 
